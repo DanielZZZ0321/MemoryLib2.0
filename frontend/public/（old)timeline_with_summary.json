@@ -1,0 +1,68 @@
+[
+  {
+    "event_index": 0,
+    "start_sec": 0,
+    "end_sec": 185,
+    "start_hms": "00:00:00",
+    "end_hms": "00:03:05",
+    "title": "Morning Coffee Preparation",
+    "summary": "User wakes up and walks to the kitchen. They grind coffee beans using a hand grinder, boil water, and prepare a pour-over coffee.",
+    "mediaUrl": "/media/coffee.jpg",
+    "mediaType": "image"
+  },
+  {
+    "event_index": 1,
+    "start_sec": 185,
+    "end_sec": 420,
+    "start_hms": "00:03:05",
+    "end_hms": "00:07:00",
+    "title": "Reading Technical Article on iPad",
+    "summary": "User sits at the kitchen table and reads a technical article about large language model fine-tuning on their iPad.",
+    "mediaUrl": "/media/coding.jpg",
+    "mediaType": "image"
+  },
+  {
+    "event_index": 2,
+    "start_sec": 420,
+    "end_sec": 780,
+    "start_hms": "00:07:00",
+    "end_hms": "00:13:00",
+    "title": "Walking to Office through Park",
+    "summary": "User leaves the apartment and walks through a small neighborhood park. Cherry blossom trees are in full bloom.",
+    "mediaUrl": "/media/sample_video.mp4",
+    "mediaType": "video"
+  },
+  {
+    "event_index": 3,
+    "start_sec": 780,
+    "end_sec": 1200,
+    "start_hms": "00:13:00",
+    "end_hms": "00:20:00",
+    "title": "Team Standup Meeting",
+    "summary": "User arrives at the office and joins a standup meeting with 4 colleagues. Discussion topics include the new API migration timeline.",
+    "mediaUrl": "/media/meeting.jpg",
+    "mediaType": "image"
+  },
+  {
+    "event_index": 4,
+    "start_sec": 1200,
+    "end_sec": 2400,
+    "start_hms": "00:20:00",
+    "end_hms": "00:40:00",
+    "title": "Deep Work: Frontend Component Development",
+    "summary": "User sits at their desk with dual monitors. They work on building React components in VS Code, frequently switching between the editor and Chrome DevTools.",
+    "mediaUrl": "/media/coding.jpg",
+    "mediaType": "image"
+  },
+  {
+    "event_index": 5,
+    "start_sec": 2400,
+    "end_sec": 2700,
+    "start_hms": "00:40:00",
+    "end_hms": "00:45:00",
+    "title": "Coffee Break with Colleague",
+    "summary": "User walks to the office kitchen and chats with a colleague named Mia about an upcoming tech conference.",
+    "mediaUrl": "/media/coffee.jpg",
+    "mediaType": "image"
+  }
+]

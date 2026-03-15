@@ -1,0 +1,51 @@
+# Personal temporary folder
+why/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+*.iml
+
+# Build outputs
+/build/
+**/build/
+
+# Local config
+local.properties
+
+# Gradle
+.gradle/
+
+# Node.js
+node_modules/
+**/node_modules/
+
+# Build outputs (Node.js)
+dist/
+**/dist/
+
+# Environment files (keep .env.example)
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+Thumbs.db
+
+# Media files
+*.mp4
+*.mov
+*.avi
+*.mkv
+frontend/public/media/*.mp4
+frontend/public/media/*.mov

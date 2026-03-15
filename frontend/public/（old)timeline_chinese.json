@@ -1,0 +1,629 @@
+[
+  {
+    "event_index": 0,
+    "start_sec": 0,
+    "end_sec": 185,
+    "start_hms": "00:00:00",
+    "end_hms": "00:03:05",
+    "title": "晨间咖啡时光",
+    "summary": "早上起床后走到厨房，用手摇磨豆机研磨咖啡豆，烧水冲泡手冲咖啡。阳光透过窗户洒在厨房台面上。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/coffee.jpg",
+        "thumbnail": "/media/coffee.jpg",
+        "timestamp": "00:01:30",
+        "caption": "手冲咖啡制作"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/sunnykitchen/800/600",
+        "thumbnail": "https://picsum.photos/seed/sunnykitchen/200/150",
+        "timestamp": "00:02:00",
+        "caption": "阳光厨房"
+      },
+      {
+        "type": "image",
+        "url": "/media/grinding_coffee_beans.jpg",
+        "thumbnail": "/media/grinding_coffee_beans.jpg",
+        "timestamp": "00:00:00",
+        "caption": "晨间咖啡 - 照片 1"
+      },
+      {
+        "type": "image",
+        "url": "/media/boiling_water_kettle.jpg",
+        "thumbnail": "/media/boiling_water_kettle.jpg",
+        "timestamp": "00:00:00",
+        "caption": "晨间咖啡 - 照片 2"
+      },
+      {
+        "type": "image",
+        "url": "/media/pouring_hot_water.jpg",
+        "thumbnail": "/media/pouring_hot_water.jpg",
+        "timestamp": "00:00:00",
+        "caption": "晨间咖啡 - 照片 3"
+      },
+      {
+        "type": "image",
+        "url": "/media/sunny_kitchen_counter.jpg",
+        "thumbnail": "/media/sunny_kitchen_counter.jpg",
+        "timestamp": "00:00:00",
+        "caption": "晨间咖啡 - 照片 4"
+      },
+      {
+        "type": "image",
+        "url": "/media/morning_coffee_cup.jpg",
+        "thumbnail": "/media/morning_coffee_cup.jpg",
+        "timestamp": "00:00:00",
+        "caption": "晨间咖啡 - 照片 5"
+      },
+      {
+        "type": "video",
+        "url": "/media/hand_grinding_timelapse.mp4",
+        "thumbnail": "https://picsum.photos/seed/hand_grinding_timelapse.mp4/200/150",
+        "timestamp": "00:00:00",
+        "duration": 52,
+        "caption": "晨间咖啡 - 视频 1"
+      },
+      {
+        "type": "video",
+        "url": "/media/pouring_water_slowmo.mp4",
+        "thumbnail": "https://picsum.photos/seed/pouring_water_slowmo.mp4/200/150",
+        "timestamp": "00:00:00",
+        "duration": 18,
+        "caption": "晨间咖啡 - 视频 2"
+      },
+      {
+        "type": "video",
+        "url": "/media/coffee_dripping_macro.mp4",
+        "thumbnail": "https://picsum.photos/seed/coffee_dripping_macro.mp4/200/150",
+        "timestamp": "00:00:00",
+        "duration": 57,
+        "caption": "晨间咖啡 - 视频 3"
+      },
+      {
+        "type": "video",
+        "url": "/media/morning_sun_timelapse.mp4",
+        "thumbnail": "https://picsum.photos/seed/morning_sun_timelapse.mp4/200/150",
+        "timestamp": "00:00:00",
+        "duration": 30,
+        "caption": "晨间咖啡 - 视频 4"
+      }
+    ],
+    "tags": [
+      "早晨",
+      "咖啡",
+      "居家"
+    ],
+    "location": "家中厨房",
+    "mood": "平静"
+  },
+  {
+    "event_index": 1,
+    "start_sec": 185,
+    "end_sec": 420,
+    "start_hms": "00:03:05",
+    "end_hms": "00:07:00",
+    "title": "阅读技术文章",
+    "summary": "坐在餐桌前用 iPad 阅读关于大语言模型微调的技术文章，一边喝咖啡一边做笔记。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/coding.jpg",
+        "thumbnail": "/media/coding.jpg",
+        "timestamp": "00:04:00",
+        "caption": "iPad 阅读中"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/notebook/800/600",
+        "thumbnail": "https://picsum.photos/seed/notebook/200/150",
+        "timestamp": "00:05:30",
+        "caption": "学习笔记"
+      },
+      {
+        "type": "image",
+        "url": "/media/reading_on_ipad.jpg",
+        "thumbnail": "/media/reading_on_ipad.jpg",
+        "timestamp": "00:03:05",
+        "caption": "阅读技术 - 照片 1"
+      },
+      {
+        "type": "image",
+        "url": "/media/tech_blog_article.jpg",
+        "thumbnail": "/media/tech_blog_article.jpg",
+        "timestamp": "00:03:05",
+        "caption": "阅读技术 - 照片 2"
+      },
+      {
+        "type": "image",
+        "url": "/media/taking_smart_notes.jpg",
+        "thumbnail": "/media/taking_smart_notes.jpg",
+        "timestamp": "00:03:05",
+        "caption": "阅读技术 - 照片 3"
+      },
+      {
+        "type": "image",
+        "url": "/media/focused_studying.jpg",
+        "thumbnail": "/media/focused_studying.jpg",
+        "timestamp": "00:03:05",
+        "caption": "阅读技术 - 照片 4"
+      },
+      {
+        "type": "image",
+        "url": "/media/coffee_and_notes.jpg",
+        "thumbnail": "/media/coffee_and_notes.jpg",
+        "timestamp": "00:03:05",
+        "caption": "阅读技术 - 照片 5"
+      },
+      {
+        "type": "video",
+        "url": "/media/scrolling_ipad_screen.mp4",
+        "thumbnail": "https://picsum.photos/seed/scrolling_ipad_screen.mp4/200/150",
+        "timestamp": "00:03:05",
+        "duration": 51,
+        "caption": "阅读技术 - 视频 1"
+      },
+      {
+        "type": "video",
+        "url": "/media/writing_notes_closeup.mp4",
+        "thumbnail": "https://picsum.photos/seed/writing_notes_closeup.mp4/200/150",
+        "timestamp": "00:03:05",
+        "duration": 35,
+        "caption": "阅读技术 - 视频 2"
+      },
+      {
+        "type": "video",
+        "url": "/media/highlighting_text_action.mp4",
+        "thumbnail": "https://picsum.photos/seed/highlighting_text_action.mp4/200/150",
+        "timestamp": "00:03:05",
+        "duration": 59,
+        "caption": "阅读技术 - 视频 3"
+      },
+      {
+        "type": "video",
+        "url": "/media/studying_process_timelapse.mp4",
+        "thumbnail": "https://picsum.photos/seed/studying_process_timelapse.mp4/200/150",
+        "timestamp": "00:03:05",
+        "duration": 34,
+        "caption": "阅读技术 - 视频 4"
+      }
+    ],
+    "tags": [
+      "学习",
+      "阅读",
+      "技术"
+    ],
+    "location": "家中餐桌",
+    "mood": "专注"
+  },
+  {
+    "event_index": 2,
+    "start_sec": 420,
+    "end_sec": 780,
+    "start_hms": "00:07:00",
+    "end_hms": "00:13:00",
+    "title": "公园漫步",
+    "summary": "离开公寓穿过小区公园，春天的樱花正在盛开，沿途拍下美丽的风景。",
+    "media": [
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/park/800/600",
+        "thumbnail": "https://picsum.photos/seed/park/200/150",
+        "timestamp": "00:08:00",
+        "caption": "小区公园"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/sakura/800/600",
+        "thumbnail": "https://picsum.photos/seed/sakura/200/150",
+        "timestamp": "00:09:30",
+        "caption": "盛开的樱花"
+      },
+      {
+        "type": "video",
+        "url": "/media/sample_video.mp4",
+        "thumbnail": "https://picsum.photos/seed/park/200/150",
+        "timestamp": "00:10:00",
+        "duration": 15,
+        "caption": "漫步公园"
+      },
+      {
+        "type": "image",
+        "url": "/media/blooming_sakura_trees.jpg",
+        "thumbnail": "/media/blooming_sakura_trees.jpg",
+        "timestamp": "00:07:00",
+        "caption": "公园漫步 - 照片 1"
+      },
+      {
+        "type": "image",
+        "url": "/media/walking_park_path.jpg",
+        "thumbnail": "/media/walking_park_path.jpg",
+        "timestamp": "00:07:00",
+        "caption": "公园漫步 - 照片 2"
+      },
+      {
+        "type": "image",
+        "url": "/media/green_spring_leaves.jpg",
+        "thumbnail": "/media/green_spring_leaves.jpg",
+        "timestamp": "00:07:00",
+        "caption": "公园漫步 - 照片 3"
+      },
+      {
+        "type": "image",
+        "url": "/media/blue_sky_outdoors.jpg",
+        "thumbnail": "/media/blue_sky_outdoors.jpg",
+        "timestamp": "00:07:00",
+        "caption": "公园漫步 - 照片 4"
+      },
+      {
+        "type": "image",
+        "url": "/media/park_scenery.jpg",
+        "thumbnail": "/media/park_scenery.jpg",
+        "timestamp": "00:07:00",
+        "caption": "公园漫步 - 照片 5"
+      },
+      {
+        "type": "video",
+        "url": "/media/walking_pov_footage.mp4",
+        "thumbnail": "https://picsum.photos/seed/walking_pov_footage.mp4/200/150",
+        "timestamp": "00:07:00",
+        "duration": 23,
+        "caption": "公园漫步 - 视频 1"
+      },
+      {
+        "type": "video",
+        "url": "/media/sakura_falling_slowmo.mp4",
+        "thumbnail": "https://picsum.photos/seed/sakura_falling_slowmo.mp4/200/150",
+        "timestamp": "00:07:00",
+        "duration": 55,
+        "caption": "公园漫步 - 视频 2"
+      },
+      {
+        "type": "video",
+        "url": "/media/spring_breeze_leaves.mp4",
+        "thumbnail": "https://picsum.photos/seed/spring_breeze_leaves.mp4/200/150",
+        "timestamp": "00:07:00",
+        "duration": 23,
+        "caption": "公园漫步 - 视频 3"
+      },
+      {
+        "type": "video",
+        "url": "/media/park_ambience_video.mp4",
+        "thumbnail": "https://picsum.photos/seed/park_ambience_video.mp4/200/150",
+        "timestamp": "00:07:00",
+        "duration": 39,
+        "caption": "公园漫步 - 视频 4"
+      }
+    ],
+    "tags": [
+      "散步",
+      "春天",
+      "自然"
+    ],
+    "location": "小区公园",
+    "mood": "愉悦"
+  },
+  {
+    "event_index": 3,
+    "start_sec": 780,
+    "end_sec": 1200,
+    "start_hms": "00:13:00",
+    "end_hms": "00:20:00",
+    "title": "团队站会",
+    "summary": "到达办公室参加团队站会，与 4 位同事讨论新 API 迁移计划和技术方案。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/meeting.jpg",
+        "thumbnail": "/media/meeting.jpg",
+        "timestamp": "00:14:00",
+        "caption": "团队会议中"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/whiteboard/800/600",
+        "thumbnail": "https://picsum.photos/seed/whiteboard/200/150",
+        "timestamp": "00:16:00",
+        "caption": "白板讨论"
+      },
+      {
+        "type": "image",
+        "url": "/media/whiteboard_architecture_diagram.jpg",
+        "thumbnail": "/media/whiteboard_architecture_diagram.jpg",
+        "timestamp": "00:13:00",
+        "caption": "团队站会 - 照片 1"
+      },
+      {
+        "type": "image",
+        "url": "/media/colleagues_discussing.jpg",
+        "thumbnail": "/media/colleagues_discussing.jpg",
+        "timestamp": "00:13:00",
+        "caption": "团队站会 - 照片 2"
+      },
+      {
+        "type": "image",
+        "url": "/media/standup_meeting_room.jpg",
+        "thumbnail": "/media/standup_meeting_room.jpg",
+        "timestamp": "00:13:00",
+        "caption": "团队站会 - 照片 3"
+      },
+      {
+        "type": "image",
+        "url": "/media/sticky_notes_board.jpg",
+        "thumbnail": "/media/sticky_notes_board.jpg",
+        "timestamp": "00:13:00",
+        "caption": "团队站会 - 照片 4"
+      },
+      {
+        "type": "image",
+        "url": "/media/team_collaboration.jpg",
+        "thumbnail": "/media/team_collaboration.jpg",
+        "timestamp": "00:13:00",
+        "caption": "团队站会 - 照片 5"
+      },
+      {
+        "type": "video",
+        "url": "/media/drawing_on_whiteboard.mp4",
+        "thumbnail": "https://picsum.photos/seed/drawing_on_whiteboard.mp4/200/150",
+        "timestamp": "00:13:00",
+        "duration": 11,
+        "caption": "团队站会 - 视频 1"
+      },
+      {
+        "type": "video",
+        "url": "/media/team_presenting_idea.mp4",
+        "thumbnail": "https://picsum.photos/seed/team_presenting_idea.mp4/200/150",
+        "timestamp": "00:13:00",
+        "duration": 23,
+        "caption": "团队站会 - 视频 2"
+      },
+      {
+        "type": "video",
+        "url": "/media/active_discussion_clip.mp4",
+        "thumbnail": "https://picsum.photos/seed/active_discussion_clip.mp4/200/150",
+        "timestamp": "00:13:00",
+        "duration": 14,
+        "caption": "团队站会 - 视频 3"
+      },
+      {
+        "type": "video",
+        "url": "/media/meeting_room_timelapse.mp4",
+        "thumbnail": "https://picsum.photos/seed/meeting_room_timelapse.mp4/200/150",
+        "timestamp": "00:13:00",
+        "duration": 21,
+        "caption": "团队站会 - 视频 4"
+      }
+    ],
+    "tags": [
+      "工作",
+      "会议",
+      "团队协作"
+    ],
+    "location": "公司会议室",
+    "mood": "专注",
+    "people": [
+      "同事 A",
+      "同事 B",
+      "同事 C",
+      "同事 D"
+    ]
+  },
+  {
+    "event_index": 4,
+    "start_sec": 1200,
+    "end_sec": 2400,
+    "start_hms": "00:20:00",
+    "end_hms": "00:40:00",
+    "title": "深度工作：前端开发",
+    "summary": "坐在双显示器前开发 React 组件，使用 VS Code 编写代码，频繁在编辑器和 Chrome DevTools 之间切换调试。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/coding.jpg",
+        "thumbnail": "/media/coding.jpg",
+        "timestamp": "00:22:00",
+        "caption": "代码编辑环境"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/dualmonitor/800/600",
+        "thumbnail": "https://picsum.photos/seed/dualmonitor/200/150",
+        "timestamp": "00:30:00",
+        "caption": "双显示器开发"
+      },
+      {
+        "type": "video",
+        "url": "/media/sample_video.mp4",
+        "thumbnail": "https://picsum.photos/seed/dualmonitor/200/150",
+        "timestamp": "00:35:00",
+        "duration": 20,
+        "caption": "编码过程"
+      },
+      {
+        "type": "image",
+        "url": "/media/vs_code_react_components.jpg",
+        "thumbnail": "/media/vs_code_react_components.jpg",
+        "timestamp": "00:20:00",
+        "caption": "前端开发 - 照片 1"
+      },
+      {
+        "type": "image",
+        "url": "/media/dual_monitor_setup.jpg",
+        "thumbnail": "/media/dual_monitor_setup.jpg",
+        "timestamp": "00:20:00",
+        "caption": "前端开发 - 照片 2"
+      },
+      {
+        "type": "image",
+        "url": "/media/mechanical_keyboard_typing.jpg",
+        "thumbnail": "/media/mechanical_keyboard_typing.jpg",
+        "timestamp": "00:20:00",
+        "caption": "前端开发 - 照片 3"
+      },
+      {
+        "type": "image",
+        "url": "/media/debugging_devtools.jpg",
+        "thumbnail": "/media/debugging_devtools.jpg",
+        "timestamp": "00:20:00",
+        "caption": "前端开发 - 照片 4"
+      },
+      {
+        "type": "image",
+        "url": "/media/focused_developer_desk.jpg",
+        "thumbnail": "/media/focused_developer_desk.jpg",
+        "timestamp": "00:20:00",
+        "caption": "前端开发 - 照片 5"
+      },
+      {
+        "type": "video",
+        "url": "/media/typing_code_fast.mp4",
+        "thumbnail": "https://picsum.photos/seed/typing_code_fast.mp4/200/150",
+        "timestamp": "00:20:00",
+        "duration": 32,
+        "caption": "前端开发 - 视频 1"
+      },
+      {
+        "type": "video",
+        "url": "/media/scrolling_react_code.mp4",
+        "thumbnail": "https://picsum.photos/seed/scrolling_react_code.mp4/200/150",
+        "timestamp": "00:20:00",
+        "duration": 18,
+        "caption": "前端开发 - 视频 2"
+      },
+      {
+        "type": "video",
+        "url": "/media/ui_testing_recording.mp4",
+        "thumbnail": "https://picsum.photos/seed/ui_testing_recording.mp4/200/150",
+        "timestamp": "00:20:00",
+        "duration": 60,
+        "caption": "前端开发 - 视频 3"
+      },
+      {
+        "type": "video",
+        "url": "/media/dev_workflow_timelapse.mp4",
+        "thumbnail": "https://picsum.photos/seed/dev_workflow_timelapse.mp4/200/150",
+        "timestamp": "00:20:00",
+        "duration": 59,
+        "caption": "前端开发 - 视频 4"
+      }
+    ],
+    "tags": [
+      "编程",
+      "React",
+      "前端开发"
+    ],
+    "location": "公司工位",
+    "mood": "投入",
+    "work": {
+      "tasks_completed": [
+        "组件开发",
+        "代码调试",
+        "单元测试"
+      ],
+      "lines_changed": 256
+    }
+  },
+  {
+    "event_index": 5,
+    "start_sec": 2400,
+    "end_sec": 2700,
+    "start_hms": "00:40:00",
+    "end_hms": "00:45:00",
+    "title": "咖啡休息时间",
+    "summary": "走到办公室茶水间，和同事 Mia 聊天，讨论即将到来的技术大会和分享话题。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/coffee.jpg",
+        "thumbnail": "/media/coffee.jpg",
+        "timestamp": "00:41:00",
+        "caption": "茶水间小憩"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/chat/800/600",
+        "thumbnail": "https://picsum.photos/seed/chat/200/150",
+        "timestamp": "00:43:00",
+        "caption": "与同事交流"
+      },
+      {
+        "type": "image",
+        "url": "/media/latte_art_close_up.jpg",
+        "thumbnail": "/media/latte_art_close_up.jpg",
+        "timestamp": "00:40:00",
+        "caption": "咖啡休息 - 照片 1"
+      },
+      {
+        "type": "image",
+        "url": "/media/chatting_with_mia.jpg",
+        "thumbnail": "/media/chatting_with_mia.jpg",
+        "timestamp": "00:40:00",
+        "caption": "咖啡休息 - 照片 2"
+      },
+      {
+        "type": "image",
+        "url": "/media/office_pantry.jpg",
+        "thumbnail": "/media/office_pantry.jpg",
+        "timestamp": "00:40:00",
+        "caption": "咖啡休息 - 照片 3"
+      },
+      {
+        "type": "image",
+        "url": "/media/coffee_break_snacks.jpg",
+        "thumbnail": "/media/coffee_break_snacks.jpg",
+        "timestamp": "00:40:00",
+        "caption": "咖啡休息 - 照片 4"
+      },
+      {
+        "type": "image",
+        "url": "/media/relaxing_by_window.jpg",
+        "thumbnail": "/media/relaxing_by_window.jpg",
+        "timestamp": "00:40:00",
+        "caption": "咖啡休息 - 照片 5"
+      },
+      {
+        "type": "video",
+        "url": "/media/making_espresso_shot.mp4",
+        "thumbnail": "https://picsum.photos/seed/making_espresso_shot.mp4/200/150",
+        "timestamp": "00:40:00",
+        "duration": 29,
+        "caption": "咖啡休息 - 视频 1"
+      },
+      {
+        "type": "video",
+        "url": "/media/colleagues_laughing.mp4",
+        "thumbnail": "https://picsum.photos/seed/colleagues_laughing.mp4/200/150",
+        "timestamp": "00:40:00",
+        "duration": 50,
+        "caption": "咖啡休息 - 视频 2"
+      },
+      {
+        "type": "video",
+        "url": "/media/walking_to_pantry.mp4",
+        "thumbnail": "https://picsum.photos/seed/walking_to_pantry.mp4/200/150",
+        "timestamp": "00:40:00",
+        "duration": 44,
+        "caption": "咖啡休息 - 视频 3"
+      },
+      {
+        "type": "video",
+        "url": "/media/relaxing_coffee_break.mp4",
+        "thumbnail": "https://picsum.photos/seed/relaxing_coffee_break.mp4/200/150",
+        "timestamp": "00:40:00",
+        "duration": 30,
+        "caption": "咖啡休息 - 视频 4"
+      }
+    ],
+    "tags": [
+      "休息",
+      "社交",
+      "咖啡"
+    ],
+    "location": "公司茶水间",
+    "mood": "轻松",
+    "people": [
+      "Mia"
+    ]
+  }
+]
