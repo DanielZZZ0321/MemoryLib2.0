@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "title": "Workspace",
+  "viewBox": { "width": 1000, "height": 550 },
+  "conceptGraph": {
+    "conceptOrder": ["sky", "meet", "eat", "sports"],
+    "concepts": [
+      {
+        "id": "sky",
+        "label": "Sky watching",
+        "x": 180,
+        "y": 280,
+        "photos": [
+          { "checker": true, "src": "/assets/photos/sky-1.jpg", "title": "傍晚天空" },
+          { "checker": false, "src": "/assets/photos/sky-2.jpg", "title": "日出" },
+          { "checker": true, "src": "/assets/photos/sky-3.jpg", "title": "星空" },
+          { "checker": false, "src": "/assets/photos/sky-4.jpg", "title": "云朵" }
+        ]
+      },
+      {
+        "id": "meet",
+        "label": "Meet up",
+        "x": 400,
+        "y": 200,
+        "photos": [
+          { "checker": false, "src": "/assets/photos/meet-1.jpg", "title": "聚会合照" },
+          { "checker": false, "src": "/assets/photos/meet-2.jpg", "title": "咖啡厅" },
+          { "checker": true, "src": "/assets/photos/meet-3.jpg", "title": "聚餐" }
+        ]
+      },
+      {
+        "id": "eat",
+        "label": "Eating and Drinking",
+        "x": 600,
+        "y": 350,
+        "photos": [
+          { "checker": true, "src": "/assets/photos/eat-1.jpg", "title": "早餐" },
+          { "checker": false, "src": "/assets/photos/eat-2.jpg", "title": "午餐" },
+          { "checker": false, "src": "/assets/photos/eat-3.jpg", "title": "下午茶" },
+          { "checker": false, "src": "/assets/photos/eat-4.jpg", "title": "晚餐" }
+        ]
+      },
+      {
+        "id": "sports",
+        "label": "Sports",
+        "x": 820,
+        "y": 270,
+        "photos": [
+          { "checker": false, "src": "/assets/photos/sports-1.jpg", "title": "跑步" },
+          { "checker": false, "src": "/assets/photos/sports-2.jpg", "title": "游泳" },
+          { "checker": true, "src": "/assets/photos/sports-3.jpg", "title": "瑜伽" }
+        ]
+      }
+    ],
+    "dates": [
+      { "label": "1.20", "x": 180, "y": 120, "linkTo": "sky", "sourceFile": "/data/events/2026-01-20.json" },
+      { "label": "2.2", "x": 180, "y": 440, "linkTo": "sky", "sourceFile": "/data/events/2026-02-02.json" }
+    ]
+  },
+  "quadrant": {
+    "timeline": ["8:00", "10:00", "11:00", "12:00", "14:00", "16:00", "18:00", "21:00"],
+    "events": [
+      { "time": 0.1, "category": "working", "highlight": true },
+      { "time": 0.25, "category": "resting", "highlight": false },
+      { "time": 0.6, "category": "working", "highlight": true },
+      { "time": 0.75, "category": "working", "highlight": false },
+      { "time": 0.85, "category": "working", "highlight": true },
+      { "time": 0.3, "category": "working", "highlight": false },
+      { "time": 0.5, "category": "resting", "highlight": false },
+      { "time": 0.9, "category": "resting", "highlight": false }
+    ]
+  },
+  "memoryLibs": [
+    { "id": "1", "title": "My Last Week's Diary", "dateRange": "2.13-2.16", "tags": ["People", "Emotion"], "color": "blue", "year": 2026 },
+    { "id": "2", "title": "Logic of event occurrence", "dateRange": "9.13-9.16", "tags": ["Event", "Time"], "color": "yellow", "year": 2026 },
+    { "id": "3", "title": "N/A", "dateRange": "10.18-10.19", "tags": ["Emotion", "Workflow"], "color": "green", "year": 2026 },
+    { "id": "4", "title": "Daily Reflection", "dateRange": "1.14-2.12", "tags": ["Color", "Event"], "color": "purple", "year": 2025 },
+    { "id": "5", "title": "Decision Making", "dateRange": "3.23-3.27", "tags": ["Event", "Emotion"], "color": "red", "year": 2025 }
+  ],
+  "wavyPathAmplitude": 55
+}

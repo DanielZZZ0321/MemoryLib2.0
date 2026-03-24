@@ -1,0 +1,35 @@
+{
+  "title": "示例 MemoryLib 标题",
+  "dateRange": "1.01-1.31",
+  "color": "blue",
+  "year": 2026,
+  "events": [
+    {
+      "event_index": 0,
+      "start_sec": 0,
+      "end_sec": 120,
+      "start_hms": "09:00",
+      "end_hms": "09:02",
+      "title": "事件标题 1",
+      "summary": "事件描述或摘要内容。",
+      "tags": ["标签1", "标签2"],
+      "media": [
+        {
+          "type": "image",
+          "url": "/assets/photos/xxx.jpg",
+          "caption": "图片说明"
+        }
+      ]
+    },
+    {
+      "event_index": 1,
+      "start_sec": 3600,
+      "end_sec": 4200,
+      "start_hms": "10:00",
+      "end_hms": "10:10",
+      "title": "事件标题 2",
+      "summary": "事件描述或摘要内容。media 可选。",
+      "tags": ["标签1"]
+    }
+  ]
+}

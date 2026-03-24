@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/auth.ts","./src/main.ts","./src/types.ts","./src/components/AuthScreen.tsx","./src/components/ChatbotPanel.tsx","./src/components/MemoryLibHistory.tsx","./src/components/TaskPopup.tsx","./src/components/VideoUpload.tsx","./src/components/Workspace.tsx","./src/stores/pageStore.ts"],"version":"5.9.3"}

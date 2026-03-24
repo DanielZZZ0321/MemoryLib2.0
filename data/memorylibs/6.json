@@ -1,0 +1,78 @@
+{
+  "title": "6-Node Layout Demo",
+  "dateRange": "3.16",
+  "color": "purple",
+  "year": 2026,
+  "events": [
+    {
+      "event_index": 0,
+      "start_hms": "08:00",
+      "end_hms": "08:30",
+      "title": "People",
+      "summary": "Interactions with friends, family, and colleagues.",
+      "tags": [
+        "People"
+      ]
+    },
+    {
+      "event_index": 1,
+      "start_hms": "09:00",
+      "end_hms": "09:30",
+      "title": "Emotion",
+      "summary": "Feelings and mood throughout the day.",
+      "tags": [
+        "Emotion"
+      ]
+    },
+    {
+      "event_index": 2,
+      "start_hms": "11:00",
+      "end_hms": "11:30",
+      "title": "Time",
+      "summary": "Time management and scheduling.",
+      "tags": [
+        "Time"
+      ]
+    },
+    {
+      "event_index": 3,
+      "start_hms": "14:00",
+      "end_hms": "14:30",
+      "title": "Workflow",
+      "summary": "Work processes and productivity.",
+      "tags": [
+        "Workflow"
+      ]
+    },
+    {
+      "event_index": 4,
+      "start_hms": "15:00",
+      "end_hms": "15:30",
+      "title": "Decision",
+      "summary": "Important choices and their outcomes.",
+      "tags": [
+        "Decision"
+      ]
+    },
+    {
+      "event_index": 5,
+      "start_sec": 0,
+      "end_sec": 0,
+      "start_hms": "00:00",
+      "end_hms": "00:00",
+      "title": "打篮球",
+      "summary": "打篮球",
+      "tags": []
+    },
+    {
+      "event_index": 6,
+      "start_sec": 0,
+      "end_sec": 0,
+      "start_hms": "00:00",
+      "end_hms": "00:00",
+      "title": "placeholder",
+      "summary": "placeholder",
+      "tags": []
+    }
+  ]
+}

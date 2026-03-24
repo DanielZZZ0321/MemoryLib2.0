@@ -1,0 +1,72 @@
+{
+  "title": "My Last Week's Diary",
+  "dateRange": "2.13-2.16",
+  "color": "blue",
+  "year": 2026,
+  "events": [
+    {
+      "event_index": 0,
+      "start_sec": 0,
+      "end_sec": 120,
+      "start_hms": "09:00",
+      "end_hms": "09:02",
+      "title": "Morning coffee with Sarah",
+      "summary": "Met Sarah at the usual café. We talked about the new project deadline and weekend plans.",
+      "tags": ["People", "Emotion"],
+      "media": [
+        {
+          "type": "image",
+          "url": "/assets/photos/sky-1.jpg",
+          "caption": "Coffee shop view"
+        }
+      ]
+    },
+    {
+      "event_index": 1,
+      "start_sec": 3600,
+      "end_sec": 4200,
+      "start_hms": "10:00",
+      "end_hms": "10:10",
+      "title": "Team standup",
+      "summary": "Daily sync with the engineering team. Discussed blockers and sprint priorities.",
+      "tags": ["Workflow", "Event"]
+    },
+    {
+      "event_index": 2,
+      "start_sec": 14400,
+      "end_sec": 15000,
+      "start_hms": "14:00",
+      "end_hms": "14:10",
+      "title": "Deep work session",
+      "summary": "Focused on the concept layout algorithm. Implemented force-directed placement.",
+      "tags": ["Workflow", "Decision"]
+    },
+    {
+      "event_index": 3,
+      "start_sec": 61200,
+      "end_sec": 63000,
+      "start_hms": "17:00",
+      "end_hms": "17:30",
+      "title": "Evening walk",
+      "summary": "Took a walk in the park. Cleared my head and reflected on the day.",
+      "tags": ["Emotion", "People"],
+      "media": [
+        {
+          "type": "image",
+          "url": "/assets/photos/sky-2.jpg",
+          "caption": "Sunset"
+        }
+      ]
+    },
+    {
+      "event_index": 4,
+      "start_sec": 68400,
+      "end_sec": 70200,
+      "start_hms": "19:00",
+      "end_hms": "19:30",
+      "title": "Dinner with family",
+      "summary": "Home-cooked meal with family. Shared stories from the week.",
+      "tags": ["People", "Emotion"]
+    }
+  ]
+}
