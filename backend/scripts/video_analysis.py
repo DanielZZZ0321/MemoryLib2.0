@@ -72,6 +72,22 @@ class TimelineEvent:
         }
 
 
+def _to_jsonable(obj: Any) -> Any:
+    if obj is None:
+        return None
+    if isinstance(obj, (str, int, float, bool)):
+        return obj
+    if isinstance(obj, list):
+        return [_to_jsonable(x) for x in obj]
+    if isinstance(obj, tuple):
+        return [_to_jsonable(x) for x in obj]
+    if isinstance(obj, dict):
+        return {str(k): _to_jsonable(v) for k, v in obj.items()}
+    if hasattr(obj, "__dict__"):
+        return _to_jsonable(vars(obj))
+    return str(obj)
+
+
 def analyze_video(
     video_source: Union[str, Path, bytes],
     prompt: str = DEFAULT_PROMPT,
@@ -169,7 +185,7 @@ def analyze_video_timeline(
     return {
         "events": events,
         "raw_text": result.text,
-        "usage_metadata": getattr(result.usage_metadata, "__dict__", None) or str(result.usage_metadata),
+        "usage_metadata": _to_jsonable(result.usage_metadata),
     }
 
 
@@ -196,7 +212,7 @@ def main() -> None:
             print(json.dumps({"success": True, "mode": "timeline", **out}, ensure_ascii=False))
         else:
             result = analyze_video(video_path, DEFAULT_PROMPT, api_key=api_key)
-            usage = getattr(result.usage_metadata, "__dict__", None) or str(result.usage_metadata)
+            usage = _to_jsonable(result.usage_metadata)
             print(json.dumps({
                 "success": True,
                 "mode": "summary",

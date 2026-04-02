@@ -3,3 +3,8 @@ dist/
 *.log
 .env
 .DS_Store
+
+# 本地数据库与上传视频（勿提交大文件）
+backend/data/*.db
+backend/uploads/
+*.mp4

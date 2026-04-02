@@ -13,6 +13,8 @@ import { videoRouter } from './routes/video';
 import pageConfigRouter from './routes/pageConfig';
 import memorylibRouter from './routes/memorylib';
 import chatRouter from './routes/chat';
+import { cardsRouter } from './routes/cards';
+import { eventsGlobalRouter } from './routes/eventsGlobal';
 import { dataServerClient } from './services/dataServerClient';
 
 const app = express();
@@ -34,10 +36,14 @@ app.use('/api/auth', authRouter);
 app.use('/api/data', dataServerRouter);
 app.use('/api/events', eventsRouter);
 app.use('/api/video', videoRouter);
+app.use('/api/cards', cardsRouter);
+app.use('/api/events-global', eventsGlobalRouter);
 app.use('/api/memorylibs', memorylibRouter);
 app.use('/api/chat', chatRouter);
 // 页面构建配置：GET /api/page-config 返回 data/page-config.json
 app.use('/api', pageConfigRouter);
+// Expose uploaded media so event cards can render video/image/audio URLs.
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 const frontendDist = path.join(__dirname, '../../frontend/dist');
 if (fs.existsSync(frontendDist)) {

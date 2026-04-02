@@ -4,6 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import { spawnSync } from 'child_process';
 import { authMiddleware } from '../middleware/auth';
+import { ingestUploadedVideoToGlobalMemory } from '../services/videoIngestService';
 
 const videoRouter = Router();
 
@@ -131,5 +132,41 @@ videoRouter.post(
     res.status(400).json({ success: false, error: err.message || '上传失败' });
   }
 );
+
+// POST /api/video/ingest - ingest an uploaded video into global events + a card graph
+videoRouter.post('/ingest', authMiddleware, async (req: Request, res: Response) => {
+  const filename = String(req.body?.video?.filename || req.body?.filename || '').trim();
+  const size = typeof req.body?.video?.size === 'number' ? (req.body.video.size as number) : undefined;
+  const cardTitle = typeof req.body?.card?.title === 'string' ? (req.body.card.title as string) : undefined;
+  const topThemes = typeof req.body?.card?.topThemes === 'number' ? (req.body.card.topThemes as number) : undefined;
+  const timelineEvents = Array.isArray(req.body?.timelineEvents) ? (req.body.timelineEvents as unknown[]) : undefined;
+
+  if (!filename) {
+    res.status(400).json({ success: false, error: 'Missing video filename (expected body.video.filename)' });
+    return;
+  }
+
+  const result = await ingestUploadedVideoToGlobalMemory({
+    reqUser: (req as Request & { user?: unknown }).user,
+    filename,
+    size,
+    cardTitle,
+    topThemes,
+    timelineEvents: timelineEvents as any,
+  });
+
+  if (!result.ok) {
+    res.status(400).json({ success: false, error: result.error });
+    return;
+  }
+
+  res.json({
+    success: true,
+    videoId: result.result.videoId,
+    cardId: result.result.cardId,
+    created: { events: result.result.createdEvents, themes: result.result.createdThemes },
+    graph: result.result.graph,
+  });
+});
 
 export { videoRouter };
