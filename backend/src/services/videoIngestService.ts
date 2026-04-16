@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { spawnSync } from 'child_process';
 import { db } from '../db/database';
+import { buildVideoAssetBundle, type SegmentBuildRow } from './videoAssetService';
 
 export type ThemeNode = { id: string; label: string; score: number };
 export type ThemeEdge = { source: string; target: string; weight: number };
@@ -226,6 +227,8 @@ export async function ingestUploadedVideoToGlobalMemory(opts: {
   );
   const insertCardEvent = db.prepare(`INSERT OR REPLACE INTO card_event (card_id, event_id) VALUES (@card_id, @event_id)`);
 
+  const assetRows: SegmentBuildRow[] = [];
+
   const tx = db.transaction(() => {
     insertVideo.run({
       id: videoId,
@@ -254,6 +257,15 @@ export async function ingestUploadedVideoToGlobalMemory(opts: {
 
       const eventId = id('evt');
       eventIds.push(eventId);
+      assetRows.push({
+        segmentId,
+        eventId,
+        start_ms,
+        end_ms,
+        title: (e.title || '').trim().slice(0, 120) || `Event ${eventIds.length}`,
+        summary: (e.summary || '').trim(),
+        raw: { ...e },
+      });
       insertEvent.run({
         id: eventId,
         user_id: userId,
@@ -302,6 +314,30 @@ export async function ingestUploadedVideoToGlobalMemory(opts: {
 
   try {
     const out = tx();
+    const bundle = buildVideoAssetBundle({
+      videoId,
+      cardId,
+      uploadFilename: opts.filename,
+      sourceVideoPath: videoPath,
+      rows: assetRows,
+    });
+    if (bundle.ok) {
+      const row = db.prepare('SELECT metadata_json FROM videos WHERE id = ?').get(videoId) as { metadata_json: string | null } | undefined;
+      let meta: Record<string, unknown> = {};
+      try {
+        meta = row?.metadata_json ? (JSON.parse(row.metadata_json) as Record<string, unknown>) : {};
+      } catch {
+        meta = {};
+      }
+      meta.video_assets = {
+        root: path.dirname(bundle.timelinePath),
+        timeline_json: bundle.timelinePath,
+        segment_count: assetRows.length,
+      };
+      db.prepare('UPDATE videos SET metadata_json = ? WHERE id = ?').run(JSON.stringify(meta), videoId);
+    } else {
+      console.warn('[ingest] video asset bundle failed:', bundle.error);
+    }
     return {
       ok: true,
       result: {

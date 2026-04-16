@@ -20,6 +20,9 @@ export interface PageContext {
   nodeIds?: string[];
   /** 当前布局覆盖（供 AI 了解/修改） */
   nodePositions?: Record<string, { x: number; y: number }>;
+  /** 与 ingest 返回的 videoId 绑定后可使用视频时间线/VLM 工具 */
+  linkedVideoId?: string;
+  linkedCardId?: string;
 }
 
 export interface AppliedAction {

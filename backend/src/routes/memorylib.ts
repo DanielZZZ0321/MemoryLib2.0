@@ -16,13 +16,15 @@ router.get('/:id', (req, res) => {
 
 router.patch('/:id', authMiddleware, (req, res) => {
   const { id } = req.params;
-  const { events, title, dateRange, color, year } = req.body ?? {};
+  const { events, title, dateRange, color, year, linkedVideoId, linkedCardId } = req.body ?? {};
   const updates: Parameters<typeof updateMemoryLib>[1] = {};
   if (Array.isArray(events)) updates.events = events;
   if (typeof title === 'string') updates.title = title;
   if (typeof dateRange === 'string') updates.dateRange = dateRange;
   if (typeof color === 'string') updates.color = color;
   if (typeof year === 'number') updates.year = year;
+  if (typeof linkedVideoId === 'string') updates.linkedVideoId = linkedVideoId.trim() || undefined;
+  if (typeof linkedCardId === 'string') updates.linkedCardId = linkedCardId.trim() || undefined;
   const updated = updateMemoryLib(id, updates);
   if (!updated) {
     res.status(404).json({ error: 'MemoryLib not found' });

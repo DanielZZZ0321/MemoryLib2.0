@@ -25,6 +25,9 @@ export interface MemoryLibData {
   color?: string;
   year?: number;
   events?: MemoryLibEvent[];
+  /** 与 POST /api/video/ingest 生成的全局视频 ID 绑定，用于聊天中时间线/VLM 工具 */
+  linkedVideoId?: string;
+  linkedCardId?: string;
 }
 
 function safeId(id: string): string {
@@ -44,7 +47,7 @@ export function getMemoryLib(id: string): MemoryLibData | null {
 
 export function updateMemoryLib(
   id: string,
-  updates: Partial<Pick<MemoryLibData, 'events' | 'title' | 'dateRange' | 'color' | 'year'>>
+  updates: Partial<Pick<MemoryLibData, 'events' | 'title' | 'dateRange' | 'color' | 'year' | 'linkedVideoId' | 'linkedCardId'>>
 ): MemoryLibData | null {
   const current = getMemoryLib(id);
   if (!current) return null;

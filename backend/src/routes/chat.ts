@@ -5,6 +5,11 @@
 import { Router, Request, Response } from 'express';
 import { authMiddleware } from '../middleware/auth';
 import { getMemoryLib, updateMemoryLib } from '../services/memorylibService';
+import {
+  searchTimelineForUser,
+  mineSegmentForUser,
+  queryFullVideoForUser,
+} from '../services/videoMemoryChat';
 
 const chatRouter = Router();
 
@@ -27,6 +32,9 @@ interface PageContext {
   events?: Array<{ index: number; title: string; summary: string; tags?: string[] }>;
   nodeIds?: string[];
   nodePositions?: Record<string, { x: number; y: number }>;
+  /** 可选：与 ingest 返回的 videoId 绑定，启用时间线检索与 VLM 片段/整段挖掘 */
+  linkedVideoId?: string;
+  linkedCardId?: string;
 }
 
 interface ChatRequestBody {
@@ -103,7 +111,71 @@ const MEMORY_TOOLS = [
   },
 ];
 
-function buildSystemMessage(ctx: PageContext | null): string {
+const VIDEO_MEMORY_TOOLS = [
+  {
+    type: 'function' as const,
+    function: {
+      name: 'search_video_timeline',
+      description:
+        '在已入库视频的时间线文本索引中检索与用户问题相关的片段，返回 event_id 与时间范围。回答视频细节问题时应**先调用**本工具做定位；若无法匹配再考虑整段视频查询。',
+      parameters: {
+        type: 'object',
+        properties: {
+          query: {
+            type: 'string',
+            description: '用于匹配的短语或用户问题的核心关键词（可与用户原话相近）',
+          },
+        },
+        required: ['query'],
+      },
+    },
+  },
+  {
+    type: 'function' as const,
+    function: {
+      name: 'mine_video_segment',
+      description:
+        '在已通过时间线定位到具体 event_id 后，对**该片段的切片视频**调用 VLM 做细节回答。仅针对该时间段画面作答。',
+      parameters: {
+        type: 'object',
+        properties: {
+          event_id: { type: 'string', description: 'search_video_timeline 返回的 evt_ 开头的 id' },
+          question: { type: 'string', description: '用户关心的具体问题' },
+        },
+        required: ['event_id', 'question'],
+      },
+    },
+  },
+  {
+    type: 'function' as const,
+    function: {
+      name: 'query_full_video_memory',
+      description:
+        '当时间线无法定位、或问题需要通览全片、或片段切片不可用时，对**完整原始视频**做 VLM 提问。',
+      parameters: {
+        type: 'object',
+        properties: {
+          question: { type: 'string', description: '要向整段视频提出的问题' },
+        },
+        required: ['question'],
+      },
+    },
+  },
+];
+
+function resolveLinkedVideoId(ctx: PageContext | null): string | undefined {
+  if (!ctx) return undefined;
+  const fromCtx = ctx.linkedVideoId?.trim();
+  if (fromCtx) return fromCtx;
+  if (ctx.memoryLibId) {
+    const lib = getMemoryLib(ctx.memoryLibId);
+    const v = lib?.linkedVideoId?.trim();
+    if (v) return v;
+  }
+  return undefined;
+}
+
+function buildSystemMessage(ctx: PageContext | null, opts?: { videoTools: boolean }): string {
   if (!ctx) {
     return '你是 Memory Assistant，帮助用户管理记忆库。用户当前在记忆库列表页，可以回答问题、提供使用建议。';
   }
@@ -120,15 +192,41 @@ function buildSystemMessage(ctx: PageContext | null): string {
   } else {
     base += '\n当前没有事件数据。你可以用 add_event 添加事件。';
   }
+  if (opts?.videoTools) {
+    base +=
+      '\n\n【视频记忆】本记忆库已绑定入库视频。涉及画面/时间细节时：先用 search_video_timeline 定位片段；若能定位，用 mine_video_segment 深挖；若无法定位或需全局理解，用 query_full_video_memory。';
+  }
   return base;
 }
 
 function executeTool(
   name: string,
   args: Record<string, unknown>,
-  memoryLibId: string | undefined
+  memoryLibId: string | undefined,
+  opts?: { userId?: number; linkedVideoId?: string }
 ): { result: string; appliedActions?: Array<{ type: string; memoryLibId?: string }> } {
   const actions: Array<{ type: string; memoryLibId?: string }> = [];
+  const uid = opts?.userId;
+  const vid = opts?.linkedVideoId;
+
+  if (name === 'search_video_timeline' || name === 'mine_video_segment' || name === 'query_full_video_memory') {
+    if (!uid) return { result: '错误：需要登录后才能使用视频记忆工具。' };
+    if (!vid) return { result: '错误：当前记忆库未绑定视频（请在记忆库 JSON 中设置 linkedVideoId，或通过 PATCH /api/memorylibs/:id 绑定 ingest 返回的 videoId）。' };
+    if (name === 'search_video_timeline') {
+      const query = String(args.query ?? '');
+      return { result: searchTimelineForUser(vid, uid, query) };
+    }
+    if (name === 'mine_video_segment') {
+      const eventId = String(args.event_id ?? '');
+      const question = String(args.question ?? '');
+      return { result: mineSegmentForUser(vid, uid, eventId, question) };
+    }
+    if (name === 'query_full_video_memory') {
+      const question = String(args.question ?? '');
+      return { result: queryFullVideoForUser(vid, uid, question) };
+    }
+  }
+
   if (!memoryLibId) {
     return { result: '错误：当前不在记忆库详情页，无法执行此操作。请先进入某个记忆库的概念图。' };
   }
@@ -241,9 +339,16 @@ chatRouter.post('/completions', authMiddleware, async (req: Request, res: Respon
   };
   if (cfg.appCode) headers['APP-Code'] = cfg.appCode;
 
+  const userId = (req as Request & { user?: { userId?: number } }).user?.userId;
+  const linkedVideoId = resolveLinkedVideoId(context ?? null);
   const hasContext = context?.pageType === 'conceptGraph' && context.memoryLibId;
-  const tools = hasContext ? MEMORY_TOOLS : [];
-  const systemContent = buildSystemMessage(context ?? null);
+  const videoToolsEnabled = !!(hasContext && linkedVideoId && typeof userId === 'number');
+  const tools = hasContext
+    ? videoToolsEnabled
+      ? [...MEMORY_TOOLS, ...VIDEO_MEMORY_TOOLS]
+      : MEMORY_TOOLS
+    : [];
+  const systemContent = buildSystemMessage(context ?? null, { videoTools: videoToolsEnabled });
 
   type Msg = { role: string; content?: string | null; tool_call_id?: string; tool_calls?: unknown[] };
   const apiMessages: Msg[] = [{ role: 'system', content: systemContent }, ...messages.map((m) => ({ role: m.role, content: m.content }))];
@@ -307,7 +412,10 @@ chatRouter.post('/completions', authMiddleware, async (req: Request, res: Respon
           } catch {
             /* ignore */
           }
-          const { result, appliedActions: a } = executeTool(name, args, context?.memoryLibId);
+          const { result, appliedActions: a } = executeTool(name, args, context?.memoryLibId, {
+            userId: typeof userId === 'number' ? userId : undefined,
+            linkedVideoId,
+          });
           if (a) appliedActions.push(...a);
           apiMessages.push({ role: 'tool', tool_call_id: tc.id, content: result });
         }

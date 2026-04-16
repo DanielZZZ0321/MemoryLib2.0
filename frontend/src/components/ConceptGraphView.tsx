@@ -19,6 +19,8 @@ interface MemoryLibDetail {
   dateRange?: string;
   color?: string;
   events?: MemoryLibEvent[];
+  linkedVideoId?: string;
+  linkedCardId?: string;
 }
 
 interface ConceptGraphViewProps {
@@ -161,6 +163,8 @@ export function ConceptGraphView({ entry, onBack, onOpenChat, width: w, height: 
         : undefined,
       nodeIds: layoutNodes?.map((n) => n.id),
       nodePositions: Object.keys(positionsOverride).length > 0 ? positionsOverride : undefined,
+      linkedVideoId: memoryLib.linkedVideoId,
+      linkedCardId: memoryLib.linkedCardId,
     });
     return () => setContext(null);
   }, [entry.id, entry.title, memoryLib, useEvents, positionsOverride, setContext]);
