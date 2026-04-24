@@ -9,6 +9,67 @@ import { downloadObjectToFile } from "./storage.js";
 
 export type EventThumbResult = { buffer: Buffer; contentType: string };
 
+type SeedPoster = {
+  title?: string;
+  subtitle?: string;
+  accent?: string;
+  background?: string;
+  icon?: string;
+};
+
+function escapeXml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function readPoster(raw: unknown): SeedPoster | null {
+  if (!raw || typeof raw !== "object") {
+    return null;
+  }
+  const p = raw as Record<string, unknown>;
+  const title = typeof p.title === "string" ? p.title : undefined;
+  const subtitle = typeof p.subtitle === "string" ? p.subtitle : undefined;
+  const accent = typeof p.accent === "string" ? p.accent : undefined;
+  const background =
+    typeof p.background === "string" ? p.background : undefined;
+  const icon = typeof p.icon === "string" ? p.icon : undefined;
+  if (!title && !subtitle && !accent && !background) {
+    return null;
+  }
+  return { title, subtitle, accent, background, icon };
+}
+
+function renderSeedPosterSvg(poster: SeedPoster, fallbackTitle: string): EventThumbResult {
+  const title = escapeXml((poster.title || fallbackTitle).slice(0, 28));
+  const subtitle = escapeXml((poster.subtitle || "Memoria").slice(0, 32));
+  const icon = escapeXml((poster.icon || "memory").slice(0, 12));
+  const accent = poster.accent || "#4f8cff";
+  const background = poster.background || "#eef4ff";
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="${escapeXml(background)}"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="52" fill="url(#bg)"/>
+  <circle cx="246" cy="76" r="46" fill="${escapeXml(accent)}" opacity="0.16"/>
+  <circle cx="82" cy="238" r="64" fill="${escapeXml(accent)}" opacity="0.12"/>
+  <rect x="42" y="42" width="236" height="236" rx="42" fill="#ffffff" opacity="0.64"/>
+  <circle cx="104" cy="112" r="34" fill="${escapeXml(accent)}"/>
+  <text x="104" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff">${icon}</text>
+  <text x="48" y="202" font-family="Arial, sans-serif" font-size="30" font-weight="800" fill="#111827">${title}</text>
+  <text x="48" y="234" font-family="Arial, sans-serif" font-size="18" fill="#4b5563">${subtitle}</text>
+</svg>`;
+  return {
+    buffer: Buffer.from(svg, "utf8"),
+    contentType: "image/svg+xml; charset=utf-8",
+  };
+}
+
 function sniffImageType(buf: Buffer): "image/jpeg" | "image/png" | null {
   if (buf.length >= 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) {
     return "image/jpeg";
@@ -44,7 +105,10 @@ export async function resolveEventThumbnail(
 
   const photoMod = ev.modules.find((m) => m.module_type === "photo_wall");
   if (photoMod) {
-    const c = photoMod.content as { images?: Array<{ objectKey?: string }> };
+    const c = photoMod.content as {
+      images?: Array<{ objectKey?: string; poster?: unknown }>;
+      poster?: unknown;
+    };
     const key = c.images?.[0]?.objectKey?.trim();
     if (key) {
       const h = createHash("sha256").update(`p:${key}`).digest("hex").slice(0, 40);
@@ -76,6 +140,10 @@ export async function resolveEventThumbnail(
         await rm(tmpDir, { recursive: true, force: true });
       }
     }
+    const poster = readPoster(c.images?.[0]?.poster) ?? readPoster(c.poster);
+    if (poster) {
+      return renderSeedPosterSvg(poster, ev.title);
+    }
   }
 
   const videoMod = ev.modules.find((m) => m.module_type === "video");
@@ -83,6 +151,8 @@ export async function resolveEventThumbnail(
     const c = videoMod.content as {
       objectKey?: string;
       startSec?: number;
+      poster?: unknown;
+      videos?: Array<{ poster?: unknown }>;
     };
     const key = c.objectKey?.trim();
     if (key) {
@@ -120,6 +190,19 @@ export async function resolveEventThumbnail(
       } finally {
         await rm(tmpDir, { recursive: true, force: true });
       }
+    }
+    const poster = readPoster(c.videos?.[0]?.poster) ?? readPoster(c.poster);
+    if (poster) {
+      return renderSeedPosterSvg(poster, ev.title);
+    }
+  }
+
+  const summaryMod = ev.modules.find((m) => m.module_type === "summary");
+  if (summaryMod) {
+    const c = summaryMod.content as { poster?: unknown };
+    const poster = readPoster(c.poster);
+    if (poster) {
+      return renderSeedPosterSvg(poster, ev.title);
     }
   }
 
