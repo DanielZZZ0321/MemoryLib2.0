@@ -175,6 +175,10 @@ export async function deleteWorkspace(id: string): Promise<boolean> {
 export async function resolveEventIdsForFilter(
   fc: Record<string, unknown>,
 ): Promise<string[]> {
+  const seedSource =
+    typeof fc.seedSource === "string" && fc.seedSource.trim()
+      ? fc.seedSource.trim()
+      : "";
   const text =
     typeof fc.text === "string" && fc.text.trim()
       ? fc.text.trim().toLowerCase()
@@ -183,6 +187,9 @@ export async function resolveEventIdsForFilter(
     typeof fc.tag === "string" && fc.tag.trim() ? fc.tag.trim() : "";
   const { items } = await listEvents(1, 500);
   let filtered: EventListItem[] = items;
+  if (seedSource) {
+    filtered = filtered.filter((e) => e.event_type === seedSource);
+  }
   if (text) {
     filtered = filtered.filter(
       (e) =>
@@ -207,7 +214,14 @@ export async function getWorkspaceEvents(
   }
   const { items } = await listEvents(1, 500);
   const set = new Set(w.event_ids);
-  return items.filter((e) => set.has(e.id));
+  const seedSource =
+    typeof w.filter_criteria.seedSource === "string" &&
+    w.filter_criteria.seedSource.trim()
+      ? w.filter_criteria.seedSource.trim()
+      : "";
+  return items.filter(
+    (e) => set.has(e.id) && (!seedSource || e.event_type === seedSource),
+  );
 }
 
 export function isWorkspaceBackendAvailable(): boolean {

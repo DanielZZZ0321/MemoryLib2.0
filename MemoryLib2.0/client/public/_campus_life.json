@@ -1,0 +1,645 @@
+[
+  {
+    "event_index": 0,
+    "start_sec": 0,
+    "end_sec": 300,
+    "start_hms": "00:00:00",
+    "end_hms": "00:05:00",
+    "title": "新生开学典礼",
+    "summary": "激动人心的开学典礼，校长寄语新生，同学们齐聚一堂，开启大学新篇章。典礼上，学长学姐们分享了学习经验，新生们相互认识，充满对未来的期待。",
+    "media": [
+      {
+        "type": "video",
+        "url": "/media/开学典礼快剪.mp4",
+        "thumbnail": "https://picsum.photos/seed/opening_ceremony/200/150",
+        "timestamp": "00:01:00",
+        "duration": 180,
+        "caption": "开学典礼精彩瞬间"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_walking_campus_courtyard.jpg",
+        "thumbnail": "/media/students_walking_campus_courtyard.jpg",
+        "timestamp": "00:02:00",
+        "caption": "学生们在校园庭院"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_walking_archway_tunnel.jpg",
+        "thumbnail": "/media/students_walking_archway_tunnel.jpg",
+        "timestamp": "00:02:30",
+        "caption": "穿过拱门的新生"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_strolling_campus_plaza.jpg",
+        "thumbnail": "/media/students_strolling_campus_plaza.jpg",
+        "timestamp": "00:03:00",
+        "caption": "校园广场漫步"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_walking_past_modern_stairs.jpg",
+        "thumbnail": "/media/students_walking_past_modern_stairs.jpg",
+        "timestamp": "00:03:30",
+        "caption": "现代建筑前的学生"
+      }
+    ],
+    "tags": ["开学典礼", "新生", "仪式"],
+    "location": "学校大礼堂",
+    "mood": "激动"
+  },
+  {
+    "event_index": 1,
+    "start_sec": 300,
+    "end_sec": 600,
+    "start_hms": "00:05:00",
+    "end_hms": "00:10:00",
+    "title": "图书馆自习时光",
+    "summary": "安静舒适的图书馆里，同学们沉浸在知识的海洋中。书架间弥漫着书香，阳光透过落地窗洒在书桌上，营造出一心向学的氛围。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/student_library_bookshelf.jpg",
+        "thumbnail": "/media/student_library_bookshelf.jpg",
+        "timestamp": "00:06:00",
+        "caption": "书架间选书"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_studying_library_headphones.jpg",
+        "thumbnail": "/media/students_studying_library_headphones.jpg",
+        "timestamp": "00:06:30",
+        "caption": "戴着耳机专注学习"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_walking_library_corridor.jpg",
+        "thumbnail": "/media/students_walking_library_corridor.jpg",
+        "timestamp": "00:07:00",
+        "caption": "图书馆走廊"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_walking_past_bookshelves.jpg",
+        "thumbnail": "/media/student_walking_past_bookshelves.jpg",
+        "timestamp": "00:07:30",
+        "caption": "穿行书架间"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_outdoor_study_arch.jpg",
+        "thumbnail": "/media/student_outdoor_study_arch.jpg",
+        "timestamp": "00:08:00",
+        "caption": "户外学习空间"
+      }
+    ],
+    "tags": ["图书馆", "学习", "自习"],
+    "location": "学校图书馆",
+    "mood": "专注"
+  },
+  {
+    "event_index": 2,
+    "start_sec": 600,
+    "end_sec": 900,
+    "start_hms": "00:10:00",
+    "end_hms": "00:15:00",
+    "title": "实验室科研项目",
+    "summary": "在先进的实验室里，学生们参与前沿科研项目。从数据采集到实验分析，每一个步骤都充满了探索的乐趣，培养了严谨的科学精神。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/students_working_in_lab.jpg",
+        "thumbnail": "/media/students_working_in_lab.jpg",
+        "timestamp": "00:11:00",
+        "caption": "实验室工作"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_collaborating_laptop.jpg",
+        "thumbnail": "/media/students_collaborating_laptop.jpg",
+        "timestamp": "00:11:30",
+        "caption": "协作讨论"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_in_modern_workshop.jpg",
+        "thumbnail": "/media/students_in_modern_workshop.jpg",
+        "timestamp": "00:12:00",
+        "caption": "现代工作坊"
+      },
+      {
+        "type": "image",
+        "url": "/media/people_examining_holographic_display.jpg",
+        "thumbnail": "/media/people_examining_holographic_display.jpg",
+        "timestamp": "00:12:30",
+        "caption": "全息显示研究"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_collaborating_outdoor_cafe.jpg",
+        "thumbnail": "/media/students_collaborating_outdoor_cafe.jpg",
+        "timestamp": "00:13:00",
+        "caption": "户外讨论项目"
+      }
+    ],
+    "tags": ["实验室", "科研", "创新"],
+    "location": "科研楼实验室",
+    "mood": "投入"
+  },
+  {
+    "event_index": 3,
+    "start_sec": 900,
+    "end_sec": 1200,
+    "start_hms": "00:15:00",
+    "end_hms": "00:20:00",
+    "title": "校园漫步与风景",
+    "summary": "课间漫步在美丽的校园里，现代建筑与自然景观相得益彰。雕塑、草坪、池塘，每一处都是风景，让人心旷神怡。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/students_walking_towards_sculpture.jpg",
+        "thumbnail": "/media/students_walking_towards_sculpture.jpg",
+        "timestamp": "00:16:00",
+        "caption": "走向校园雕塑"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_walking_past_red_sculpture.jpg",
+        "thumbnail": "/media/students_walking_past_red_sculpture.jpg",
+        "timestamp": "00:16:30",
+        "caption": "红色雕塑前"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_relaxing_by_swan_pond.jpg",
+        "thumbnail": "/media/student_relaxing_by_swan_pond.jpg",
+        "timestamp": "00:17:00",
+        "caption": "天鹅池畔休憩"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_silhouette_sunset_wall.jpg",
+        "thumbnail": "/media/student_silhouette_sunset_wall.jpg",
+        "timestamp": "00:17:30",
+        "caption": "夕阳下的剪影"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/campus_walk/800/600",
+        "thumbnail": "https://picsum.photos/seed/campus_walk/200/150",
+        "timestamp": "00:18:00",
+        "caption": "校园小径"
+      }
+    ],
+    "tags": ["校园", "风景", "漫步"],
+    "location": "校园各处",
+    "mood": "惬意"
+  },
+  {
+    "event_index": 4,
+    "start_sec": 1200,
+    "end_sec": 1500,
+    "start_hms": "00:20:00",
+    "end_hms": "00:25:00",
+    "title": "游泳健身",
+    "summary": "学校游泳池是同学们运动健身的好去处。清澈的池水、专业的设施，无论是休闲游泳还是专业训练，都能让人身心放松。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/swimmer_in_campus_pool.jpg",
+        "thumbnail": "/media/swimmer_in_campus_pool.jpg",
+        "timestamp": "00:21:00",
+        "caption": "泳池畅游"
+      },
+      {
+        "type": "image",
+        "url": "/media/swimmers_chatting_in_pool.jpg",
+        "thumbnail": "/media/swimmers_chatting_in_pool.jpg",
+        "timestamp": "00:22:00",
+        "caption": "泳池边交流"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/swimming_pool/800/600",
+        "thumbnail": "https://picsum.photos/seed/swimming_pool/200/150",
+        "timestamp": "00:23:00",
+        "caption": "泳池设施"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/fitness_center/800/600",
+        "thumbnail": "https://picsum.photos/seed/fitness_center/200/150",
+        "timestamp": "00:23:30",
+        "caption": "健身中心"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/sports_court/800/600",
+        "thumbnail": "https://picsum.photos/seed/sports_court/200/150",
+        "timestamp": "00:24:00",
+        "caption": "运动场地"
+      }
+    ],
+    "tags": ["运动", "游泳", "健身"],
+    "location": "学校游泳馆",
+    "mood": "活力"
+  },
+  {
+    "event_index": 5,
+    "start_sec": 1500,
+    "end_sec": 1800,
+    "start_hms": "00:25:00",
+    "end_hms": "00:30:00",
+    "title": "社团招新活动",
+    "summary": "热闹的社团招新现场，各个社团展示着自己的特色。从学术科技到文艺体育，丰富的社团活动为大学生活增添了无限色彩。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/students_club_fair_booth.jpg",
+        "thumbnail": "/media/students_club_fair_booth.jpg",
+        "timestamp": "00:26:00",
+        "caption": "社团展位"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_watching_volleyball_fair.jpg",
+        "thumbnail": "/media/students_watching_volleyball_fair.jpg",
+        "timestamp": "00:26:30",
+        "caption": "观看排球表演"
+      },
+      {
+        "type": "image",
+        "url": "/media/international_students_group_selfie.jpg",
+        "thumbnail": "/media/international_students_group_selfie.jpg",
+        "timestamp": "00:27:00",
+        "caption": "国际学生合影"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/club_recruitment/800/600",
+        "thumbnail": "https://picsum.photos/seed/club_recruitment/200/150",
+        "timestamp": "00:27:30",
+        "caption": "招新海报"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/student_organizations/800/600",
+        "thumbnail": "https://picsum.photos/seed/student_organizations/200/150",
+        "timestamp": "00:28:00",
+        "caption": "社团展示"
+      }
+    ],
+    "tags": ["社团", "招新", "活动"],
+    "location": "学生活动中心",
+    "mood": "热情"
+  },
+  {
+    "event_index": 6,
+    "start_sec": 1800,
+    "end_sec": 2100,
+    "start_hms": "00:30:00",
+    "end_hms": "00:35:00",
+    "title": "校园文化节演出",
+    "summary": "精彩纷呈的文化节演出，同学们展示着各自的才艺。吉他弹唱、乐队表演、演讲朗诵，舞台上的每一个瞬间都闪耀着青春的光芒。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/band_performance_full_stage.jpg",
+        "thumbnail": "/media/band_performance_full_stage.jpg",
+        "timestamp": "00:31:00",
+        "caption": "乐队表演"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_performing_guitar_harmonica.jpg",
+        "thumbnail": "/media/student_performing_guitar_harmonica.jpg",
+        "timestamp": "00:31:30",
+        "caption": "吉他口琴演奏"
+      },
+      {
+        "type": "image",
+        "url": "/media/guitarist_stage_fireworks.jpg",
+        "thumbnail": "/media/guitarist_stage_fireworks.jpg",
+        "timestamp": "00:32:00",
+        "caption": "吉他手与烟花"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_drummer_performance.jpg",
+        "thumbnail": "/media/student_drummer_performance.jpg",
+        "timestamp": "00:32:30",
+        "caption": "鼓手表演"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_microphone_speech.jpg",
+        "thumbnail": "/media/student_microphone_speech.jpg",
+        "timestamp": "00:33:00",
+        "caption": "演讲表演"
+      }
+    ],
+    "tags": ["文化节", "演出", "才艺"],
+    "location": "校园大舞台",
+    "mood": "兴奋"
+  },
+  {
+    "event_index": 7,
+    "start_sec": 2100,
+    "end_sec": 2400,
+    "start_hms": "00:35:00",
+    "end_hms": "00:40:00",
+    "title": "混合现实体验",
+    "summary": "在创新实验室里，学生们体验最前沿的混合现实技术。戴上MR头显，虚拟与现实交织，开启全新的交互体验和学习方式。",
+    "media": [
+      {
+        "type": "image",
+        "url": "/media/students_experiencing_mr_headsets.jpg",
+        "thumbnail": "/media/students_experiencing_mr_headsets.jpg",
+        "timestamp": "00:36:00",
+        "caption": "体验MR设备"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_wearing_mr_headset_portrait.jpg",
+        "thumbnail": "/media/student_wearing_mr_headset_portrait.jpg",
+        "timestamp": "00:36:30",
+        "caption": "MR头戴设备"
+      },
+      {
+        "type": "image",
+        "url": "/media/robot_shaking_hands_with_human.jpg",
+        "thumbnail": "/media/robot_shaking_hands_with_human.jpg",
+        "timestamp": "00:37:00",
+        "caption": "机器人互动"
+      },
+      {
+        "type": "image",
+        "url": "/media/people_filming_robot_demonstration.jpg",
+        "thumbnail": "/media/people_filming_robot_demonstration.jpg",
+        "timestamp": "00:37:30",
+        "caption": "机器人演示"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/vr_experience/800/600",
+        "thumbnail": "https://picsum.photos/seed/vr_experience/200/150",
+        "timestamp": "00:38:00",
+        "caption": "VR体验区"
+      }
+    ],
+    "tags": ["科技", "MR", "创新"],
+    "location": "创新实验室",
+    "mood": "好奇"
+  },
+  {
+    "event_index": 8,
+    "start_sec": 2400,
+    "end_sec": 2700,
+    "start_hms": "00:40:00",
+    "end_hms": "00:45:00",
+    "title": "夏令营交流活动",
+    "summary": "夏令营期间，来自各地的优秀学子齐聚校园。领导与学生们亲切交流，分享学习心得，探讨未来发展方向，激发青年学子的求知热情。",
+    "media": [
+      {
+        "type": "video",
+        "url": "/media/孙志洋与港科广夏令营学生交流.mp4",
+        "thumbnail": "https://picsum.photos/seed/summer_camp/200/150",
+        "timestamp": "00:41:00",
+        "duration": 180,
+        "caption": "夏令营交流现场"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_collaborating_outdoor_cafe.jpg",
+        "thumbnail": "/media/students_collaborating_outdoor_cafe.jpg",
+        "timestamp": "00:42:00",
+        "caption": "户外小组讨论"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_collaborating_laptop.jpg",
+        "thumbnail": "/media/students_collaborating_laptop.jpg",
+        "timestamp": "00:42:30",
+        "caption": "协作学习"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/summer_camp_activity/800/600",
+        "thumbnail": "https://picsum.photos/seed/summer_camp_activity/200/150",
+        "timestamp": "00:43:00",
+        "caption": "夏令营活动"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/group_discussion/800/600",
+        "thumbnail": "https://picsum.photos/seed/group_discussion/200/150",
+        "timestamp": "00:43:30",
+        "caption": "小组交流"
+      }
+    ],
+    "tags": ["夏令营", "交流", "学习"],
+    "location": "校园会议室",
+    "mood": "收获"
+  },
+  {
+    "event_index": 9,
+    "start_sec": 2700,
+    "end_sec": 3000,
+    "start_hms": "00:45:00",
+    "end_hms": "00:50:00",
+    "title": "港科大双校交流",
+    "summary": "港科大一体，双校互补。香港清水湾与广州南沙两校区紧密合作，资源共享，学术交流频繁，共同培养具有国际视野的优秀人才。",
+    "media": [
+      {
+        "type": "video",
+        "url": "/media/港科大一体，双校互补-中文版.mp4",
+        "thumbnail": "https://picsum.photos/seed/dual_campus/200/150",
+        "timestamp": "00:46:00",
+        "duration": 200,
+        "caption": "双校互补介绍"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_walking_campus_courtyard.jpg",
+        "thumbnail": "/media/students_walking_campus_courtyard.jpg",
+        "timestamp": "00:47:00",
+        "caption": "校园庭院"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_walking_past_modern_stairs.jpg",
+        "thumbnail": "/media/students_walking_past_modern_stairs.jpg",
+        "timestamp": "00:47:30",
+        "caption": "现代建筑"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/hkust_gz/800/600",
+        "thumbnail": "https://picsum.photos/seed/hkust_gz/200/150",
+        "timestamp": "00:48:00",
+        "caption": "港科广校园"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/hkust_hk/800/600",
+        "thumbnail": "https://picsum.photos/seed/hkust_hk/200/150",
+        "timestamp": "00:48:30",
+        "caption": "港科大校园"
+      }
+    ],
+    "tags": ["双校", "港科大", "交流"],
+    "location": "港科大（广州）",
+    "mood": "自豪"
+  },
+  {
+    "event_index": 10,
+    "start_sec": 3000,
+    "end_sec": 3300,
+    "start_hms": "00:50:00",
+    "end_hms": "00:55:00",
+    "title": "国际交流访问",
+    "summary": "学校积极开展国际交流合作，各国政要、学者频繁来访。校长会见卡塔尔国王等重要外事活动，彰显学校的国际影响力。",
+    "media": [
+      {
+        "type": "video",
+        "url": "/media/港科广校长会见卡塔尔国王.mp4",
+        "thumbnail": "https://picsum.photos/seed/international_visit/200/150",
+        "timestamp": "00:51:00",
+        "duration": 150,
+        "caption": "校长会见外宾"
+      },
+      {
+        "type": "image",
+        "url": "/media/international_students_group_selfie.jpg",
+        "thumbnail": "/media/international_students_group_selfie.jpg",
+        "timestamp": "00:52:00",
+        "caption": "国际学生合影"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_club_fair_booth.jpg",
+        "thumbnail": "/media/students_club_fair_booth.jpg",
+        "timestamp": "00:52:30",
+        "caption": "国际社团展示"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/diplomatic_meeting/800/600",
+        "thumbnail": "https://picsum.photos/seed/diplomatic_meeting/200/150",
+        "timestamp": "00:53:00",
+        "caption": "外事活动"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/global_exchange/800/600",
+        "thumbnail": "https://picsum.photos/seed/global_exchange/200/150",
+        "timestamp": "00:53:30",
+        "caption": "国际交流"
+      }
+    ],
+    "tags": ["国际交流", "外事", "合作"],
+    "location": "学校会议厅",
+    "mood": "庄重"
+  },
+  {
+    "event_index": 11,
+    "start_sec": 3300,
+    "end_sec": 3600,
+    "start_hms": "00:55:00",
+    "end_hms": "01:00:00",
+    "title": "大学生活回顾",
+    "summary": "穿越两年的大学时光，从懵懂新生到即将毕业的学长学姐。每一个瞬间都是珍贵的回忆，感谢学校给予的成长平台。",
+    "media": [
+      {
+        "type": "video",
+        "url": "/media/谢邀，穿越两年-人在港科大（广州）读大学-20250617.mp4",
+        "thumbnail": "https://picsum.photos/seed/university_life/200/150",
+        "timestamp": "00:56:00",
+        "duration": 240,
+        "caption": "大学生活回顾视频"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_studying_library_headphones.jpg",
+        "thumbnail": "/media/students_studying_library_headphones.jpg",
+        "timestamp": "00:57:00",
+        "caption": "图书馆时光"
+      },
+      {
+        "type": "image",
+        "url": "/media/student_relaxing_by_swan_pond.jpg",
+        "thumbnail": "/media/student_relaxing_by_swan_pond.jpg",
+        "timestamp": "00:57:30",
+        "caption": "池塘畔的宁静"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_collaborating_outdoor_cafe.jpg",
+        "thumbnail": "/media/students_collaborating_outdoor_cafe.jpg",
+        "timestamp": "00:58:00",
+        "caption": "户外讨论时光"
+      },
+      {
+        "type": "image",
+        "url": "https://picsum.photos/seed/memory_campus/800/600",
+        "thumbnail": "https://picsum.photos/seed/memory_campus/200/150",
+        "timestamp": "00:58:30",
+        "caption": "校园回忆"
+      }
+    ],
+    "tags": ["回忆", "成长", "大学时光"],
+    "location": "校园各处",
+    "mood": "怀念"
+  },
+  {
+    "event_index": 12,
+    "start_sec": 3600,
+    "end_sec": 3900,
+    "start_hms": "01:00:00",
+    "end_hms": "01:05:00",
+    "title": "毕业典礼时刻",
+    "summary": "激动人心的毕业典礼，学子们身着学位服，在家人和老师的见证下，迎接人生新篇章。这是努力的回报，也是新征程的开始。",
+    "media": [
+      {
+        "type": "video",
+        "url": "/media/香港科技大学（广州）2024年毕业宣传片.mp4",
+        "thumbnail": "https://picsum.photos/seed/graduation/200/150",
+        "timestamp": "01:01:00",
+        "duration": 180,
+        "caption": "毕业典礼宣传片"
+      },
+      {
+        "type": "image",
+        "url": "/media/graduates_ceremony_procession.jpg",
+        "thumbnail": "/media/graduates_ceremony_procession.jpg",
+        "timestamp": "01:02:00",
+        "caption": "毕业典礼入场"
+      },
+      {
+        "type": "image",
+        "url": "/media/graduates_walking_by_pond.jpg",
+        "thumbnail": "/media/graduates_walking_by_pond.jpg",
+        "timestamp": "01:02:30",
+        "caption": "毕业生在池塘边"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_watching_night_fireworks.jpg",
+        "thumbnail": "/media/students_watching_night_fireworks.jpg",
+        "timestamp": "01:03:00",
+        "caption": "毕业烟花"
+      },
+      {
+        "type": "image",
+        "url": "/media/students_viewing_fireworks_reflection.jpg",
+        "thumbnail": "/media/students_viewing_fireworks_reflection.jpg",
+        "timestamp": "01:03:30",
+        "caption": "烟花倒影"
+      }
+    ],
+    "tags": ["毕业", "典礼", "新起点"],
+    "location": "学校大礼堂",
+    "mood": "感动"
+  }
+]

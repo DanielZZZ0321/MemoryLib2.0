@@ -143,6 +143,8 @@ export type WorkspaceRow = {
   description: string | null;
   filter_criteria: Record<string, unknown>;
   event_ids: string[];
+  created_at: string;
+  updated_at: string;
 };
 
 export async function fetchWorkspaces(): Promise<{ items: WorkspaceRow[] }> {
@@ -157,6 +159,20 @@ export async function createWorkspace(body: {
   return apiJson("/api/workspaces", {
     method: "POST",
     body: JSON.stringify(body),
+  });
+}
+
+export async function updateWorkspace(
+  id: string,
+  patch: {
+    name?: string;
+    description?: string | null;
+    filter_criteria?: Record<string, unknown>;
+  },
+): Promise<WorkspaceRow> {
+  return apiJson(`/api/workspaces/${encodeURIComponent(id)}`, {
+    method: "PUT",
+    body: JSON.stringify(patch),
   });
 }
 

@@ -7,7 +7,7 @@ import { getEventById } from "../mvp/event-db.js";
 import { extractJpegFrameAt } from "./ffmpeg/extract-frame.js";
 import { downloadObjectToFile } from "./storage.js";
 
-export type EventThumbResult = { buffer: Buffer; contentType: string };
+export type EventThumbResult = { buffer: Buffer; contentType: string } | { redirectUrl: string };
 
 type SeedPoster = {
   title?: string;
@@ -103,13 +103,77 @@ export async function resolveEventThumbnail(
     return null;
   }
 
-  const photoMod = ev.modules.find((m) => m.module_type === "photo_wall");
+  // Helper: detect if a URL points to a playable video (cannot be used as img src)
+  function isVideoUrl(url: string): boolean {
+    const lower = url.toLowerCase().split('?')[0];
+    return lower.endsWith('.mp4') || lower.endsWith('.webm') || lower.endsWith('.mov') || lower.endsWith('.avi') || lower.endsWith('.mkv');
+  }
+
+  // Aggressive generic search for ANY image/video URL matching frontend logic
+  // First pass: prefer images (skip video URLs)
+  let firstVideoUrl: string | null = null;
+  for (const m of ev.modules) {
+    if (!m.content || typeof m.content !== "object") continue;
+    const content = m.content as Record<string, unknown>;
+    const keys = ["images", "photos", "media", "videos", "audios", "audio"];
+    for (const key of keys) {
+      const arr = content[key];
+      if (Array.isArray(arr) && arr.length > 0) {
+        for (const item of arr) {
+          const url: string | null = typeof item === "string" ? item : (item && typeof item === "object" ? (item as any).url : null);
+          if (typeof url === "string" && url.trim()) {
+            const trimmed = url.trim();
+            if (!isVideoUrl(trimmed)) {
+              // It's an image URL – return immediately
+              return { redirectUrl: trimmed };
+            } else if (!firstVideoUrl) {
+              // Remember first video as fallback
+              firstVideoUrl = trimmed;
+            }
+          }
+        }
+      }
+    }
+  }
+  // Second pass: if all we found was a video, use it (frontend may handle it later)
+  if (firstVideoUrl) {
+    // Try to find a thumbnail/poster field from the same item before falling through to video URL
+    for (const m of ev.modules) {
+      if (!m.content || typeof m.content !== "object") continue;
+      const content = m.content as Record<string, unknown>;
+      const keys = ["images", "photos", "media", "videos"];
+      for (const key of keys) {
+        const arr = content[key];
+        if (Array.isArray(arr)) {
+          for (const item of arr) {
+            if (item && typeof item === "object") {
+              const legacy = (item as any).legacy;
+              const thumb: string | undefined = (item as any).thumbnail ?? legacy?.thumbnail;
+              if (typeof thumb === "string" && thumb.trim() && !isVideoUrl(thumb.trim())) {
+                return { redirectUrl: thumb.trim() };
+              }
+            }
+          }
+        }
+      }
+    }
+    // No thumbnail found, use video URL as last resort (browser will fail gracefully)
+    return { redirectUrl: firstVideoUrl };
+  }
+
+  // Fallback 1: Legacy photo_wall objectKey parsing
+  const photoMod = ev.modules.find((m) => m.module_type === "photo_wall" || m.module_type === "media");
   if (photoMod) {
     const c = photoMod.content as {
-      images?: Array<{ objectKey?: string; poster?: unknown }>;
+      images?: Array<{ objectKey?: string; poster?: unknown; url?: string } | string>;
+      media?: Array<{ objectKey?: string; poster?: unknown; url?: string } | string>;
       poster?: unknown;
     };
-    const key = c.images?.[0]?.objectKey?.trim();
+    const imagesArray = c.images ?? c.media;
+    const firstImg = imagesArray?.[0];
+    const key = typeof firstImg === 'object' && firstImg !== null ? firstImg.objectKey?.trim() : undefined;
+    const url = typeof firstImg === 'string' ? firstImg : firstImg?.url?.trim();
+
     if (key) {
       const h = createHash("sha256").update(`p:${key}`).digest("hex").slice(0, 40);
       const dir = await ensureThumbDir();
@@ -140,7 +204,11 @@ export async function resolveEventThumbnail(
         await rm(tmpDir, { recursive: true, force: true });
       }
     }
-    const poster = readPoster(c.images?.[0]?.poster) ?? readPoster(c.poster);
+    if (url) {
+      return { redirectUrl: url };
+    }
+    const posterObj = typeof firstImg === 'object' && firstImg !== null ? firstImg.poster : undefined;
+    const poster = readPoster(posterObj) ?? readPoster(c.poster);
     if (poster) {
       return renderSeedPosterSvg(poster, ev.title);
     }
@@ -150,11 +218,15 @@ export async function resolveEventThumbnail(
   if (videoMod) {
     const c = videoMod.content as {
       objectKey?: string;
+      url?: string;
       startSec?: number;
       poster?: unknown;
-      videos?: Array<{ poster?: unknown }>;
+      videos?: Array<{ poster?: unknown; url?: string } | string>;
     };
+    const firstVid = c.videos?.[0];
     const key = c.objectKey?.trim();
+    const url = c.url?.trim() || (typeof firstVid === 'string' ? firstVid : firstVid?.url?.trim());
+
     if (key) {
       const t =
         typeof c.startSec === "number" && Number.isFinite(c.startSec)
@@ -191,7 +263,11 @@ export async function resolveEventThumbnail(
         await rm(tmpDir, { recursive: true, force: true });
       }
     }
-    const poster = readPoster(c.videos?.[0]?.poster) ?? readPoster(c.poster);
+    if (url) {
+      return { redirectUrl: url };
+    }
+    const posterObj = typeof firstVid === 'object' && firstVid !== null ? firstVid.poster : undefined;
+    const poster = readPoster(posterObj) ?? readPoster(c.poster);
     if (poster) {
       return renderSeedPosterSvg(poster, ev.title);
     }

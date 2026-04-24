@@ -1,10 +1,12 @@
 import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { type ChatMessage, streamChatCompletion } from "@/lib/api";
 import {
-  type ChatMessage,
-  streamChatCompletion,
-} from "@/lib/api";
+  type SharedMemoryElement,
+  readSharedElementDragData,
+} from "@/lib/shared-memory-element";
+import { cn } from "@/lib/utils";
 
 type Props = {
   systemHint?: string;
@@ -14,6 +16,8 @@ type Props = {
 export function ChatPanel({ systemHint, className }: Props) {
   const [input, setInput] = useState("");
   const [log, setLog] = useState<ChatMessage[]>([]);
+  const [attachments, setAttachments] = useState<SharedMemoryElement[]>([]);
+  const [dragActive, setDragActive] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,9 +29,15 @@ export function ChatPanel({ systemHint, className }: Props) {
     setError(null);
     setInput("");
     const userMsg: ChatMessage = { role: "user", content: text };
+    const attachmentHint =
+      attachments.length > 0
+        ? `\n\nAttached memory elements:\n${attachments
+            .map((attachment) => JSON.stringify(attachment))
+            .join("\n")}`
+        : "";
     const base: ChatMessage[] = [
       ...(systemHint
-        ? [{ role: "system" as const, content: systemHint }]
+        ? [{ role: "system" as const, content: `${systemHint}${attachmentHint}` }]
         : []),
       ...log,
       userMsg,
@@ -53,25 +63,79 @@ export function ChatPanel({ systemHint, className }: Props) {
     } finally {
       setStreaming(false);
     }
-  }, [input, log, streaming, systemHint]);
+  }, [attachments, input, log, streaming, systemHint]);
 
   return (
-    <div className={className}>
-      <div className="max-h-64 space-y-2 overflow-y-auto rounded-md border bg-muted/30 p-3 text-sm">
+    <div
+      data-slot="chat-panel"
+      className={cn(
+        "flex flex-col rounded-md border border-transparent p-2 transition-colors",
+        dragActive ? "border-primary bg-primary/5" : "",
+        className,
+      )}
+      onDragOver={(event) => {
+        event.preventDefault();
+        setDragActive(true);
+        event.dataTransfer.dropEffect = "copy";
+      }}
+      onDragLeave={() => setDragActive(false)}
+      onDrop={(event) => {
+        event.preventDefault();
+        setDragActive(false);
+        const element = readSharedElementDragData(event.dataTransfer);
+        if (!element) {
+          setError("Unsupported drag payload.");
+          return;
+        }
+        setError(null);
+        setAttachments((current) => [...current, element]);
+      }}
+    >
+      {attachments.length > 0 ? (
+        <div className="mb-2 space-y-1">
+          <p className="text-xs font-medium text-muted-foreground">
+            Attachments
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {attachments.map((attachment, index) => (
+              <button
+                key={`${attachment.kind}-${index}`}
+                type="button"
+                className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground"
+                onClick={() =>
+                  setAttachments((current) =>
+                    current.filter((_, itemIndex) => itemIndex !== index),
+                  )
+                }
+                title="Remove attachment"
+              >
+                {attachment.kind === "event"
+                  ? attachment.title
+                  : attachment.kind === "keyword"
+                    ? attachment.keyword
+                    : attachment.kind}
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
+      <div className="min-h-0 flex-1 space-y-2 overflow-y-auto rounded-md border bg-muted/30 p-3 text-sm">
         {log.length === 0 ? null : (
-          log.map((m, i) => (
+          log.map((message, index) => (
             <div
-              key={`${i}-${m.role}`}
+              key={`${index}-${message.role}`}
               className={
-                m.role === "user"
+                message.role === "user"
                   ? "text-foreground"
                   : "whitespace-pre-wrap text-muted-foreground"
               }
             >
-              <span className="font-medium text-xs uppercase text-muted-foreground">
-                {m.role === "user" ? "你" : "助手"}
+              <span className="text-xs font-medium uppercase text-muted-foreground">
+                {message.role === "user" ? "You" : "Assistant"}
               </span>
-              <div className="mt-0.5">{m.content || (streaming ? "…" : "")}</div>
+              <div className="mt-0.5">
+                {message.content || (streaming ? "..." : "")}
+              </div>
             </div>
           ))
         )}
@@ -82,25 +146,25 @@ export function ChatPanel({ systemHint, className }: Props) {
         </p>
       ) : null}
       <Textarea
-        className="mt-2 min-h-[72px]"
+        className="mt-2 min-h-[88px] shrink-0"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(event) => setInput(event.target.value)}
         disabled={streaming}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" && !e.shiftKey) {
-            e.preventDefault();
+        onKeyDown={(event) => {
+          if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
             void send();
           }
         }}
       />
       <Button
         type="button"
-        className="mt-2"
+        className="mt-2 shrink-0"
         size="sm"
         onClick={() => void send()}
         disabled={streaming || !input.trim()}
       >
-        {streaming ? "生成中…" : "发送"}
+        {streaming ? "Generating..." : "Send"}
       </Button>
     </div>
   );

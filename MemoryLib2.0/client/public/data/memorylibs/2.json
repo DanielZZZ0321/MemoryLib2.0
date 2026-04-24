@@ -1,0 +1,32 @@
+{
+  "title": "Logic of event occurrence",
+  "dateRange": "9.13-9.16",
+  "color": "yellow",
+  "year": 2026,
+  "events": [
+    {
+      "event_index": 0,
+      "start_hms": "09:00",
+      "end_hms": "09:15",
+      "title": "Cause and effect",
+      "summary": "Analyzed how one event triggers another in the workflow.",
+      "tags": ["Event", "Cause"]
+    },
+    {
+      "event_index": 1,
+      "start_hms": "10:30",
+      "end_hms": "11:00",
+      "title": "Timeline mapping",
+      "summary": "Mapped events to a chronological timeline for clarity.",
+      "tags": ["Time", "Event"]
+    },
+    {
+      "event_index": 2,
+      "start_hms": "14:00",
+      "end_hms": "14:30",
+      "title": "Pattern recognition",
+      "summary": "Identified recurring patterns in daily events.",
+      "tags": ["Event", "Effect"]
+    }
+  ]
+}

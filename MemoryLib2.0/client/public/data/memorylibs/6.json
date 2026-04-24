@@ -1,0 +1,26 @@
+{
+  "title": "6-Node Layout Demo",
+  "dateRange": "3.16",
+  "color": "purple",
+  "year": 2026,
+  "events": [
+    {
+      "event_index": 0,
+      "start_sec": 0,
+      "end_sec": 11.5,
+      "start_hms": "00:00",
+      "end_hms": "00:11",
+      "title": "Driving Through a Pine Forest",
+      "summary": "POV driving shot on a two-lane road through a dense pine forest, with a right-turn warning sign and a parked car on the shoulder.",
+      "tags": [],
+      "media": [
+        {
+          "type": "video",
+          "url": "/uploads/egocentric-mixkit-49695.mp4",
+          "caption": "Egocentric POV demo",
+          "duration": 11.5
+        }
+      ]
+    }
+  ]
+}

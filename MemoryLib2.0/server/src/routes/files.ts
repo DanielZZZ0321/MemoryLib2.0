@@ -42,6 +42,10 @@ filesRouter.get("/event-thumb", async (req, res, next) => {
       );
       return;
     }
+    if ('redirectUrl' in thumb) {
+      res.redirect(302, thumb.redirectUrl);
+      return;
+    }
     res.setHeader("Content-Type", thumb.contentType);
     res.setHeader("Cache-Control", "public, max-age=3600");
     res.send(thumb.buffer);

@@ -8,6 +8,7 @@ import { eventsRouter } from "./routes/events.js";
 import { keywordsRouter } from "./routes/keywords.js";
 import { workspacesRouter } from "./routes/workspaces.js";
 import { healthGeminiRouter } from "./routes/health-gemini.js";
+import { dataTransferLogger } from "./services/data-transfer-log.js";
 import { sendInternalError } from "./utils/http-error-map.js";
 
 export function createApp() {
@@ -15,6 +16,7 @@ export function createApp() {
 
   app.use(cors({ origin: true, credentials: true }));
   app.use(express.json({ limit: "2mb" }));
+  app.use(dataTransferLogger);
 
   app.get("/api/health", (_req, res) => {
     res.json({ ok: true, service: "memoria" });
