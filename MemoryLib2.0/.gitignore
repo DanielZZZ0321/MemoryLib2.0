@@ -6,5 +6,7 @@ dist
 .DS_Store
 client/dist
 server/dist
-/data
+/data/*
+!/data/seed/
+!/data/seed/**
 server/data

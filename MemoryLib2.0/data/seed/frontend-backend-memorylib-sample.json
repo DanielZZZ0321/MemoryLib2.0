@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "seedSource": "frontend-backend-memorylib-sample",
+  "workspace": {
+    "name": "示例 MemoryLib 标题",
+    "description": "Converted from feature/frontend-backend:data/memorylibs/sample.json. Legacy date range: 1.01-1.31; color: blue."
+  },
+  "keywords": [
+    {
+      "id": "legacy-memorylib",
+      "label": "Legacy MemoryLib",
+      "weight": 5,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "1",
+      "label": "标签1",
+      "weight": 5,
+      "color": "#22a06b"
+    },
+    {
+      "id": "2",
+      "label": "标签2",
+      "weight": 5,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "weight": 5,
+      "color": "#7c5cff"
+    }
+  ],
+  "events": [
+    {
+      "id": "frontend-backend-memorylib-sample-1-0",
+      "title": "事件标题 1",
+      "summary": "事件描述或摘要内容。",
+      "startTime": "2026-01-01T09:00:00+08:00",
+      "endTime": "2026-01-01T09:02:00+08:00",
+      "location": null,
+      "tags": [
+        "标签1",
+        "标签2"
+      ],
+      "keywords": [
+        "1",
+        "2",
+        "media"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": 170,
+        "y": 0
+      },
+      "poster": {
+        "title": "事件标题 1",
+        "subtitle": "09:00",
+        "accent": "#2f80ed",
+        "background": "#e7f0ff",
+        "icon": "photo"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-memorylib-sample-1-0-media-1",
+          "type": "photo",
+          "title": "图片说明",
+          "url": "/assets/photos/xxx.jpg",
+          "caption": "图片说明",
+          "poster": {
+            "title": "图片说明",
+            "subtitle": "/assets/photos/xxx.jpg",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {}
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/sample.json",
+        "eventIndex": 0,
+        "startSec": 0,
+        "endSec": 120
+      }
+    },
+    {
+      "id": "frontend-backend-memorylib-sample-2-1",
+      "title": "事件标题 2",
+      "summary": "事件描述或摘要内容。media 可选。",
+      "startTime": "2026-01-01T10:00:00+08:00",
+      "endTime": "2026-01-01T10:10:00+08:00",
+      "location": null,
+      "tags": [
+        "标签1"
+      ],
+      "keywords": [
+        "1"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": -170,
+        "y": 0
+      },
+      "poster": {
+        "title": "事件标题 2",
+        "subtitle": "10:00",
+        "accent": "#22a06b",
+        "background": "#e9f8ee",
+        "icon": "leaf"
+      },
+      "media": [],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/sample.json",
+        "eventIndex": 1,
+        "startSec": 3600,
+        "endSec": 4200
+      }
+    }
+  ]
+}

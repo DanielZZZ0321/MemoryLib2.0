@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "seedSource": "frontend-backend-memorylib-6",
+  "workspace": {
+    "name": "6-Node Layout Demo",
+    "description": "Converted from feature/frontend-backend:data/memorylibs/6.json. Legacy date range: 3.16; color: purple."
+  },
+  "keywords": [
+    {
+      "id": "legacy-memorylib",
+      "label": "Legacy MemoryLib",
+      "weight": 5,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "weight": 5,
+      "color": "#22a06b"
+    }
+  ],
+  "events": [
+    {
+      "id": "frontend-backend-memorylib-6-driving-through-a-pine-forest-0",
+      "title": "Driving Through a Pine Forest",
+      "summary": "POV driving shot on a two-lane road through a dense pine forest, with a right-turn warning sign and a parked car on the shoulder.",
+      "startTime": "2026-03-16T00:00:00+08:00",
+      "endTime": "2026-03-16T00:11:00+08:00",
+      "location": null,
+      "tags": [],
+      "keywords": [
+        "media"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": 170,
+        "y": 0
+      },
+      "poster": {
+        "title": "Driving Through a Pine Forest",
+        "subtitle": "00:00",
+        "accent": "#2f80ed",
+        "background": "#e7f0ff",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-memorylib-6-driving-through-a-pine-forest-0-media-1",
+          "type": "video",
+          "title": "Egocentric POV demo",
+          "url": "/uploads/egocentric-mixkit-49695.mp4",
+          "caption": "Egocentric POV demo",
+          "durationSec": 11.5,
+          "poster": {
+            "title": "Egocentric POV demo",
+            "subtitle": "/uploads/egocentric-mixkit-49695.mp4",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "video"
+          },
+          "legacy": {}
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/6.json",
+        "eventIndex": 0,
+        "startSec": 0,
+        "endSec": 11.5
+      }
+    }
+  ]
+}

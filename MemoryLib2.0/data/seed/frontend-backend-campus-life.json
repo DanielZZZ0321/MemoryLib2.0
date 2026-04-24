@@ -1,0 +1,1974 @@
+{
+  "schemaVersion": 1,
+  "seedSource": "frontend-backend-campus-life",
+  "workspace": {
+    "name": "校园生活 MemoryLib",
+    "description": "Converted from feature/frontend-backend:frontend/public/_campus_life.json. Campus-life dataset with opening ceremony, study, research, clubs, culture, MR, exchange, and graduation memories."
+  },
+  "keywords": [
+    {
+      "id": "campus",
+      "label": "Campus",
+      "weight": 5,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "student-life",
+      "label": "Student Life",
+      "weight": 5,
+      "color": "#22a06b"
+    },
+    {
+      "id": "hkust-gz",
+      "label": "HKUST(GZ)",
+      "weight": 5,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "keyword-lcyna7",
+      "label": "开学典礼",
+      "weight": 5,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "keyword-5f226o",
+      "label": "新生",
+      "weight": 4,
+      "color": "#ef6f91"
+    },
+    {
+      "id": "keyword-jja4fq",
+      "label": "仪式",
+      "weight": 4,
+      "color": "#1aa39a"
+    },
+    {
+      "id": "keyword-i2fxdl",
+      "label": "图书馆",
+      "weight": 4,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "keyword-1kdo4x",
+      "label": "学习",
+      "weight": 4,
+      "color": "#22a06b"
+    },
+    {
+      "id": "keyword-c67lt3",
+      "label": "自习",
+      "weight": 3,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "keyword-1n7iw2",
+      "label": "实验室",
+      "weight": 3,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "keyword-se8bzs",
+      "label": "科研",
+      "weight": 3,
+      "color": "#ef6f91"
+    },
+    {
+      "id": "keyword-150rfg",
+      "label": "创新",
+      "weight": 3,
+      "color": "#1aa39a"
+    },
+    {
+      "id": "keyword-171fvk",
+      "label": "校园",
+      "weight": 2,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "keyword-1s7o1a",
+      "label": "风景",
+      "weight": 2,
+      "color": "#22a06b"
+    },
+    {
+      "id": "keyword-8khom5",
+      "label": "漫步",
+      "weight": 2,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "keyword-czeup1",
+      "label": "运动",
+      "weight": 2,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "keyword-19plbv",
+      "label": "游泳",
+      "weight": 1,
+      "color": "#ef6f91"
+    },
+    {
+      "id": "keyword-w9yrrl",
+      "label": "健身",
+      "weight": 1,
+      "color": "#1aa39a"
+    },
+    {
+      "id": "keyword-soxvjt",
+      "label": "社团",
+      "weight": 1,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "keyword-12399o",
+      "label": "招新",
+      "weight": 1,
+      "color": "#22a06b"
+    },
+    {
+      "id": "keyword-1tta8h",
+      "label": "活动",
+      "weight": 1,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "keyword-17j065",
+      "label": "文化节",
+      "weight": 1,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "keyword-193cm4",
+      "label": "演出",
+      "weight": 1,
+      "color": "#ef6f91"
+    },
+    {
+      "id": "keyword-hwd7wm",
+      "label": "才艺",
+      "weight": 1,
+      "color": "#1aa39a"
+    },
+    {
+      "id": "keyword-1xfzel",
+      "label": "科技",
+      "weight": 1,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "mr",
+      "label": "MR",
+      "weight": 1,
+      "color": "#22a06b"
+    },
+    {
+      "id": "keyword-2h868h",
+      "label": "夏令营",
+      "weight": 1,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "keyword-1y911x",
+      "label": "交流",
+      "weight": 1,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "keyword-zgtozi",
+      "label": "双校",
+      "weight": 1,
+      "color": "#ef6f91"
+    },
+    {
+      "id": "keyword-740pxq",
+      "label": "港科大",
+      "weight": 1,
+      "color": "#1aa39a"
+    },
+    {
+      "id": "keyword-18dy1k",
+      "label": "国际交流",
+      "weight": 1,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "keyword-1ypkge",
+      "label": "外事",
+      "weight": 1,
+      "color": "#22a06b"
+    },
+    {
+      "id": "keyword-1qyifa",
+      "label": "合作",
+      "weight": 1,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "keyword-3ci3t1",
+      "label": "回忆",
+      "weight": 1,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "keyword-j0ynbk",
+      "label": "成长",
+      "weight": 1,
+      "color": "#ef6f91"
+    },
+    {
+      "id": "keyword-12pibq",
+      "label": "大学时光",
+      "weight": 1,
+      "color": "#1aa39a"
+    },
+    {
+      "id": "keyword-26a78e",
+      "label": "毕业",
+      "weight": 1,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "keyword-127imo",
+      "label": "典礼",
+      "weight": 1,
+      "color": "#22a06b"
+    },
+    {
+      "id": "keyword-1hgdes",
+      "label": "新起点",
+      "weight": 1,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "weight": 1,
+      "color": "#7c5cff"
+    }
+  ],
+  "events": [
+    {
+      "id": "frontend-backend-campus-life-event-10qlds-0",
+      "title": "新生开学典礼",
+      "summary": "激动人心的开学典礼，校长寄语新生，同学们齐聚一堂，开启大学新篇章。典礼上，学长学姐们分享了学习经验，新生们相互认识，充满对未来的期待。",
+      "startTime": "2026-09-01T00:00:00+08:00",
+      "endTime": "2026-09-01T00:05:00+08:00",
+      "location": "学校大礼堂",
+      "tags": [
+        "开学典礼",
+        "新生",
+        "仪式",
+        "Mood: 激动"
+      ],
+      "keywords": [
+        "keyword-lcyna7",
+        "keyword-5f226o",
+        "keyword-jja4fq",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": 260,
+        "y": 0
+      },
+      "poster": {
+        "title": "新生开学典礼",
+        "subtitle": "学校大礼堂",
+        "accent": "#2f80ed",
+        "background": "#e7f0ff",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-10qlds-0-media-1",
+          "type": "video",
+          "title": "开学典礼精彩瞬间",
+          "url": "/media/开学典礼快剪.mp4",
+          "caption": "开学典礼精彩瞬间",
+          "durationSec": 180,
+          "poster": {
+            "title": "开学典礼精彩瞬间",
+            "subtitle": "00:01:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "video"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/opening_ceremony/200/150",
+            "timestamp": "00:01:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-10qlds-0-media-2",
+          "type": "photo",
+          "title": "学生们在校园庭院",
+          "url": "/media/students_walking_campus_courtyard.jpg",
+          "caption": "学生们在校园庭院",
+          "poster": {
+            "title": "学生们在校园庭院",
+            "subtitle": "00:02:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_campus_courtyard.jpg",
+            "timestamp": "00:02:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-10qlds-0-media-3",
+          "type": "photo",
+          "title": "穿过拱门的新生",
+          "url": "/media/students_walking_archway_tunnel.jpg",
+          "caption": "穿过拱门的新生",
+          "poster": {
+            "title": "穿过拱门的新生",
+            "subtitle": "00:02:30",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_archway_tunnel.jpg",
+            "timestamp": "00:02:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-10qlds-0-media-4",
+          "type": "photo",
+          "title": "校园广场漫步",
+          "url": "/media/students_strolling_campus_plaza.jpg",
+          "caption": "校园广场漫步",
+          "poster": {
+            "title": "校园广场漫步",
+            "subtitle": "00:03:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_strolling_campus_plaza.jpg",
+            "timestamp": "00:03:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-10qlds-0-media-5",
+          "type": "photo",
+          "title": "现代建筑前的学生",
+          "url": "/media/students_walking_past_modern_stairs.jpg",
+          "caption": "现代建筑前的学生",
+          "poster": {
+            "title": "现代建筑前的学生",
+            "subtitle": "00:03:30",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_past_modern_stairs.jpg",
+            "timestamp": "00:03:30"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 0,
+        "startSec": 0,
+        "endSec": 300,
+        "mood": "激动"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-1dv5dm-1",
+      "title": "图书馆自习时光",
+      "summary": "安静舒适的图书馆里，同学们沉浸在知识的海洋中。书架间弥漫着书香，阳光透过落地窗洒在书桌上，营造出一心向学的氛围。",
+      "startTime": "2026-09-01T00:05:00+08:00",
+      "endTime": "2026-09-01T00:10:00+08:00",
+      "location": "学校图书馆",
+      "tags": [
+        "图书馆",
+        "学习",
+        "自习",
+        "Mood: 专注"
+      ],
+      "keywords": [
+        "keyword-i2fxdl",
+        "keyword-1kdo4x",
+        "keyword-c67lt3",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": 230,
+        "y": 121
+      },
+      "poster": {
+        "title": "图书馆自习时光",
+        "subtitle": "学校图书馆",
+        "accent": "#22a06b",
+        "background": "#e9f8ee",
+        "icon": "leaf"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-1dv5dm-1-media-1",
+          "type": "photo",
+          "title": "书架间选书",
+          "url": "/media/student_library_bookshelf.jpg",
+          "caption": "书架间选书",
+          "poster": {
+            "title": "书架间选书",
+            "subtitle": "00:06:00",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_library_bookshelf.jpg",
+            "timestamp": "00:06:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1dv5dm-1-media-2",
+          "type": "photo",
+          "title": "戴着耳机专注学习",
+          "url": "/media/students_studying_library_headphones.jpg",
+          "caption": "戴着耳机专注学习",
+          "poster": {
+            "title": "戴着耳机专注学习",
+            "subtitle": "00:06:30",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_studying_library_headphones.jpg",
+            "timestamp": "00:06:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1dv5dm-1-media-3",
+          "type": "photo",
+          "title": "图书馆走廊",
+          "url": "/media/students_walking_library_corridor.jpg",
+          "caption": "图书馆走廊",
+          "poster": {
+            "title": "图书馆走廊",
+            "subtitle": "00:07:00",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_library_corridor.jpg",
+            "timestamp": "00:07:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1dv5dm-1-media-4",
+          "type": "photo",
+          "title": "穿行书架间",
+          "url": "/media/student_walking_past_bookshelves.jpg",
+          "caption": "穿行书架间",
+          "poster": {
+            "title": "穿行书架间",
+            "subtitle": "00:07:30",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_walking_past_bookshelves.jpg",
+            "timestamp": "00:07:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1dv5dm-1-media-5",
+          "type": "photo",
+          "title": "户外学习空间",
+          "url": "/media/student_outdoor_study_arch.jpg",
+          "caption": "户外学习空间",
+          "poster": {
+            "title": "户外学习空间",
+            "subtitle": "00:08:00",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_outdoor_study_arch.jpg",
+            "timestamp": "00:08:00"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 1,
+        "startSec": 300,
+        "endSec": 600,
+        "mood": "专注"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-anjyl7-2",
+      "title": "实验室科研项目",
+      "summary": "在先进的实验室里，学生们参与前沿科研项目。从数据采集到实验分析，每一个步骤都充满了探索的乐趣，培养了严谨的科学精神。",
+      "startTime": "2026-09-01T00:10:00+08:00",
+      "endTime": "2026-09-01T00:15:00+08:00",
+      "location": "科研楼实验室",
+      "tags": [
+        "实验室",
+        "科研",
+        "创新",
+        "Mood: 投入"
+      ],
+      "keywords": [
+        "keyword-1n7iw2",
+        "keyword-se8bzs",
+        "keyword-150rfg",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": 148,
+        "y": 214
+      },
+      "poster": {
+        "title": "实验室科研项目",
+        "subtitle": "科研楼实验室",
+        "accent": "#db6b2f",
+        "background": "#fff0e8",
+        "icon": "table"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-anjyl7-2-media-1",
+          "type": "photo",
+          "title": "实验室工作",
+          "url": "/media/students_working_in_lab.jpg",
+          "caption": "实验室工作",
+          "poster": {
+            "title": "实验室工作",
+            "subtitle": "00:11:00",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_working_in_lab.jpg",
+            "timestamp": "00:11:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-anjyl7-2-media-2",
+          "type": "photo",
+          "title": "协作讨论",
+          "url": "/media/students_collaborating_laptop.jpg",
+          "caption": "协作讨论",
+          "poster": {
+            "title": "协作讨论",
+            "subtitle": "00:11:30",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_collaborating_laptop.jpg",
+            "timestamp": "00:11:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-anjyl7-2-media-3",
+          "type": "photo",
+          "title": "现代工作坊",
+          "url": "/media/students_in_modern_workshop.jpg",
+          "caption": "现代工作坊",
+          "poster": {
+            "title": "现代工作坊",
+            "subtitle": "00:12:00",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_in_modern_workshop.jpg",
+            "timestamp": "00:12:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-anjyl7-2-media-4",
+          "type": "photo",
+          "title": "全息显示研究",
+          "url": "/media/people_examining_holographic_display.jpg",
+          "caption": "全息显示研究",
+          "poster": {
+            "title": "全息显示研究",
+            "subtitle": "00:12:30",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/people_examining_holographic_display.jpg",
+            "timestamp": "00:12:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-anjyl7-2-media-5",
+          "type": "photo",
+          "title": "户外讨论项目",
+          "url": "/media/students_collaborating_outdoor_cafe.jpg",
+          "caption": "户外讨论项目",
+          "poster": {
+            "title": "户外讨论项目",
+            "subtitle": "00:13:00",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_collaborating_outdoor_cafe.jpg",
+            "timestamp": "00:13:00"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 2,
+        "startSec": 600,
+        "endSec": 900,
+        "mood": "投入"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-rhoyf4-3",
+      "title": "校园漫步与风景",
+      "summary": "课间漫步在美丽的校园里，现代建筑与自然景观相得益彰。雕塑、草坪、池塘，每一处都是风景，让人心旷神怡。",
+      "startTime": "2026-09-01T00:15:00+08:00",
+      "endTime": "2026-09-01T00:20:00+08:00",
+      "location": "校园各处",
+      "tags": [
+        "校园",
+        "风景",
+        "漫步",
+        "Mood: 惬意"
+      ],
+      "keywords": [
+        "keyword-171fvk",
+        "keyword-1s7o1a",
+        "keyword-8khom5",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": 31,
+        "y": 258
+      },
+      "poster": {
+        "title": "校园漫步与风景",
+        "subtitle": "校园各处",
+        "accent": "#7c5cff",
+        "background": "#f0ebff",
+        "icon": "graph"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-rhoyf4-3-media-1",
+          "type": "photo",
+          "title": "走向校园雕塑",
+          "url": "/media/students_walking_towards_sculpture.jpg",
+          "caption": "走向校园雕塑",
+          "poster": {
+            "title": "走向校园雕塑",
+            "subtitle": "00:16:00",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_towards_sculpture.jpg",
+            "timestamp": "00:16:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-rhoyf4-3-media-2",
+          "type": "photo",
+          "title": "红色雕塑前",
+          "url": "/media/students_walking_past_red_sculpture.jpg",
+          "caption": "红色雕塑前",
+          "poster": {
+            "title": "红色雕塑前",
+            "subtitle": "00:16:30",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_past_red_sculpture.jpg",
+            "timestamp": "00:16:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-rhoyf4-3-media-3",
+          "type": "photo",
+          "title": "天鹅池畔休憩",
+          "url": "/media/student_relaxing_by_swan_pond.jpg",
+          "caption": "天鹅池畔休憩",
+          "poster": {
+            "title": "天鹅池畔休憩",
+            "subtitle": "00:17:00",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_relaxing_by_swan_pond.jpg",
+            "timestamp": "00:17:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-rhoyf4-3-media-4",
+          "type": "photo",
+          "title": "夕阳下的剪影",
+          "url": "/media/student_silhouette_sunset_wall.jpg",
+          "caption": "夕阳下的剪影",
+          "poster": {
+            "title": "夕阳下的剪影",
+            "subtitle": "00:17:30",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_silhouette_sunset_wall.jpg",
+            "timestamp": "00:17:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-rhoyf4-3-media-5",
+          "type": "photo",
+          "title": "校园小径",
+          "url": "https://picsum.photos/seed/campus_walk/800/600",
+          "caption": "校园小径",
+          "poster": {
+            "title": "校园小径",
+            "subtitle": "00:18:00",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/campus_walk/200/150",
+            "timestamp": "00:18:00"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 3,
+        "startSec": 900,
+        "endSec": 1200,
+        "mood": "惬意"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-dq74ts-4",
+      "title": "游泳健身",
+      "summary": "学校游泳池是同学们运动健身的好去处。清澈的池水、专业的设施，无论是休闲游泳还是专业训练，都能让人身心放松。",
+      "startTime": "2026-09-01T00:20:00+08:00",
+      "endTime": "2026-09-01T00:25:00+08:00",
+      "location": "学校游泳馆",
+      "tags": [
+        "运动",
+        "游泳",
+        "健身",
+        "Mood: 活力"
+      ],
+      "keywords": [
+        "keyword-czeup1",
+        "keyword-19plbv",
+        "keyword-w9yrrl",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": -92,
+        "y": 243
+      },
+      "poster": {
+        "title": "游泳健身",
+        "subtitle": "学校游泳馆",
+        "accent": "#ef6f91",
+        "background": "#ffe7ee",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-dq74ts-4-media-1",
+          "type": "photo",
+          "title": "泳池畅游",
+          "url": "/media/swimmer_in_campus_pool.jpg",
+          "caption": "泳池畅游",
+          "poster": {
+            "title": "泳池畅游",
+            "subtitle": "00:21:00",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/swimmer_in_campus_pool.jpg",
+            "timestamp": "00:21:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-dq74ts-4-media-2",
+          "type": "photo",
+          "title": "泳池边交流",
+          "url": "/media/swimmers_chatting_in_pool.jpg",
+          "caption": "泳池边交流",
+          "poster": {
+            "title": "泳池边交流",
+            "subtitle": "00:22:00",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/swimmers_chatting_in_pool.jpg",
+            "timestamp": "00:22:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-dq74ts-4-media-3",
+          "type": "photo",
+          "title": "泳池设施",
+          "url": "https://picsum.photos/seed/swimming_pool/800/600",
+          "caption": "泳池设施",
+          "poster": {
+            "title": "泳池设施",
+            "subtitle": "00:23:00",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/swimming_pool/200/150",
+            "timestamp": "00:23:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-dq74ts-4-media-4",
+          "type": "photo",
+          "title": "健身中心",
+          "url": "https://picsum.photos/seed/fitness_center/800/600",
+          "caption": "健身中心",
+          "poster": {
+            "title": "健身中心",
+            "subtitle": "00:23:30",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/fitness_center/200/150",
+            "timestamp": "00:23:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-dq74ts-4-media-5",
+          "type": "photo",
+          "title": "运动场地",
+          "url": "https://picsum.photos/seed/sports_court/800/600",
+          "caption": "运动场地",
+          "poster": {
+            "title": "运动场地",
+            "subtitle": "00:24:00",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/sports_court/200/150",
+            "timestamp": "00:24:00"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 4,
+        "startSec": 1200,
+        "endSec": 1500,
+        "mood": "活力"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-1slsk4-5",
+      "title": "社团招新活动",
+      "summary": "热闹的社团招新现场，各个社团展示着自己的特色。从学术科技到文艺体育，丰富的社团活动为大学生活增添了无限色彩。",
+      "startTime": "2026-09-01T00:25:00+08:00",
+      "endTime": "2026-09-01T00:30:00+08:00",
+      "location": "学生活动中心",
+      "tags": [
+        "社团",
+        "招新",
+        "活动",
+        "Mood: 热情"
+      ],
+      "keywords": [
+        "keyword-soxvjt",
+        "keyword-12399o",
+        "keyword-1tta8h",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": -195,
+        "y": 172
+      },
+      "poster": {
+        "title": "社团招新活动",
+        "subtitle": "学生活动中心",
+        "accent": "#1aa39a",
+        "background": "#dff8f3",
+        "icon": "meeting"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-1slsk4-5-media-1",
+          "type": "photo",
+          "title": "社团展位",
+          "url": "/media/students_club_fair_booth.jpg",
+          "caption": "社团展位",
+          "poster": {
+            "title": "社团展位",
+            "subtitle": "00:26:00",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_club_fair_booth.jpg",
+            "timestamp": "00:26:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1slsk4-5-media-2",
+          "type": "photo",
+          "title": "观看排球表演",
+          "url": "/media/students_watching_volleyball_fair.jpg",
+          "caption": "观看排球表演",
+          "poster": {
+            "title": "观看排球表演",
+            "subtitle": "00:26:30",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_watching_volleyball_fair.jpg",
+            "timestamp": "00:26:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1slsk4-5-media-3",
+          "type": "photo",
+          "title": "国际学生合影",
+          "url": "/media/international_students_group_selfie.jpg",
+          "caption": "国际学生合影",
+          "poster": {
+            "title": "国际学生合影",
+            "subtitle": "00:27:00",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/international_students_group_selfie.jpg",
+            "timestamp": "00:27:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1slsk4-5-media-4",
+          "type": "photo",
+          "title": "招新海报",
+          "url": "https://picsum.photos/seed/club_recruitment/800/600",
+          "caption": "招新海报",
+          "poster": {
+            "title": "招新海报",
+            "subtitle": "00:27:30",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/club_recruitment/200/150",
+            "timestamp": "00:27:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1slsk4-5-media-5",
+          "type": "photo",
+          "title": "社团展示",
+          "url": "https://picsum.photos/seed/student_organizations/800/600",
+          "caption": "社团展示",
+          "poster": {
+            "title": "社团展示",
+            "subtitle": "00:28:00",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/student_organizations/200/150",
+            "timestamp": "00:28:00"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 5,
+        "startSec": 1500,
+        "endSec": 1800,
+        "mood": "热情"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-1wljw0-6",
+      "title": "校园文化节演出",
+      "summary": "精彩纷呈的文化节演出，同学们展示着各自的才艺。吉他弹唱、乐队表演、演讲朗诵，舞台上的每一个瞬间都闪耀着青春的光芒。",
+      "startTime": "2026-09-01T00:30:00+08:00",
+      "endTime": "2026-09-01T00:35:00+08:00",
+      "location": "校园大舞台",
+      "tags": [
+        "文化节",
+        "演出",
+        "才艺",
+        "Mood: 兴奋"
+      ],
+      "keywords": [
+        "keyword-17j065",
+        "keyword-193cm4",
+        "keyword-hwd7wm",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": -252,
+        "y": 62
+      },
+      "poster": {
+        "title": "校园文化节演出",
+        "subtitle": "校园大舞台",
+        "accent": "#2f80ed",
+        "background": "#e7f0ff",
+        "icon": "photo"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-1wljw0-6-media-1",
+          "type": "photo",
+          "title": "乐队表演",
+          "url": "/media/band_performance_full_stage.jpg",
+          "caption": "乐队表演",
+          "poster": {
+            "title": "乐队表演",
+            "subtitle": "00:31:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/band_performance_full_stage.jpg",
+            "timestamp": "00:31:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1wljw0-6-media-2",
+          "type": "photo",
+          "title": "吉他口琴演奏",
+          "url": "/media/student_performing_guitar_harmonica.jpg",
+          "caption": "吉他口琴演奏",
+          "poster": {
+            "title": "吉他口琴演奏",
+            "subtitle": "00:31:30",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_performing_guitar_harmonica.jpg",
+            "timestamp": "00:31:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1wljw0-6-media-3",
+          "type": "photo",
+          "title": "吉他手与烟花",
+          "url": "/media/guitarist_stage_fireworks.jpg",
+          "caption": "吉他手与烟花",
+          "poster": {
+            "title": "吉他手与烟花",
+            "subtitle": "00:32:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/guitarist_stage_fireworks.jpg",
+            "timestamp": "00:32:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1wljw0-6-media-4",
+          "type": "photo",
+          "title": "鼓手表演",
+          "url": "/media/student_drummer_performance.jpg",
+          "caption": "鼓手表演",
+          "poster": {
+            "title": "鼓手表演",
+            "subtitle": "00:32:30",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_drummer_performance.jpg",
+            "timestamp": "00:32:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1wljw0-6-media-5",
+          "type": "photo",
+          "title": "演讲表演",
+          "url": "/media/student_microphone_speech.jpg",
+          "caption": "演讲表演",
+          "poster": {
+            "title": "演讲表演",
+            "subtitle": "00:33:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_microphone_speech.jpg",
+            "timestamp": "00:33:00"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 6,
+        "startSec": 1800,
+        "endSec": 2100,
+        "mood": "兴奋"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-o7l45b-7",
+      "title": "混合现实体验",
+      "summary": "在创新实验室里，学生们体验最前沿的混合现实技术。戴上MR头显，虚拟与现实交织，开启全新的交互体验和学习方式。",
+      "startTime": "2026-09-01T00:35:00+08:00",
+      "endTime": "2026-09-01T00:40:00+08:00",
+      "location": "创新实验室",
+      "tags": [
+        "科技",
+        "MR",
+        "创新",
+        "Mood: 好奇"
+      ],
+      "keywords": [
+        "keyword-1xfzel",
+        "mr",
+        "keyword-150rfg",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": -252,
+        "y": -62
+      },
+      "poster": {
+        "title": "混合现实体验",
+        "subtitle": "创新实验室",
+        "accent": "#22a06b",
+        "background": "#e9f8ee",
+        "icon": "leaf"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-o7l45b-7-media-1",
+          "type": "photo",
+          "title": "体验MR设备",
+          "url": "/media/students_experiencing_mr_headsets.jpg",
+          "caption": "体验MR设备",
+          "poster": {
+            "title": "体验MR设备",
+            "subtitle": "00:36:00",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_experiencing_mr_headsets.jpg",
+            "timestamp": "00:36:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-o7l45b-7-media-2",
+          "type": "photo",
+          "title": "MR头戴设备",
+          "url": "/media/student_wearing_mr_headset_portrait.jpg",
+          "caption": "MR头戴设备",
+          "poster": {
+            "title": "MR头戴设备",
+            "subtitle": "00:36:30",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_wearing_mr_headset_portrait.jpg",
+            "timestamp": "00:36:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-o7l45b-7-media-3",
+          "type": "photo",
+          "title": "机器人互动",
+          "url": "/media/robot_shaking_hands_with_human.jpg",
+          "caption": "机器人互动",
+          "poster": {
+            "title": "机器人互动",
+            "subtitle": "00:37:00",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/robot_shaking_hands_with_human.jpg",
+            "timestamp": "00:37:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-o7l45b-7-media-4",
+          "type": "photo",
+          "title": "机器人演示",
+          "url": "/media/people_filming_robot_demonstration.jpg",
+          "caption": "机器人演示",
+          "poster": {
+            "title": "机器人演示",
+            "subtitle": "00:37:30",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/people_filming_robot_demonstration.jpg",
+            "timestamp": "00:37:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-o7l45b-7-media-5",
+          "type": "photo",
+          "title": "VR体验区",
+          "url": "https://picsum.photos/seed/vr_experience/800/600",
+          "caption": "VR体验区",
+          "poster": {
+            "title": "VR体验区",
+            "subtitle": "00:38:00",
+            "accent": "#22a06b",
+            "background": "#e9f8ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/vr_experience/200/150",
+            "timestamp": "00:38:00"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 7,
+        "startSec": 2100,
+        "endSec": 2400,
+        "mood": "好奇"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-137sp8-8",
+      "title": "夏令营交流活动",
+      "summary": "夏令营期间，来自各地的优秀学子齐聚校园。领导与学生们亲切交流，分享学习心得，探讨未来发展方向，激发青年学子的求知热情。",
+      "startTime": "2026-09-01T00:40:00+08:00",
+      "endTime": "2026-09-01T00:45:00+08:00",
+      "location": "校园会议室",
+      "tags": [
+        "夏令营",
+        "交流",
+        "学习",
+        "Mood: 收获"
+      ],
+      "keywords": [
+        "keyword-2h868h",
+        "keyword-1y911x",
+        "keyword-1kdo4x",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": -195,
+        "y": -172
+      },
+      "poster": {
+        "title": "夏令营交流活动",
+        "subtitle": "校园会议室",
+        "accent": "#db6b2f",
+        "background": "#fff0e8",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-137sp8-8-media-1",
+          "type": "video",
+          "title": "夏令营交流现场",
+          "url": "/media/孙志洋与港科广夏令营学生交流.mp4",
+          "caption": "夏令营交流现场",
+          "durationSec": 180,
+          "poster": {
+            "title": "夏令营交流现场",
+            "subtitle": "00:41:00",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "video"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/summer_camp/200/150",
+            "timestamp": "00:41:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-137sp8-8-media-2",
+          "type": "photo",
+          "title": "户外小组讨论",
+          "url": "/media/students_collaborating_outdoor_cafe.jpg",
+          "caption": "户外小组讨论",
+          "poster": {
+            "title": "户外小组讨论",
+            "subtitle": "00:42:00",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_collaborating_outdoor_cafe.jpg",
+            "timestamp": "00:42:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-137sp8-8-media-3",
+          "type": "photo",
+          "title": "协作学习",
+          "url": "/media/students_collaborating_laptop.jpg",
+          "caption": "协作学习",
+          "poster": {
+            "title": "协作学习",
+            "subtitle": "00:42:30",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_collaborating_laptop.jpg",
+            "timestamp": "00:42:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-137sp8-8-media-4",
+          "type": "photo",
+          "title": "夏令营活动",
+          "url": "https://picsum.photos/seed/summer_camp_activity/800/600",
+          "caption": "夏令营活动",
+          "poster": {
+            "title": "夏令营活动",
+            "subtitle": "00:43:00",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/summer_camp_activity/200/150",
+            "timestamp": "00:43:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-137sp8-8-media-5",
+          "type": "photo",
+          "title": "小组交流",
+          "url": "https://picsum.photos/seed/group_discussion/800/600",
+          "caption": "小组交流",
+          "poster": {
+            "title": "小组交流",
+            "subtitle": "00:43:30",
+            "accent": "#db6b2f",
+            "background": "#fff0e8",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/group_discussion/200/150",
+            "timestamp": "00:43:30"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 8,
+        "startSec": 2400,
+        "endSec": 2700,
+        "mood": "收获"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-1a9au5-9",
+      "title": "港科大双校交流",
+      "summary": "港科大一体，双校互补。香港清水湾与广州南沙两校区紧密合作，资源共享，学术交流频繁，共同培养具有国际视野的优秀人才。",
+      "startTime": "2026-09-01T00:45:00+08:00",
+      "endTime": "2026-09-01T00:50:00+08:00",
+      "location": "港科大（广州）",
+      "tags": [
+        "双校",
+        "港科大",
+        "交流",
+        "Mood: 自豪"
+      ],
+      "keywords": [
+        "keyword-zgtozi",
+        "keyword-740pxq",
+        "keyword-1y911x",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": -92,
+        "y": -243
+      },
+      "poster": {
+        "title": "港科大双校交流",
+        "subtitle": "港科大（广州）",
+        "accent": "#7c5cff",
+        "background": "#f0ebff",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-1a9au5-9-media-1",
+          "type": "video",
+          "title": "双校互补介绍",
+          "url": "/media/港科大一体，双校互补-中文版.mp4",
+          "caption": "双校互补介绍",
+          "durationSec": 200,
+          "poster": {
+            "title": "双校互补介绍",
+            "subtitle": "00:46:00",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "video"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/dual_campus/200/150",
+            "timestamp": "00:46:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a9au5-9-media-2",
+          "type": "photo",
+          "title": "校园庭院",
+          "url": "/media/students_walking_campus_courtyard.jpg",
+          "caption": "校园庭院",
+          "poster": {
+            "title": "校园庭院",
+            "subtitle": "00:47:00",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_campus_courtyard.jpg",
+            "timestamp": "00:47:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a9au5-9-media-3",
+          "type": "photo",
+          "title": "现代建筑",
+          "url": "/media/students_walking_past_modern_stairs.jpg",
+          "caption": "现代建筑",
+          "poster": {
+            "title": "现代建筑",
+            "subtitle": "00:47:30",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_walking_past_modern_stairs.jpg",
+            "timestamp": "00:47:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a9au5-9-media-4",
+          "type": "photo",
+          "title": "港科广校园",
+          "url": "https://picsum.photos/seed/hkust_gz/800/600",
+          "caption": "港科广校园",
+          "poster": {
+            "title": "港科广校园",
+            "subtitle": "00:48:00",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/hkust_gz/200/150",
+            "timestamp": "00:48:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a9au5-9-media-5",
+          "type": "photo",
+          "title": "港科大校园",
+          "url": "https://picsum.photos/seed/hkust_hk/800/600",
+          "caption": "港科大校园",
+          "poster": {
+            "title": "港科大校园",
+            "subtitle": "00:48:30",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/hkust_hk/200/150",
+            "timestamp": "00:48:30"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 9,
+        "startSec": 2700,
+        "endSec": 3000,
+        "mood": "自豪"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-1jmeda-10",
+      "title": "国际交流访问",
+      "summary": "学校积极开展国际交流合作，各国政要、学者频繁来访。校长会见卡塔尔国王等重要外事活动，彰显学校的国际影响力。",
+      "startTime": "2026-09-01T00:50:00+08:00",
+      "endTime": "2026-09-01T00:55:00+08:00",
+      "location": "学校会议厅",
+      "tags": [
+        "国际交流",
+        "外事",
+        "合作",
+        "Mood: 庄重"
+      ],
+      "keywords": [
+        "keyword-18dy1k",
+        "keyword-1ypkge",
+        "keyword-1qyifa",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": 31,
+        "y": -258
+      },
+      "poster": {
+        "title": "国际交流访问",
+        "subtitle": "学校会议厅",
+        "accent": "#ef6f91",
+        "background": "#ffe7ee",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-1jmeda-10-media-1",
+          "type": "video",
+          "title": "校长会见外宾",
+          "url": "/media/港科广校长会见卡塔尔国王.mp4",
+          "caption": "校长会见外宾",
+          "durationSec": 150,
+          "poster": {
+            "title": "校长会见外宾",
+            "subtitle": "00:51:00",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "video"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/international_visit/200/150",
+            "timestamp": "00:51:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1jmeda-10-media-2",
+          "type": "photo",
+          "title": "国际学生合影",
+          "url": "/media/international_students_group_selfie.jpg",
+          "caption": "国际学生合影",
+          "poster": {
+            "title": "国际学生合影",
+            "subtitle": "00:52:00",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/international_students_group_selfie.jpg",
+            "timestamp": "00:52:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1jmeda-10-media-3",
+          "type": "photo",
+          "title": "国际社团展示",
+          "url": "/media/students_club_fair_booth.jpg",
+          "caption": "国际社团展示",
+          "poster": {
+            "title": "国际社团展示",
+            "subtitle": "00:52:30",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_club_fair_booth.jpg",
+            "timestamp": "00:52:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1jmeda-10-media-4",
+          "type": "photo",
+          "title": "外事活动",
+          "url": "https://picsum.photos/seed/diplomatic_meeting/800/600",
+          "caption": "外事活动",
+          "poster": {
+            "title": "外事活动",
+            "subtitle": "00:53:00",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/diplomatic_meeting/200/150",
+            "timestamp": "00:53:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1jmeda-10-media-5",
+          "type": "photo",
+          "title": "国际交流",
+          "url": "https://picsum.photos/seed/global_exchange/800/600",
+          "caption": "国际交流",
+          "poster": {
+            "title": "国际交流",
+            "subtitle": "00:53:30",
+            "accent": "#ef6f91",
+            "background": "#ffe7ee",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/global_exchange/200/150",
+            "timestamp": "00:53:30"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 10,
+        "startSec": 3000,
+        "endSec": 3300,
+        "mood": "庄重"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-1a5chm-11",
+      "title": "大学生活回顾",
+      "summary": "穿越两年的大学时光，从懵懂新生到即将毕业的学长学姐。每一个瞬间都是珍贵的回忆，感谢学校给予的成长平台。",
+      "startTime": "2026-09-01T00:55:00+08:00",
+      "endTime": "2026-09-01T01:00:00+08:00",
+      "location": "校园各处",
+      "tags": [
+        "回忆",
+        "成长",
+        "大学时光",
+        "Mood: 怀念"
+      ],
+      "keywords": [
+        "keyword-3ci3t1",
+        "keyword-j0ynbk",
+        "keyword-12pibq",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": 148,
+        "y": -214
+      },
+      "poster": {
+        "title": "大学生活回顾",
+        "subtitle": "校园各处",
+        "accent": "#1aa39a",
+        "background": "#dff8f3",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-1a5chm-11-media-1",
+          "type": "video",
+          "title": "大学生活回顾视频",
+          "url": "/media/谢邀，穿越两年-人在港科大（广州）读大学-20250617.mp4",
+          "caption": "大学生活回顾视频",
+          "durationSec": 240,
+          "poster": {
+            "title": "大学生活回顾视频",
+            "subtitle": "00:56:00",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "video"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/university_life/200/150",
+            "timestamp": "00:56:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a5chm-11-media-2",
+          "type": "photo",
+          "title": "图书馆时光",
+          "url": "/media/students_studying_library_headphones.jpg",
+          "caption": "图书馆时光",
+          "poster": {
+            "title": "图书馆时光",
+            "subtitle": "00:57:00",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_studying_library_headphones.jpg",
+            "timestamp": "00:57:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a5chm-11-media-3",
+          "type": "photo",
+          "title": "池塘畔的宁静",
+          "url": "/media/student_relaxing_by_swan_pond.jpg",
+          "caption": "池塘畔的宁静",
+          "poster": {
+            "title": "池塘畔的宁静",
+            "subtitle": "00:57:30",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/student_relaxing_by_swan_pond.jpg",
+            "timestamp": "00:57:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a5chm-11-media-4",
+          "type": "photo",
+          "title": "户外讨论时光",
+          "url": "/media/students_collaborating_outdoor_cafe.jpg",
+          "caption": "户外讨论时光",
+          "poster": {
+            "title": "户外讨论时光",
+            "subtitle": "00:58:00",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_collaborating_outdoor_cafe.jpg",
+            "timestamp": "00:58:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-1a5chm-11-media-5",
+          "type": "photo",
+          "title": "校园回忆",
+          "url": "https://picsum.photos/seed/memory_campus/800/600",
+          "caption": "校园回忆",
+          "poster": {
+            "title": "校园回忆",
+            "subtitle": "00:58:30",
+            "accent": "#1aa39a",
+            "background": "#dff8f3",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/memory_campus/200/150",
+            "timestamp": "00:58:30"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 11,
+        "startSec": 3300,
+        "endSec": 3600,
+        "mood": "怀念"
+      }
+    },
+    {
+      "id": "frontend-backend-campus-life-event-cizojh-12",
+      "title": "毕业典礼时刻",
+      "summary": "激动人心的毕业典礼，学子们身着学位服，在家人和老师的见证下，迎接人生新篇章。这是努力的回报，也是新征程的开始。",
+      "startTime": "2026-09-01T01:00:00+08:00",
+      "endTime": "2026-09-01T01:05:00+08:00",
+      "location": "学校大礼堂",
+      "tags": [
+        "毕业",
+        "典礼",
+        "新起点",
+        "Mood: 感动"
+      ],
+      "keywords": [
+        "keyword-26a78e",
+        "keyword-127imo",
+        "keyword-1hgdes",
+        "media"
+      ],
+      "layout": {
+        "cluster": "campus-life",
+        "x": 230,
+        "y": -121
+      },
+      "poster": {
+        "title": "毕业典礼时刻",
+        "subtitle": "学校大礼堂",
+        "accent": "#2f80ed",
+        "background": "#e7f0ff",
+        "icon": "video"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-campus-life-event-cizojh-12-media-1",
+          "type": "video",
+          "title": "毕业典礼宣传片",
+          "url": "/media/香港科技大学（广州）2024年毕业宣传片.mp4",
+          "caption": "毕业典礼宣传片",
+          "durationSec": 180,
+          "poster": {
+            "title": "毕业典礼宣传片",
+            "subtitle": "01:01:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "video"
+          },
+          "legacy": {
+            "thumbnail": "https://picsum.photos/seed/graduation/200/150",
+            "timestamp": "01:01:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-cizojh-12-media-2",
+          "type": "photo",
+          "title": "毕业典礼入场",
+          "url": "/media/graduates_ceremony_procession.jpg",
+          "caption": "毕业典礼入场",
+          "poster": {
+            "title": "毕业典礼入场",
+            "subtitle": "01:02:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/graduates_ceremony_procession.jpg",
+            "timestamp": "01:02:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-cizojh-12-media-3",
+          "type": "photo",
+          "title": "毕业生在池塘边",
+          "url": "/media/graduates_walking_by_pond.jpg",
+          "caption": "毕业生在池塘边",
+          "poster": {
+            "title": "毕业生在池塘边",
+            "subtitle": "01:02:30",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/graduates_walking_by_pond.jpg",
+            "timestamp": "01:02:30"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-cizojh-12-media-4",
+          "type": "photo",
+          "title": "毕业烟花",
+          "url": "/media/students_watching_night_fireworks.jpg",
+          "caption": "毕业烟花",
+          "poster": {
+            "title": "毕业烟花",
+            "subtitle": "01:03:00",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_watching_night_fireworks.jpg",
+            "timestamp": "01:03:00"
+          }
+        },
+        {
+          "id": "frontend-backend-campus-life-event-cizojh-12-media-5",
+          "type": "photo",
+          "title": "烟花倒影",
+          "url": "/media/students_viewing_fireworks_reflection.jpg",
+          "caption": "烟花倒影",
+          "poster": {
+            "title": "烟花倒影",
+            "subtitle": "01:03:30",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {
+            "thumbnail": "/media/students_viewing_fireworks_reflection.jpg",
+            "timestamp": "01:03:30"
+          }
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "frontend/public/_campus_life.json",
+        "eventIndex": 12,
+        "startSec": 3600,
+        "endSec": 3900,
+        "mood": "感动"
+      }
+    }
+  ]
+}
