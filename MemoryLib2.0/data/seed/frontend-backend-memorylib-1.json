@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 1,
+  "seedSource": "frontend-backend-memorylib-1",
+  "workspace": {
+    "name": "My Last Week's Diary",
+    "description": "Converted from feature/frontend-backend:data/memorylibs/1.json. Legacy date range: 2.13-2.16; color: blue."
+  },
+  "keywords": [
+    {
+      "id": "legacy-memorylib",
+      "label": "Legacy MemoryLib",
+      "weight": 5,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "people",
+      "label": "People",
+      "weight": 5,
+      "color": "#22a06b"
+    },
+    {
+      "id": "emotion",
+      "label": "Emotion",
+      "weight": 5,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "workflow",
+      "label": "Workflow",
+      "weight": 5,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "event",
+      "label": "Event",
+      "weight": 4,
+      "color": "#ef6f91"
+    },
+    {
+      "id": "decision",
+      "label": "Decision",
+      "weight": 4,
+      "color": "#1aa39a"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "weight": 4,
+      "color": "#2f80ed"
+    }
+  ],
+  "events": [
+    {
+      "id": "frontend-backend-memorylib-1-morning-coffee-with-sarah-0",
+      "title": "Morning coffee with Sarah",
+      "summary": "Met Sarah at the usual café. We talked about the new project deadline and weekend plans.",
+      "startTime": "2026-02-13T09:00:00+08:00",
+      "endTime": "2026-02-13T09:02:00+08:00",
+      "location": null,
+      "tags": [
+        "People",
+        "Emotion"
+      ],
+      "keywords": [
+        "people",
+        "emotion",
+        "media"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": 170,
+        "y": 0
+      },
+      "poster": {
+        "title": "Morning coffee with Sarah",
+        "subtitle": "09:00",
+        "accent": "#2f80ed",
+        "background": "#e7f0ff",
+        "icon": "photo"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-memorylib-1-morning-coffee-with-sarah-0-media-1",
+          "type": "photo",
+          "title": "Coffee shop view",
+          "url": "/assets/photos/sky-1.jpg",
+          "caption": "Coffee shop view",
+          "poster": {
+            "title": "Coffee shop view",
+            "subtitle": "/assets/photos/sky-1.jpg",
+            "accent": "#2f80ed",
+            "background": "#e7f0ff",
+            "icon": "photo"
+          },
+          "legacy": {}
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/1.json",
+        "eventIndex": 0,
+        "startSec": 0,
+        "endSec": 120
+      }
+    },
+    {
+      "id": "frontend-backend-memorylib-1-team-standup-1",
+      "title": "Team standup",
+      "summary": "Daily sync with the engineering team. Discussed blockers and sprint priorities.",
+      "startTime": "2026-02-13T10:00:00+08:00",
+      "endTime": "2026-02-13T10:10:00+08:00",
+      "location": null,
+      "tags": [
+        "Workflow",
+        "Event"
+      ],
+      "keywords": [
+        "workflow",
+        "event"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": 53,
+        "y": 162
+      },
+      "poster": {
+        "title": "Team standup",
+        "subtitle": "10:00",
+        "accent": "#22a06b",
+        "background": "#e9f8ee",
+        "icon": "leaf"
+      },
+      "media": [],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/1.json",
+        "eventIndex": 1,
+        "startSec": 3600,
+        "endSec": 4200
+      }
+    },
+    {
+      "id": "frontend-backend-memorylib-1-deep-work-session-2",
+      "title": "Deep work session",
+      "summary": "Focused on the concept layout algorithm. Implemented force-directed placement.",
+      "startTime": "2026-02-13T14:00:00+08:00",
+      "endTime": "2026-02-13T14:10:00+08:00",
+      "location": null,
+      "tags": [
+        "Workflow",
+        "Decision"
+      ],
+      "keywords": [
+        "workflow",
+        "decision"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": -138,
+        "y": 100
+      },
+      "poster": {
+        "title": "Deep work session",
+        "subtitle": "14:00",
+        "accent": "#db6b2f",
+        "background": "#fff0e8",
+        "icon": "table"
+      },
+      "media": [],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/1.json",
+        "eventIndex": 2,
+        "startSec": 14400,
+        "endSec": 15000
+      }
+    },
+    {
+      "id": "frontend-backend-memorylib-1-evening-walk-3",
+      "title": "Evening walk",
+      "summary": "Took a walk in the park. Cleared my head and reflected on the day.",
+      "startTime": "2026-02-13T17:00:00+08:00",
+      "endTime": "2026-02-13T17:30:00+08:00",
+      "location": null,
+      "tags": [
+        "Emotion",
+        "People"
+      ],
+      "keywords": [
+        "emotion",
+        "people",
+        "media"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": -138,
+        "y": -100
+      },
+      "poster": {
+        "title": "Evening walk",
+        "subtitle": "17:00",
+        "accent": "#7c5cff",
+        "background": "#f0ebff",
+        "icon": "graph"
+      },
+      "media": [
+        {
+          "id": "frontend-backend-memorylib-1-evening-walk-3-media-1",
+          "type": "photo",
+          "title": "Sunset",
+          "url": "/assets/photos/sky-2.jpg",
+          "caption": "Sunset",
+          "poster": {
+            "title": "Sunset",
+            "subtitle": "/assets/photos/sky-2.jpg",
+            "accent": "#7c5cff",
+            "background": "#f0ebff",
+            "icon": "photo"
+          },
+          "legacy": {}
+        }
+      ],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/1.json",
+        "eventIndex": 3,
+        "startSec": 61200,
+        "endSec": 63000
+      }
+    },
+    {
+      "id": "frontend-backend-memorylib-1-dinner-with-family-4",
+      "title": "Dinner with family",
+      "summary": "Home-cooked meal with family. Shared stories from the week.",
+      "startTime": "2026-02-13T19:00:00+08:00",
+      "endTime": "2026-02-13T19:30:00+08:00",
+      "location": null,
+      "tags": [
+        "People",
+        "Emotion"
+      ],
+      "keywords": [
+        "people",
+        "emotion"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": 53,
+        "y": -162
+      },
+      "poster": {
+        "title": "Dinner with family",
+        "subtitle": "19:00",
+        "accent": "#ef6f91",
+        "background": "#ffe7ee",
+        "icon": "video"
+      },
+      "media": [],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/1.json",
+        "eventIndex": 4,
+        "startSec": 68400,
+        "endSec": 70200
+      }
+    }
+  ]
+}

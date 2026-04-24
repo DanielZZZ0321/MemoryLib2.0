@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-04-24T11:55:02.866Z",
+  "sourceBranch": "feature/frontend-backend",
+  "outputs": [
+    {
+      "sourcePath": "data/memorylibs/1.json",
+      "outputPath": "data/seed/frontend-backend-memorylib-1.json",
+      "events": 5,
+      "media": 2
+    },
+    {
+      "sourcePath": "data/memorylibs/2.json",
+      "outputPath": "data/seed/frontend-backend-memorylib-2.json",
+      "events": 3,
+      "media": 0
+    },
+    {
+      "sourcePath": "data/memorylibs/6.json",
+      "outputPath": "data/seed/frontend-backend-memorylib-6.json",
+      "events": 1,
+      "media": 1
+    },
+    {
+      "sourcePath": "data/memorylibs/sample.json",
+      "outputPath": "data/seed/frontend-backend-memorylib-sample.json",
+      "events": 2,
+      "media": 1
+    },
+    {
+      "sourcePath": "frontend/public/_campus_life.json",
+      "outputPath": "data/seed/frontend-backend-campus-life.json",
+      "events": 13,
+      "media": 65
+    }
+  ]
+}

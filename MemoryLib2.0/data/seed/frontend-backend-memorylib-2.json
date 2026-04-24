@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "seedSource": "frontend-backend-memorylib-2",
+  "workspace": {
+    "name": "Logic of event occurrence",
+    "description": "Converted from feature/frontend-backend:data/memorylibs/2.json. Legacy date range: 9.13-9.16; color: yellow."
+  },
+  "keywords": [
+    {
+      "id": "legacy-memorylib",
+      "label": "Legacy MemoryLib",
+      "weight": 5,
+      "color": "#2f80ed"
+    },
+    {
+      "id": "event",
+      "label": "Event",
+      "weight": 5,
+      "color": "#22a06b"
+    },
+    {
+      "id": "cause",
+      "label": "Cause",
+      "weight": 5,
+      "color": "#db6b2f"
+    },
+    {
+      "id": "time",
+      "label": "Time",
+      "weight": 5,
+      "color": "#7c5cff"
+    },
+    {
+      "id": "effect",
+      "label": "Effect",
+      "weight": 4,
+      "color": "#ef6f91"
+    }
+  ],
+  "events": [
+    {
+      "id": "frontend-backend-memorylib-2-cause-and-effect-0",
+      "title": "Cause and effect",
+      "summary": "Analyzed how one event triggers another in the workflow.",
+      "startTime": "2026-09-13T09:00:00+08:00",
+      "endTime": "2026-09-13T09:15:00+08:00",
+      "location": null,
+      "tags": [
+        "Event",
+        "Cause"
+      ],
+      "keywords": [
+        "event",
+        "cause"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": 170,
+        "y": 0
+      },
+      "poster": {
+        "title": "Cause and effect",
+        "subtitle": "09:00",
+        "accent": "#2f80ed",
+        "background": "#e7f0ff",
+        "icon": "photo"
+      },
+      "media": [],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/2.json",
+        "eventIndex": 0
+      }
+    },
+    {
+      "id": "frontend-backend-memorylib-2-timeline-mapping-1",
+      "title": "Timeline mapping",
+      "summary": "Mapped events to a chronological timeline for clarity.",
+      "startTime": "2026-09-13T10:30:00+08:00",
+      "endTime": "2026-09-13T11:00:00+08:00",
+      "location": null,
+      "tags": [
+        "Time",
+        "Event"
+      ],
+      "keywords": [
+        "time",
+        "event"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": -85,
+        "y": 147
+      },
+      "poster": {
+        "title": "Timeline mapping",
+        "subtitle": "10:30",
+        "accent": "#22a06b",
+        "background": "#e9f8ee",
+        "icon": "leaf"
+      },
+      "media": [],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/2.json",
+        "eventIndex": 1
+      }
+    },
+    {
+      "id": "frontend-backend-memorylib-2-pattern-recognition-2",
+      "title": "Pattern recognition",
+      "summary": "Identified recurring patterns in daily events.",
+      "startTime": "2026-09-13T14:00:00+08:00",
+      "endTime": "2026-09-13T14:30:00+08:00",
+      "location": null,
+      "tags": [
+        "Event",
+        "Effect"
+      ],
+      "keywords": [
+        "event",
+        "effect"
+      ],
+      "layout": {
+        "cluster": "legacy-memorylib",
+        "x": -85,
+        "y": -147
+      },
+      "poster": {
+        "title": "Pattern recognition",
+        "subtitle": "14:00",
+        "accent": "#db6b2f",
+        "background": "#fff0e8",
+        "icon": "table"
+      },
+      "media": [],
+      "legacy": {
+        "sourceBranch": "feature/frontend-backend",
+        "sourcePath": "data/memorylibs/2.json",
+        "eventIndex": 2
+      }
+    }
+  ]
+}

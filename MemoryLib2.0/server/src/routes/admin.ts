@@ -25,6 +25,15 @@ import {
 } from "../mvp/raw-source-mvp.js";
 import { tryEnrichPhotoObjectKey } from "../services/media-enrichment.js";
 import { sendInternalError } from "../utils/http-error-map.js";
+import {
+  deleteSeedDataset,
+  exportSeedDataset,
+  importSeedDataset,
+  listAvailableSeedFiles,
+  listImportedSeedDatasets,
+  readSeedFile,
+  type SeedDataset,
+} from "../services/seed-dataset.js";
 
 export const adminRouter = Router();
 
@@ -299,5 +308,77 @@ adminRouter.get("/queue/status", async (_req, res) => {
       error: "queue_unavailable",
       message: e instanceof Error ? e.message : String(e),
     });
+  }
+});
+
+adminRouter.get("/datasets", async (_req, res, next) => {
+  try {
+    if (!isDatabaseReady()) {
+      res.status(503).json({ error: "database_not_configured" });
+      return;
+    }
+    const [available, imported] = await Promise.all([
+      listAvailableSeedFiles(),
+      listImportedSeedDatasets(),
+    ]);
+    res.json({ available, imported });
+  } catch (e) {
+    next(e);
+  }
+});
+
+adminRouter.post("/datasets/import", async (req, res, next) => {
+  try {
+    if (!isDatabaseReady()) {
+      res.status(503).json({ error: "database_not_configured" });
+      return;
+    }
+    const body = req.body as { seedPath?: string; seed?: SeedDataset };
+    const seed = body.seedPath ? await readSeedFile(body.seedPath) : body.seed;
+    if (!seed) {
+      res.status(400).json({
+        error: "invalid_body",
+        message: "Expected seedPath or seed",
+      });
+      return;
+    }
+    const result = await importSeedDataset(seed);
+    res.status(201).json({ ok: true, ...result });
+  } catch (e) {
+    next(e);
+  }
+});
+
+adminRouter.get("/datasets/:seedSource/export", async (req, res, next) => {
+  try {
+    if (!isDatabaseReady()) {
+      res.status(503).json({ error: "database_not_configured" });
+      return;
+    }
+    const seed = await exportSeedDataset(req.params.seedSource);
+    if (!seed) {
+      res.status(404).json({ error: "not_found", seedSource: req.params.seedSource });
+      return;
+    }
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${req.params.seedSource}.json"`,
+    );
+    res.json(seed);
+  } catch (e) {
+    next(e);
+  }
+});
+
+adminRouter.delete("/datasets/:seedSource", async (req, res, next) => {
+  try {
+    if (!isDatabaseReady()) {
+      res.status(503).json({ error: "database_not_configured" });
+      return;
+    }
+    const deletedEvents = await deleteSeedDataset(req.params.seedSource);
+    res.json({ ok: true, seedSource: req.params.seedSource, deletedEvents });
+  } catch (e) {
+    next(e);
   }
 });
