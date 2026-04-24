@@ -212,6 +212,55 @@ export async function reprocessAdminSource(id: string): Promise<void> {
   });
 }
 
+export type AvailableSeedFile = {
+  name: string;
+  path: string;
+  seedSource: string;
+  workspaceName: string;
+  events: number;
+  media: number;
+};
+
+export type ImportedDataset = {
+  id: string;
+  seedSource: string;
+  name: string;
+  description: string | null;
+  events: number;
+  updated_at: string;
+};
+
+export async function fetchAdminDatasets(): Promise<{
+  available: AvailableSeedFile[];
+  imported: ImportedDataset[];
+}> {
+  return apiJson("/api/admin/datasets");
+}
+
+export async function importAdminDataset(body: {
+  seedPath?: string;
+  seed?: unknown;
+}): Promise<{ ok: boolean; seedSource: string; workspace: string; events: number }> {
+  return apiJson("/api/admin/datasets/import", {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+}
+
+export async function deleteAdminDataset(seedSource: string): Promise<{
+  ok: boolean;
+  seedSource: string;
+  deletedEvents: number;
+}> {
+  return apiJson(`/api/admin/datasets/${encodeURIComponent(seedSource)}`, {
+    method: "DELETE",
+  });
+}
+
+export function adminDatasetExportUrl(seedSource: string): string {
+  return apiUrl(`/api/admin/datasets/${encodeURIComponent(seedSource)}/export`);
+}
+
 export type ChatMessage = {
   role: "system" | "user" | "assistant";
   content: string;

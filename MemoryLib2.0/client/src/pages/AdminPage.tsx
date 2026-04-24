@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { Download, RefreshCw, Trash2, Upload } from "lucide-react";
 import { UploadDropzone } from "@/components/admin/UploadDropzone";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -10,9 +11,15 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import {
+  adminDatasetExportUrl,
+  deleteAdminDataset,
   deleteAdminSource,
+  fetchAdminDatasets,
   fetchAdminSources,
+  importAdminDataset,
   reprocessAdminSource,
+  type AvailableSeedFile,
+  type ImportedDataset,
   type RawSourceDTO,
 } from "@/lib/api";
 import {
@@ -133,6 +140,12 @@ export default function AdminPage() {
   const [sourcesErr, setSourcesErr] = useState<string | null>(null);
   const [sourcesPage, setSourcesPage] = useState(1);
   const pageSize = 15;
+  const [availableDatasets, setAvailableDatasets] = useState<AvailableSeedFile[]>([]);
+  const [importedDatasets, setImportedDatasets] = useState<ImportedDataset[]>([]);
+  const [datasetsLoading, setDatasetsLoading] = useState(false);
+  const [datasetsErr, setDatasetsErr] = useState<string | null>(null);
+  const [datasetsMsg, setDatasetsMsg] = useState<string | null>(null);
+  const [datasetBusy, setDatasetBusy] = useState<string | null>(null);
 
   const refreshSources = useCallback(async () => {
     setSourcesLoading(true);
@@ -151,6 +164,79 @@ export default function AdminPage() {
   useEffect(() => {
     void refreshSources();
   }, [refreshSources]);
+
+  const refreshDatasets = useCallback(async () => {
+    setDatasetsLoading(true);
+    setDatasetsErr(null);
+    try {
+      const r = await fetchAdminDatasets();
+      setAvailableDatasets(r.available);
+      setImportedDatasets(r.imported);
+    } catch (e) {
+      setDatasetsErr(e instanceof Error ? e.message : String(e));
+    } finally {
+      setDatasetsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    void refreshDatasets();
+  }, [refreshDatasets]);
+
+  const importSeedPath = async (seedPath: string) => {
+    setDatasetBusy(seedPath);
+    setDatasetsErr(null);
+    setDatasetsMsg(null);
+    try {
+      const r = await importAdminDataset({ seedPath });
+      setDatasetsMsg(`已导入 ${r.workspace}，${r.events} 个事件`);
+      await refreshDatasets();
+      await refreshSources();
+    } catch (e) {
+      setDatasetsErr(e instanceof Error ? e.message : String(e));
+    } finally {
+      setDatasetBusy(null);
+    }
+  };
+
+  const importSeedFile = async (file: File | null) => {
+    if (!file) {
+      return;
+    }
+    setDatasetBusy("upload");
+    setDatasetsErr(null);
+    setDatasetsMsg(null);
+    try {
+      const seed = JSON.parse(await file.text()) as unknown;
+      const r = await importAdminDataset({ seed });
+      setDatasetsMsg(`已导入 ${r.workspace}，${r.events} 个事件`);
+      await refreshDatasets();
+      await refreshSources();
+    } catch (e) {
+      setDatasetsErr(e instanceof Error ? e.message : String(e));
+    } finally {
+      setDatasetBusy(null);
+    }
+  };
+
+  const removeDataset = async (seedSource: string) => {
+    if (!window.confirm(`确定删除数据集 ${seedSource}？相关事件和素材索引也会删除。`)) {
+      return;
+    }
+    setDatasetBusy(seedSource);
+    setDatasetsErr(null);
+    setDatasetsMsg(null);
+    try {
+      const r = await deleteAdminDataset(seedSource);
+      setDatasetsMsg(`已删除 ${r.seedSource}，${r.deletedEvents} 个事件`);
+      await refreshDatasets();
+      await refreshSources();
+    } catch (e) {
+      setDatasetsErr(e instanceof Error ? e.message : String(e));
+    } finally {
+      setDatasetBusy(null);
+    }
+  };
 
   const clearFiles = () => setFiles([]);
 
@@ -224,6 +310,15 @@ export default function AdminPage() {
             )}
           >
             数据管理
+          </a>
+          <a
+            href="#datasets"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "sm" }),
+              "inline-flex justify-start",
+            )}
+          >
+            数据集
           </a>
           <Button variant="ghost" size="sm" className="justify-start" disabled>
             处理队列
@@ -431,6 +526,173 @@ export default function AdminPage() {
               >
                 {uploading ? "上传中…" : "开始上传"}
               </Button>
+            </CardContent>
+          </Card>
+
+          <Card id="datasets">
+            <CardHeader className="flex flex-row flex-wrap items-center justify-between gap-2 space-y-0">
+              <CardTitle className="text-base">数据集</CardTitle>
+              <div className="flex flex-wrap gap-2">
+                <label
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "sm" }),
+                    datasetBusy ? "pointer-events-none opacity-60" : "cursor-pointer",
+                  )}
+                >
+                  <Upload className="mr-1 size-4" />
+                  导入 JSON
+                  <input
+                    type="file"
+                    accept="application/json,.json"
+                    className="sr-only"
+                    disabled={Boolean(datasetBusy)}
+                    onChange={(e) => {
+                      void importSeedFile(e.target.files?.[0] ?? null);
+                      e.currentTarget.value = "";
+                    }}
+                  />
+                </label>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="sm"
+                  disabled={datasetsLoading}
+                  onClick={() => void refreshDatasets()}
+                >
+                  <RefreshCw className="mr-1 size-4" />
+                  刷新
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-5">
+              {datasetsErr ? (
+                <p className="text-sm text-destructive" role="alert">
+                  {datasetsErr}
+                </p>
+              ) : null}
+              {datasetsMsg ? (
+                <p className="rounded-md border border-primary/30 bg-primary/5 px-3 py-2 text-sm">
+                  {datasetsMsg}
+                </p>
+              ) : null}
+
+              <section className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-medium">可导入</h3>
+                  <span className="text-xs text-muted-foreground">
+                    {availableDatasets.length}
+                  </span>
+                </div>
+                {datasetsLoading ? (
+                  <p className="text-sm text-muted-foreground">加载中</p>
+                ) : availableDatasets.length === 0 ? (
+                  <p className="text-sm text-muted-foreground">暂无本地 seed 文件</p>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="border-b text-muted-foreground">
+                          <th className="py-2 pr-2">名称</th>
+                          <th className="py-2 pr-2">Seed</th>
+                          <th className="py-2 pr-2">事件</th>
+                          <th className="py-2 pr-2">媒体</th>
+                          <th className="py-2">操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {availableDatasets.map((dataset) => (
+                          <tr key={dataset.path} className="border-b border-border/60">
+                            <td className="py-2 pr-2 font-medium">
+                              {dataset.workspaceName}
+                              <div className="text-[11px] text-muted-foreground">
+                                {dataset.name}
+                              </div>
+                            </td>
+                            <td className="py-2 pr-2 font-mono">{dataset.seedSource}</td>
+                            <td className="py-2 pr-2">{dataset.events}</td>
+                            <td className="py-2 pr-2">{dataset.media}</td>
+                            <td className="py-2">
+                              <Button
+                                type="button"
+                                size="sm"
+                                className="h-7 text-xs"
+                                disabled={Boolean(datasetBusy)}
+                                onClick={() => void importSeedPath(dataset.path)}
+                              >
+                                <Upload className="mr-1 size-3.5" />
+                                导入
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </section>
+
+              <section className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-medium">已导入</h3>
+                  <span className="text-xs text-muted-foreground">
+                    {importedDatasets.length}
+                  </span>
+                </div>
+                {importedDatasets.length === 0 ? (
+                  <p className="text-sm text-muted-foreground">暂无已导入数据集</p>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="border-b text-muted-foreground">
+                          <th className="py-2 pr-2">工作区</th>
+                          <th className="py-2 pr-2">Seed</th>
+                          <th className="py-2 pr-2">事件</th>
+                          <th className="py-2 pr-2">更新时间</th>
+                          <th className="py-2">操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {importedDatasets.map((dataset) => (
+                          <tr key={dataset.seedSource} className="border-b border-border/60">
+                            <td className="py-2 pr-2 font-medium">{dataset.name}</td>
+                            <td className="py-2 pr-2 font-mono">{dataset.seedSource}</td>
+                            <td className="py-2 pr-2">{dataset.events}</td>
+                            <td className="py-2 pr-2 text-muted-foreground">
+                              {dataset.updated_at.slice(0, 19)}
+                            </td>
+                            <td className="py-2">
+                              <div className="flex flex-wrap gap-1">
+                                <a
+                                  href={adminDatasetExportUrl(dataset.seedSource)}
+                                  className={cn(
+                                    buttonVariants({ variant: "outline", size: "sm" }),
+                                    "h-7 text-xs",
+                                  )}
+                                >
+                                  <Download className="mr-1 size-3.5" />
+                                  导出
+                                </a>
+                                <Button
+                                  type="button"
+                                  size="sm"
+                                  variant="destructive"
+                                  className="h-7 text-xs"
+                                  disabled={Boolean(datasetBusy)}
+                                  onClick={() => void removeDataset(dataset.seedSource)}
+                                >
+                                  <Trash2 className="mr-1 size-3.5" />
+                                  删除
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </section>
             </CardContent>
           </Card>
 
