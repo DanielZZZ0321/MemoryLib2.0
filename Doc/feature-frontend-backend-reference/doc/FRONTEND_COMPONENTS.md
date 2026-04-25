@@ -1,54 +1,76 @@
-﻿# MemoryLib 2.0 鍓嶇缁勪欢鏂囨。
+# MemoryLib 2.0 前端组件文档
 
-鏈枃妗ｅ熀浜庡綋鍓嶅垎鏀唬鐮佹暣鐞嗭紝涓昏瑕嗙洊 `frontend/src/components` 涓嬬殑 React + TypeScript 缁勪欢锛屼互鍙婂畠浠緷璧栫殑 store銆佺被鍨嬪拰鏁版嵁娴併€?
-## 缁勪欢搴撴瑙?
-褰撳墠鍓嶇鏈変袱濂楀苟瀛樼殑缁勪欢褰㈡€侊細
+本文档基于当前分支代码整理，主要覆盖 `frontend/src/components` 下的 React + TypeScript 组件，以及它们依赖的 store、类型和数据流。
 
-1. 褰撳墠涓诲叆鍙ｆ祦绋嬶細`frontend/src/App.tsx` 鐩存帴鎵胯浇鐧诲綍銆丮emoryLib History 鍒楄〃銆佹蹇靛浘璇︽儏椤靛拰 `ChatbotPanel`銆?2. 鏃╂湡宸ヤ綔鍙板紡缁勪欢搴擄細`MainLayout`銆乣DataPanel`銆乣DiaryCanvas`銆乣ProjectManagement`銆乣NavigationPanel` 绛変粛鍦ㄤ唬鐮佷腑淇濈暀骞跺鍑猴紝閫傚悎浣滀负鍙鐢ㄧ粍浠舵垨鍚庣画鏁村悎鍏ュ彛銆?
-鎶€鏈爤涓庣粍浠剁浉鍏充緷璧栵細
+## 组件库概览
 
-| 绫诲埆 | 浣跨敤 |
+当前前端有两套并存的组件形态：
+
+1. 当前主入口流程：`frontend/src/App.tsx` 直接承载登录、MemoryLib History 列表、概念图详情页和 `ChatbotPanel`。
+2. 早期工作台式组件库：`MainLayout`、`DataPanel`、`DiaryCanvas`、`ProjectManagement`、`NavigationPanel` 等仍在代码中保留并导出，适合作为可复用组件或后续整合入口。
+
+技术栈与组件相关依赖：
+
+| 类别 | 使用 |
 | --- | --- |
-| UI 妗嗘灦 | React 18, TypeScript |
-| 鏍峰紡 | TailwindCSS, 鍏ㄥ眬 CSS |
-| 鍔ㄦ晥 | Framer Motion |
-| 鍥炬爣 | lucide-react |
-| 鐘舵€佺鐞?| Zustand |
-| 鏈湴瀛樺偍 | Dexie IndexedDB, 鍘熺敓 IndexedDB, localStorage |
-| 鐢诲竷 | react-konva |
-| 涓嬫媺鑿滃崟 | `@radix-ui/react-dropdown-menu` 琚?`Select` 浣跨敤 |
+| UI 框架 | React 18, TypeScript |
+| 样式 | TailwindCSS, 全局 CSS |
+| 动效 | Framer Motion |
+| 图标 | lucide-react |
+| 状态管理 | Zustand |
+| 本地存储 | Dexie IndexedDB, 原生 IndexedDB, localStorage |
+| 画布 | react-konva |
+| 下拉菜单 | `@radix-ui/react-dropdown-menu` 被 `Select` 使用 |
 
-## 褰撳墠涓诲叆鍙?
+## 当前主入口
+
 ### App
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/App.tsx` |
-| 瀵煎嚭 | `default function App()` |
-| 褰撳墠鐘舵€?| 褰撳墠 `main.tsx` 鐩存帴鎸傝浇鐨勫敮涓€鍏ュ彛 |
-| 涓昏渚濊禆 | `auth.ts`, `ConceptGraphView`, `ChatbotPanel`, `pageContextStore` |
+| 文件 | `frontend/src/App.tsx` |
+| 导出 | `default function App()` |
+| 当前状态 | 当前 `main.tsx` 直接挂载的唯一入口 |
+| 主要依赖 | `auth.ts`, `ConceptGraphView`, `ChatbotPanel`, `pageContextStore` |
 
-鍔熻兘锛?
-- 妫€鏌ュ綋鍓嶇櫥褰曠姸鎬侊紝鏈櫥褰曟椂鏄剧ず鍐呰仈 `AuthScreen`銆?- 鐧诲綍鍚庡睍绀?MemoryLib History 鍗＄墖鍒楄〃锛屾暟鎹潵鑷?`/api/page-config`锛屽け璐ユ椂浣跨敤鍐呯疆鏍蜂緥銆?- 鐐瑰嚮 MemoryLib 鍗＄墖鍚庤繘鍏?`ConceptGraphView`銆?- 鍦?History 鍜屾蹇靛浘椤甸潰閮藉彲鎵撳紑 `ChatbotPanel`銆?- 閫氳繃 `pageContextStore` 鍛婄煡鑱婂ぉ鍔╂墜褰撳墠澶勪簬 History 椤点€?
-鍏抽敭鍐呰仈缁勪欢锛?
-| 缁勪欢 | 鍔熻兘 | 澶囨敞 |
+功能：
+
+- 检查当前登录状态，未登录时显示内联 `AuthScreen`。
+- 登录后展示 MemoryLib History 卡片列表，数据来自 `/api/page-config`，失败时使用内置样例。
+- 点击 MemoryLib 卡片后进入 `ConceptGraphView`。
+- 在 History 和概念图页面都可打开 `ChatbotPanel`。
+- 通过 `pageContextStore` 告知聊天助手当前处于 History 页。
+
+关键内联组件：
+
+| 组件 | 功能 | 备注 |
 | --- | --- | --- |
-| `AuthScreen` | 鐧诲綍/娉ㄥ唽琛ㄥ崟锛岃皟鐢?`authApi.login/register/getMe` | 褰撳墠鍏ュ彛瀹為檯浣跨敤鐨勮璇佺晫闈紝涓嶆槸 `components/auth/LoginPage` |
-| `MemoryLibHistory` | 鎸夊勾浠藉睍绀?MemoryLib 鍗＄墖锛屾敮鎸佹墦寮€鑱婂ぉ鍜岄€€鍑虹櫥褰?| 浣跨敤 `page-config` 鎴?`SAMPLE_MEMORYLIBS` |
+| `AuthScreen` | 登录/注册表单，调用 `authApi.login/register/getMe` | 当前入口实际使用的认证界面，不是 `components/auth/LoginPage` |
+| `MemoryLibHistory` | 按年份展示 MemoryLib 卡片，支持打开聊天和退出登录 | 使用 `page-config` 或 `SAMPLE_MEMORYLIBS` |
 
 ### ConceptGraphView
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/ConceptGraphView.tsx` |
-| 瀵煎嚭 | `ConceptGraphView` |
-| 褰撳墠鐘舵€?| 褰撳墠涓绘祦绋嬫鍦ㄤ娇鐢?|
-| 涓昏渚濊禆 | `conceptLayout`, `EventNodeCard`, `EventEditorPopup`, `pageContextStore` |
+| 文件 | `frontend/src/components/ConceptGraphView.tsx` |
+| 导出 | `ConceptGraphView` |
+| 当前状态 | 当前主流程正在使用 |
+| 主要依赖 | `conceptLayout`, `EventNodeCard`, `EventEditorPopup`, `pageContextStore` |
 
-鍔熻兘锛?
-- 灞曠ず MemoryLib 鐨勬蹇靛浘锛屾敮鎸佷袱绉嶆ā寮忥細
-  - 鏍囩妯″紡锛氭牴鎹?MemoryLib 鏍囬鍜?tags 鐢熸垚鑺傜偣銆?  - 浜嬩欢妯″紡锛氫粠 `/api/memorylibs/:id` 鍔犺浇 events 鍚庯紝鎸変簨浠剁敓鎴愯妭鐐广€?- 浣跨敤 `computeConceptLayout` 鑷姩甯冨眬锛屼娇鐢?SVG 缁樺埗鑺傜偣杩炵嚎銆?- 浜嬩欢妯″紡涓嬬敤 `foreignObject` 宓屽叆 `EventNodeCard`銆?- 鏀寔鎷栧姩鑺傜偣锛屽苟灏嗗竷灞€瑕嗙洊鍊间繚瀛樺埌 `localStorage`銆?- 鍙屽嚮浜嬩欢鑺傜偣鎵撳紑 `EventEditorPopup`銆?- 灏嗗綋鍓嶉〉闈€佷簨浠躲€佽妭鐐?ID銆佽妭鐐逛綅缃啓鍏?`pageContextStore`锛屼緵 AI 鑱婂ぉ鐞嗚В褰撳墠涓婁笅鏂囥€?- 褰?AI action 涓嚭鐜?`layout_reset` 鏃舵竻闄ゆ湰鍦板竷灞€銆?
-Props锛?
+功能：
+
+- 展示 MemoryLib 的概念图，支持两种模式：
+  - 标签模式：根据 MemoryLib 标题和 tags 生成节点。
+  - 事件模式：从 `/api/memorylibs/:id` 加载 events 后，按事件生成节点。
+- 使用 `computeConceptLayout` 自动布局，使用 SVG 绘制节点连线。
+- 事件模式下用 `foreignObject` 嵌入 `EventNodeCard`。
+- 支持拖动节点，并将布局覆盖值保存到 `localStorage`。
+- 双击事件节点打开 `EventEditorPopup`。
+- 将当前页面、事件、节点 ID、节点位置写入 `pageContextStore`，供 AI 聊天理解当前上下文。
+- 当 AI action 中出现 `layout_reset` 时清除本地布局。
+
+Props：
+
 ```ts
 interface ConceptGraphViewProps {
   entry: { id: string; title: string; tags: string[]; color: string; sourceFile?: string };
@@ -59,21 +81,30 @@ interface ConceptGraphViewProps {
 }
 ```
 
-鍏抽敭鐗规€э細
+关键特性：
 
-- 鑷姩鍝嶅簲瀹瑰櫒灏哄鍙樺寲銆?- 鏀寔鏍囩鍥句笌浜嬩欢鍥剧殑鐙珛甯冨眬缂撳瓨銆?- 棰滆壊鐢?MemoryLib entry 鐨?`color` 鏄犲皠鍒?accent 鑹层€?- 褰撳墠缂栬緫淇濆瓨鍙洿鏂版湰鍦?`memoryLib` state锛屾病鏈夌洿鎺ユ寔涔呭寲鍥炲悗绔€?
+- 自动响应容器尺寸变化。
+- 支持标签图与事件图的独立布局缓存。
+- 颜色由 MemoryLib entry 的 `color` 映射到 accent 色。
+- 当前编辑保存只更新本地 `memoryLib` state，没有直接持久化回后端。
+
 ### EventNodeCard
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/EventNodeCard.tsx` |
-| 瀵煎嚭 | `EventNodeCard`, `MemoryLibEvent` |
-| 褰撳墠鐘舵€?| `ConceptGraphView` 涓娇鐢?|
-| 涓昏渚濊禆 | `lucide-react` |
+| 文件 | `frontend/src/components/EventNodeCard.tsx` |
+| 导出 | `EventNodeCard`, `MemoryLibEvent` |
+| 当前状态 | `ConceptGraphView` 中使用 |
+| 主要依赖 | `lucide-react` |
 
-鍔熻兘锛?
-- 鍦ㄦ蹇靛浘涓互绱у噾鍗＄墖褰㈠紡灞曠ず鍗曚釜浜嬩欢銆?- 鍙睍绀洪涓獟浣撹祫婧愶紝鍥剧墖鐢?`img`锛岃棰戠敤闈欓煶 `video`銆?- 灞曠ず鏍囬銆佸紑濮嬫椂闂淬€佹憳瑕佸拰鏈€澶?3 涓爣绛俱€?
-Props锛?
+功能：
+
+- 在概念图中以紧凑卡片形式展示单个事件。
+- 可展示首个媒体资源，图片用 `img`，视频用静音 `video`。
+- 展示标题、开始时间、摘要和最多 3 个标签。
+
+Props：
+
 ```ts
 interface EventNodeCardProps {
   event: MemoryLibEvent;
@@ -85,16 +116,23 @@ interface EventNodeCardProps {
 
 ### EventEditorPopup
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/EventEditorPopup.tsx` |
-| 瀵煎嚭 | `EventEditorPopup`, `EventEditorData`, `MediaItem` |
-| 褰撳墠鐘舵€?| `ConceptGraphView` 涓娇鐢?|
-| 涓昏渚濊禆 | `lucide-react` |
+| 文件 | `frontend/src/components/EventEditorPopup.tsx` |
+| 导出 | `EventEditorPopup`, `EventEditorData`, `MediaItem` |
+| 当前状态 | `ConceptGraphView` 中使用 |
+| 主要依赖 | `lucide-react` |
 
-鍔熻兘锛?
-- 浜嬩欢璇︽儏寮圭獥锛屾敮鎸?`overview` 鍜?`edit` 涓ょ妯″紡銆?- 灞曠ず涓庣紪杈戞爣棰樸€佽捣姝㈡椂闂淬€佹爣绛俱€佹憳瑕併€佺瑪璁般€?- 鍒嗗尯灞曠ず瑙嗛銆侀煶棰戙€佺収鐗囥€?- 鏀寔缂栬緫 media 鐨?URL 鍜?caption銆?- 鐐瑰嚮閬僵鍏抽棴锛岀偣鍑诲脊绐楀唴閮ㄩ樆姝㈠啋娉°€?
-Props锛?
+功能：
+
+- 事件详情弹窗，支持 `overview` 和 `edit` 两种模式。
+- 展示与编辑标题、起止时间、标签、摘要、笔记。
+- 分区展示视频、音频、照片。
+- 支持编辑 media 的 URL 和 caption。
+- 点击遮罩关闭，点击弹窗内部阻止冒泡。
+
+Props：
+
 ```ts
 interface EventEditorPopupProps {
   event: EventEditorData;
@@ -105,21 +143,31 @@ interface EventEditorPopupProps {
 }
 ```
 
-鍏抽敭鐗规€э細
+关键特性：
 
-- `accent` 鎺у埗寮圭獥澶撮儴娓愬彉鍜岀紪杈戞€佹寜閽鑹层€?- `onSave` 鏄彲閫夊洖璋冿紝缁勪欢鏈韩涓嶇粦瀹氬悗绔繚瀛樸€?
+- `accent` 控制弹窗头部渐变和编辑态按钮颜色。
+- `onSave` 是可选回调，组件本身不绑定后端保存。
+
 ### ChatbotPanel
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/chatbot/ChatbotPanel.tsx` |
-| 瀵煎嚭 | `ChatbotPanel` |
-| 褰撳墠鐘舵€?| 褰撳墠涓绘祦绋嬫鍦ㄤ娇鐢?|
-| 涓昏渚濊禆 | `chatStore`, `pageContextStore`, `localStorage` |
+| 文件 | `frontend/src/components/chatbot/ChatbotPanel.tsx` |
+| 导出 | `ChatbotPanel` |
+| 当前状态 | 当前主流程正在使用 |
+| 主要依赖 | `chatStore`, `pageContextStore`, `localStorage` |
 
-鍔熻兘锛?
-- 鍙充晶婊戝叆寮忚亰澶╅潰鏉裤€?- 浣跨敤 `chatStore` 缁存姢浼氳瘽銆佹秷鎭€佸姞杞界姸鎬併€?- 鍙戦€佹秷鎭椂鎼哄甫褰撳墠 `pageContextStore.context`锛岃鍚庣鎴?AI 鑳芥劅鐭ュ綋鍓嶉〉闈€?- 鏀寔鏂板缓瀵硅瘽銆佸叧闂潰鏉裤€佽嚜鍔ㄦ粴鍔ㄥ埌搴曢儴銆?- 鏀寔 `Memory Core RAG` 寮€鍏筹紝鐘舵€佷繚瀛樺湪 `localStorage.memoryCoreRag`銆?- 杈撳叆鏀寔 Enter 鍙戦€併€丆trl+Enter 鍙戦€併€丼hift+Enter 鎹㈣銆?
-Props锛?
+功能：
+
+- 右侧滑入式聊天面板。
+- 使用 `chatStore` 维护会话、消息、加载状态。
+- 发送消息时携带当前 `pageContextStore.context`，让后端或 AI 能感知当前页面。
+- 支持新建对话、关闭面板、自动滚动到底部。
+- 支持 `Memory Core RAG` 开关，状态保存在 `localStorage.memoryCoreRag`。
+- 输入支持 Enter 发送、Ctrl+Enter 发送、Shift+Enter 换行。
+
+Props：
+
 ```ts
 interface ChatbotPanelProps {
   open: boolean;
@@ -127,34 +175,49 @@ interface ChatbotPanelProps {
 }
 ```
 
-鍏抽敭鐗规€э細
+关键特性：
 
-- 闈㈡澘浣跨敤寰堥珮鐨?`z-index`锛岄伩鍏嶈鍥捐妭鐐瑰拰寮圭獥閬尅銆?- 鏈夊鐢ㄢ€滅偣鍑绘澶勫彂閫佲€濆尯鍩燂紝瑙ｅ喅閮ㄥ垎鐜鎸夐挳鐐瑰嚮涓嶇ǔ瀹氱殑闂銆?- 璇ョ粍浠朵笉渚濊禆 `eventStore`锛屽畠渚濊禆椤甸潰涓婁笅鏂囧拰鑱婂ぉ store銆?
-## 浜嬩欢缁勪欢
+- 面板使用很高的 `z-index`，避免被图节点和弹窗遮挡。
+- 有备用“点击此处发送”区域，解决部分环境按钮点击不稳定的问题。
+- 该组件不依赖 `eventStore`，它依赖页面上下文和聊天 store。
+
+## 事件组件
 
 ### EventList
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/events/EventList.tsx` |
-| 瀵煎嚭 | `EventList` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠 `App.tsx` 鏈洿鎺ユ寕杞?|
-| 涓昏渚濊禆 | `eventStore`, `EventCard`, `JSONUploader` |
+| 文件 | `frontend/src/components/events/EventList.tsx` |
+| 导出 | `EventList` |
+| 当前状态 | 可复用，当前 `App.tsx` 未直接挂载 |
+| 主要依赖 | `eventStore`, `EventCard`, `JSONUploader` |
 
-鍔熻兘锛?
-- 鍔犺浇骞跺睍绀?IndexedDB 涓殑浜嬩欢銆?- 鏃犱簨浠舵椂鏄剧ず `JSONUploader`銆?- 鏈変簨浠舵椂浠ュ搷搴斿紡缃戞牸灞曠ず `EventCard`銆?- 鎻愪緵鈥滃悓姝ュ埌 Memory Core鈥濇寜閽紝璋冪敤 `eventStore.syncToMemoryCore()`銆?- 灞曠ず鍚屾涓€佸悓姝ユ垚鍔熴€佸悓姝ュけ璐ョ姸鎬併€?
+功能：
+
+- 加载并展示 IndexedDB 中的事件。
+- 无事件时显示 `JSONUploader`。
+- 有事件时以响应式网格展示 `EventCard`。
+- 提供“同步到 Memory Core”按钮，调用 `eventStore.syncToMemoryCore()`。
+- 展示同步中、同步成功、同步失败状态。
+
 ### EventCard
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/events/EventCard.tsx` |
-| 瀵煎嚭 | `EventCard` |
-| 褰撳墠鐘舵€?| `EventList`銆乣DataPanel` 浣跨敤 |
-| 涓昏渚濊禆 | `EventExtended`, `lucide-react` |
+| 文件 | `frontend/src/components/events/EventCard.tsx` |
+| 导出 | `EventCard` |
+| 当前状态 | `EventList`、`DataPanel` 使用 |
+| 主要依赖 | `EventExtended`, `lucide-react` |
 
-鍔熻兘锛?
-- 灞曠ず鍗曚釜浜嬩欢鐨勬爣棰樸€佹椂闂淬€佹憳瑕併€佹爣绛惧拰濯掍綋澶村浘銆?- 鏀寔鍗曞獟浣撳拰澶氬獟浣撳竷灞€锛屽濯掍綋鏈€澶氬睍绀哄墠 4 涓紝瓒呰繃鏄剧ず鏁伴噺閬僵銆?- 鏀寔 HTML5 drag and drop锛屽啓鍏?`eventData`銆乣type=event-card`銆乣eventId`銆?- 鑷畾涔夋嫋鎷介瑙堛€?
-Props锛?
+功能：
+
+- 展示单个事件的标题、时间、摘要、标签和媒体头图。
+- 支持单媒体和多媒体布局，多媒体最多展示前 4 个，超过显示数量遮罩。
+- 支持 HTML5 drag and drop，写入 `eventData`、`type=event-card`、`eventId`。
+- 自定义拖拽预览。
+
+Props：
+
 ```ts
 interface EventCardProps {
   event: EventExtended;
@@ -166,41 +229,61 @@ interface EventCardProps {
 
 ### EventEditor
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/events/EventEditor.tsx` |
-| 瀵煎嚭 | `EventEditor` |
-| 褰撳墠鐘舵€?| `DataPanel` 浣跨敤 |
-| 涓昏渚濊禆 | `eventStore`, `framer-motion` |
+| 文件 | `frontend/src/components/events/EventEditor.tsx` |
+| 导出 | `EventEditor` |
+| 当前状态 | `DataPanel` 使用 |
+| 主要依赖 | `eventStore`, `framer-motion` |
 
-鍔熻兘锛?
-- 鏍规嵁 `eventStore.selectedEventId` 鎵撳紑鍙充晶缂栬緫鎶藉眽銆?- 鏀寔缂栬緫 `userTitle`銆乣userSummary`銆乣notes`銆?- 灞曠ず棣栦釜濯掍綋璧勬簮锛屽浘鐗囨垨瑙嗛銆?- 淇濆瓨鏃惰皟鐢?`eventStore.updateEvent()`锛屽苟娓呯┖閫変腑浜嬩欢銆?
-鍏抽敭鐗规€э細
+功能：
 
-- 鐢ㄦ埛鏍囬鍜屾憳瑕佷笌鍘熷鏍囬鎽樿鍒嗗紑淇濆瓨銆?- 浣跨敤 Framer Motion 鍋氶伄缃╁拰鎶藉眽杩涘嚭鍦哄姩鐢汇€?
+- 根据 `eventStore.selectedEventId` 打开右侧编辑抽屉。
+- 支持编辑 `userTitle`、`userSummary`、`notes`。
+- 展示首个媒体资源，图片或视频。
+- 保存时调用 `eventStore.updateEvent()`，并清空选中事件。
+
+关键特性：
+
+- 用户标题和摘要与原始标题摘要分开保存。
+- 使用 Framer Motion 做遮罩和抽屉进出场动画。
+
 ### JSONUploader
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/events/JSONUploader.tsx` |
-| 瀵煎嚭 | `JSONUploader` |
-| 褰撳墠鐘舵€?| `EventList`銆乣DataPanel` 浣跨敤 |
-| 涓昏渚濊禆 | `eventStore.importTimeline` |
+| 文件 | `frontend/src/components/events/JSONUploader.tsx` |
+| 导出 | `JSONUploader` |
+| 当前状态 | `EventList`、`DataPanel` 使用 |
+| 主要依赖 | `eventStore.importTimeline` |
 
-鍔熻兘锛?
-- 鎺ユ敹 `application/json` 鏂囦欢銆?- 璇诲彇骞惰В鏋?JSON銆?- 鍙帴鍙楁暟缁勬牸寮忥紝鏁扮粍浼氫紶缁?`importTimeline(json, file.name)`銆?- 瑙ｆ瀽澶辫触鎴栨牸寮忎笉姝ｇ‘鏃剁敤 `alert` 鎻愮ず銆?
+功能：
+
+- 接收 `application/json` 文件。
+- 读取并解析 JSON。
+- 只接受数组格式，数组会传给 `importTimeline(json, file.name)`。
+- 解析失败或格式不正确时用 `alert` 提示。
+
 ### MemoryNode
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/events/MemoryNode.tsx` |
-| 瀵煎嚭 | `MemoryNode`, `MemoryNodeProps` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠涓诲叆鍙ｆ湭鐩存帴鎸傝浇 |
-| 涓昏渚濊禆 | `cn` |
+| 文件 | `frontend/src/components/events/MemoryNode.tsx` |
+| 导出 | `MemoryNode`, `MemoryNodeProps` |
+| 当前状态 | 可复用，当前主入口未直接挂载 |
+| 主要依赖 | `cn` |
 
-鍔熻兘锛?
-- 閫氱敤璁板繂鑺傜偣灞曠ず缁勪欢銆?- 鏀寔涓夌瑙嗚鍙樹綋锛?  - `pill`锛氳兌鍥婅妭鐐广€?  - `detail`锛氳鎯呭崱鐗囷紝鏀寔鍥剧墖銆佹棩鏈熴€佹弿杩般€?  - `image-cluster`锛氬浘鐗囬泦缇ょ缉鐣ヨ妭鐐广€?- 鏀寔閫変腑鎬佸拰鐐瑰嚮鍥炶皟銆?
-Props锛?
+功能：
+
+- 通用记忆节点展示组件。
+- 支持三种视觉变体：
+  - `pill`：胶囊节点。
+  - `detail`：详情卡片，支持图片、日期、描述。
+  - `image-cluster`：图片集群缩略节点。
+- 支持选中态和点击回调。
+
+Props：
+
 ```ts
 export interface MemoryNodeProps {
   title: string;
@@ -214,47 +297,66 @@ export interface MemoryNodeProps {
 }
 ```
 
-## 鐢诲竷缁勪欢
+## 画布组件
 
 ### DiaryCanvas
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/canvas/DiaryCanvas.tsx` |
-| 瀵煎嚭 | `DiaryCanvas` |
-| 褰撳墠鐘舵€?| `TaskCanvas` 浣跨敤 |
-| 涓昏渚濊禆 | `react-konva`, `canvasStore`, `eventStore`, `CanvasToolbar`, `ElementSidebar` |
+| 文件 | `frontend/src/components/canvas/DiaryCanvas.tsx` |
+| 导出 | `DiaryCanvas` |
+| 当前状态 | `TaskCanvas` 使用 |
+| 主要依赖 | `react-konva`, `canvasStore`, `eventStore`, `CanvasToolbar`, `ElementSidebar` |
 
-鍔熻兘锛?
-- 澶氭ā鎬佹棩璁扮敾甯冪紪杈戝櫒銆?- 鑻ユ病鏈夊綋鍓?entry锛屼細鑷姩鍒涘缓 `Untitled Diary`銆?- 鏍规嵁瀹瑰櫒灏哄鑷姩鏇存柊鐢诲竷灏哄銆?- 鏀寔浠庝簨浠朵晶鏍忔嫋鍏ヤ簨浠跺崱鐗囨垨濯掍綋銆?- 鏀寔娣诲姞鏂囨湰銆佹坊鍔犲浘鐗囥€佺缉鏀俱€侀€変腑銆佹嫋鍔ㄣ€佸彉鎹€?- 浣跨敤 Konva `Transformer` 绠＄悊閫変腑鍏冪礌鐨?resize/rotate銆?
-鍐呴儴娓叉煋鍣細
+功能：
 
-| 鍐呴儴缁勪欢 | 鍔熻兘 |
+- 多模态日记画布编辑器。
+- 若没有当前 entry，会自动创建 `Untitled Diary`。
+- 根据容器尺寸自动更新画布尺寸。
+- 支持从事件侧栏拖入事件卡片或媒体。
+- 支持添加文本、添加图片、缩放、选中、拖动、变换。
+- 使用 Konva `Transformer` 管理选中元素的 resize/rotate。
+
+内部渲染器：
+
+| 内部组件 | 功能 |
 | --- | --- |
-| `CanvasElementRenderer` | 鎸夊厓绱犵被鍨嬪垎鍙戞覆鏌?|
-| `EventCardRenderer` | 鍦?Konva 涓覆鏌撲簨浠跺崱鐗?|
-| `ImageElement` | 鍔犺浇鍥剧墖骞舵覆鏌撲负 `KonvaImage` |
-| `MediaRenderer` | 娓叉煋鐙珛鍥剧墖鍏冪礌 |
+| `CanvasElementRenderer` | 按元素类型分发渲染 |
+| `EventCardRenderer` | 在 Konva 中渲染事件卡片 |
+| `ImageElement` | 加载图片并渲染为 `KonvaImage` |
+| `MediaRenderer` | 渲染独立图片元素 |
 
-鏀寔鍏冪礌绫诲瀷锛?
+支持元素类型：
+
 ```ts
 type CanvasElementType = 'text' | 'image' | 'video' | 'event-card';
 ```
 
-鍏抽敭闄愬埗锛?
-- `video` 绫诲瀷鍦ㄧ被鍨嬩腑瀛樺湪锛屼絾褰撳墠 `DiaryCanvas` 涓昏瀹炵幇浜?text銆乮mage銆乪vent-card銆?- `CanvasToolbar` 鐨?Save 鍜?Download 鎸夐挳鐩墠涓昏鏄?UI锛屽崰浣嶈涓烘湭鎺ュ叆瀹屾暣淇濆瓨/瀵煎嚭閫昏緫銆?
+关键限制：
+
+- `video` 类型在类型中存在，但当前 `DiaryCanvas` 主要实现了 text、image、event-card。
+- `CanvasToolbar` 的 Save 和 Download 按钮目前主要是 UI，占位行为未接入完整保存/导出逻辑。
+
 ### CanvasToolbar
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/canvas/CanvasToolbar.tsx` |
-| 瀵煎嚭 | `CanvasToolbar` |
-| 褰撳墠鐘舵€?| `DiaryCanvas` 浣跨敤 |
-| 涓昏渚濊禆 | `canvasStore`, `lucide-react` |
+| 文件 | `frontend/src/components/canvas/CanvasToolbar.tsx` |
+| 导出 | `CanvasToolbar` |
+| 当前状态 | `DiaryCanvas` 使用 |
+| 主要依赖 | `canvasStore`, `lucide-react` |
 
-鍔熻兘锛?
-- 鎺у埗渚ф爮鏄鹃殣銆?- 娣诲姞鏂囨湰鍏冪礌銆?- 閫氳繃鏂囦欢閫夋嫨娣诲姞鍥剧墖鍏冪礌锛屽浘鐗囪浆涓?data URL 瀛樺叆 canvas element銆?- 璋冩暣缂╂斁锛屾樉绀虹櫨鍒嗘瘮銆?- 灞曠ず鏃ヨ妯℃澘鏍囬銆?- 鎻愪緵 Save 鍜?Download 鎸夐挳 UI銆?
-Props锛?
+功能：
+
+- 控制侧栏显隐。
+- 添加文本元素。
+- 通过文件选择添加图片元素，图片转为 data URL 存入 canvas element。
+- 调整缩放，显示百分比。
+- 展示日记模板标题。
+- 提供 Save 和 Download 按钮 UI。
+
+Props：
+
 ```ts
 interface CanvasToolbarProps {
   onAddText: () => void;
@@ -268,16 +370,24 @@ interface CanvasToolbarProps {
 
 ### ElementSidebar
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/canvas/ElementSidebar.tsx` |
-| 瀵煎嚭 | `ElementSidebar` |
-| 褰撳墠鐘舵€?| `DiaryCanvas` 浣跨敤 |
-| 涓昏渚濊禆 | `EventExtended`, `framer-motion` |
+| 文件 | `frontend/src/components/canvas/ElementSidebar.tsx` |
+| 导出 | `ElementSidebar` |
+| 当前状态 | `DiaryCanvas` 使用 |
+| 主要依赖 | `EventExtended`, `framer-motion` |
 
-鍔熻兘锛?
-- 鐢诲竷宸︿晶浜嬩欢璧勬簮闈㈡澘銆?- 鎼滅储浜嬩欢鏍囬銆佹憳瑕佸拰鏍囩銆?- 鎸夊垱寤烘椂闂寸矖鍒嗕负 `today`銆乣this-week`銆乣this-month`銆乣older`銆?- 鏀寔鎶樺彔/灞曞紑鍒嗙粍銆?- 浜嬩欢鍙嫋鎷藉埌鐢诲竷锛屽獟浣撲篃鍙崟鐙嫋鎷藉埌鐢诲竷銆?- 鐐瑰嚮浜嬩欢鍙缃€変腑浜嬩欢銆?
-Props锛?
+功能：
+
+- 画布左侧事件资源面板。
+- 搜索事件标题、摘要和标签。
+- 按创建时间粗分为 `today`、`this-week`、`this-month`、`older`。
+- 支持折叠/展开分组。
+- 事件可拖拽到画布，媒体也可单独拖拽到画布。
+- 点击事件可设置选中事件。
+
+Props：
+
 ```ts
 interface ElementSidebarProps {
   events: EventExtended[];
@@ -287,22 +397,31 @@ interface ElementSidebarProps {
 }
 ```
 
-澶囨敞锛?
-- `onAddEventCard` 鍦?Props 涓畾涔夛紝浣嗗綋鍓嶇粍浠跺唴閮ㄦ病鏈夌洿鎺ヨ皟鐢紝涓昏閫氳繃鎷栨嫿浜や簰娣诲姞銆?
-## 甯冨眬涓庡伐浣滃彴缁勪欢
+备注：
+
+- `onAddEventCard` 在 Props 中定义，但当前组件内部没有直接调用，主要通过拖拽交互添加。
+
+## 布局与工作台组件
 
 ### MainLayout
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/MainLayout.tsx` |
-| 瀵煎嚭 | `MainLayout` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠 `App.tsx` 鏈洿鎺ユ寕杞?|
-| 涓昏渚濊禆 | `DataPanel`, `TaskCanvas`, `Chatbot`, `ModeToggle`, `uiStore`, `eventStore` |
+| 文件 | `frontend/src/components/layout/MainLayout.tsx` |
+| 导出 | `MainLayout` |
+| 当前状态 | 可复用，当前 `App.tsx` 未直接挂载 |
+| 主要依赖 | `DataPanel`, `TaskCanvas`, `Chatbot`, `ModeToggle`, `uiStore`, `eventStore` |
 
-鍔熻兘锛?
-- 鏃╂湡涓夋爮宸ヤ綔鍙颁富甯冨眬銆?- 椤堕儴 Header 鍖呭惈 logo銆丳anel/Canvas 瑙嗗浘鍒囨崲銆佷簨浠惰鏁般€佷富棰樺垏鎹€佺敤鎴峰ご鍍忓拰閫€鍑烘寜閽€?- 宸︿晶 `DataPanel` 鍙睍寮€銆佹敹璧峰拰鎷栧姩璋冩暣瀹藉害銆?- 涓棿鍖哄煙鎵胯浇 `TaskCanvas`銆?- 鍙充笅瑙掓寕杞芥诞鍔ㄧ増 `Chatbot`銆?
-Props锛?
+功能：
+
+- 早期三栏工作台主布局。
+- 顶部 Header 包含 logo、Panel/Canvas 视图切换、事件计数、主题切换、用户头像和退出按钮。
+- 左侧 `DataPanel` 可展开、收起和拖动调整宽度。
+- 中间区域承载 `TaskCanvas`。
+- 右下角挂载浮动版 `Chatbot`。
+
+Props：
+
 ```ts
 interface MainLayoutProps {
   onLogout?: () => void;
@@ -311,94 +430,135 @@ interface MainLayoutProps {
 
 ### DataPanel
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/DataPanel.tsx` |
-| 瀵煎嚭 | `DataPanel` |
-| 褰撳墠鐘舵€?| `MainLayout` 浣跨敤 |
-| 涓昏渚濊禆 | `eventStore`, `uiStore`, `EventCard`, `EventEditor`, `JSONUploader` |
+| 文件 | `frontend/src/components/layout/DataPanel.tsx` |
+| 导出 | `DataPanel` |
+| 当前状态 | `MainLayout` 使用 |
+| 主要依赖 | `eventStore`, `uiStore`, `EventCard`, `EventEditor`, `JSONUploader` |
 
-鍔熻兘锛?
-- 宸︿晶鏁版嵁缁勭粐鍜屼簨浠剁鐞嗛潰鏉裤€?- 鏃犱簨浠舵椂鏄剧ず `JSONUploader`銆?- 鏀寔鎼滅储浜嬩欢銆?- 浠?tag 灏嗕簨浠跺垎缁勩€?- 鏀寔涓夊眰缂╂斁缁撴瀯锛?  - Level 1锛氭瑙堝眰锛実raph/grid/list 涓夌甯冨眬銆?  - Level 2锛氬垎绫昏鎯呭眰锛屽睍绀烘煇涓?tag 涓嬩簨浠躲€?  - Level 3锛氫簨浠剁紪杈戝眰锛屽祵鍏?`EventEditor`銆?- 浜嬩欢鏀寔鎷栨嫿锛宒rag data 涓?`EventCard` 淇濇寔涓€鑷淬€?
-瑙嗗浘妯″紡锛?
-| 妯″紡 | 鍐呴儴缁勪欢 | 鍔熻兘 |
+功能：
+
+- 左侧数据组织和事件管理面板。
+- 无事件时显示 `JSONUploader`。
+- 支持搜索事件。
+- 以 tag 将事件分组。
+- 支持三层缩放结构：
+  - Level 1：概览层，graph/grid/list 三种布局。
+  - Level 2：分类详情层，展示某个 tag 下事件。
+  - Level 3：事件编辑层，嵌入 `EventEditor`。
+- 事件支持拖拽，drag data 与 `EventCard` 保持一致。
+
+视图模式：
+
+| 模式 | 内部组件 | 功能 |
 | --- | --- | --- |
-| `graph` | `GraphView` | 鎸?tag 鏁伴噺娓叉煋鍦嗗舰鍒嗙被鑺傜偣 |
-| `grid` | `GridView` | 鍙屽垪绠€鍗′簨浠剁綉鏍?|
-| `list` | `ListView` | 鍗曞垪浜嬩欢鍒楄〃 |
+| `graph` | `GraphView` | 按 tag 数量渲染圆形分类节点 |
+| `grid` | `GridView` | 双列简卡事件网格 |
+| `list` | `ListView` | 单列事件列表 |
 
-鍏抽敭鐘舵€侊細
+关键状态：
 
 - `uiStore.panelZoomLevel`
 - `uiStore.panelLayout`
-- 鏈湴 `searchQuery`
-- 鏈湴 `selectedCategory`
+- 本地 `searchQuery`
+- 本地 `selectedCategory`
 
 ### TaskCanvas
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/TaskCanvas.tsx` |
-| 瀵煎嚭 | `TaskCanvas` |
-| 褰撳墠鐘舵€?| `MainLayout` 浣跨敤 |
-| 涓昏渚濊禆 | `DiaryCanvas`, `canvasStore` |
+| 文件 | `frontend/src/components/layout/TaskCanvas.tsx` |
+| 导出 | `TaskCanvas` |
+| 当前状态 | `MainLayout` 使用 |
+| 主要依赖 | `DiaryCanvas`, `canvasStore` |
 
-鍔熻兘锛?
-- 浠诲姟鎵ц鍖哄叆鍙ｃ€?- 鏃犲綋鍓嶄换鍔℃垨鐢诲竷 entry 鏃舵樉绀烘ā鏉块€夋嫨銆?- 鏀寔鍥涚妯℃澘锛欴iary銆丷eflection銆丼lides銆丆ustom銆?- 閫夋嫨妯℃澘鍚庤皟鐢?`canvasStore.createNewEntry()`锛岃繘鍏?`DiaryCanvas`銆?
-Props锛?
+功能：
+
+- 任务执行区入口。
+- 无当前任务或画布 entry 时显示模板选择。
+- 支持四种模板：Diary、Reflection、Slides、Custom。
+- 选择模板后调用 `canvasStore.createNewEntry()`，进入 `DiaryCanvas`。
+
+Props：
+
 ```ts
 interface TaskCanvasProps {
   activeView: 'panel' | 'canvas';
 }
 ```
 
-澶囨敞锛?
-- 褰撳墠瀹炵幇涓?`_props` 鏈疄闄呬娇鐢紝Panel/Canvas 鍒囨崲鐘舵€佹病鏈夊奖鍝嶆覆鏌撻€昏緫銆?
+备注：
+
+- 当前实现中 `_props` 未实际使用，Panel/Canvas 切换状态没有影响渲染逻辑。
+
 ### ColdStart
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/ColdStart.tsx` |
-| 瀵煎嚭 | `ColdStart` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠涓诲叆鍙ｆ湭鐩存帴鎸傝浇 |
-| 涓昏渚濊禆 | `Select`, `lucide-react` |
+| 文件 | `frontend/src/components/layout/ColdStart.tsx` |
+| 导出 | `ColdStart` |
+| 当前状态 | 可复用，当前主入口未直接挂载 |
+| 主要依赖 | `Select`, `lucide-react` |
 
-鍔熻兘锛?
-- 鍐峰惎鍔ㄩ厤缃悜瀵笺€?- 鍥涙娴佺▼锛氭椂闂磋寖鍥淬€佹椂闂寸矑搴︺€佷娇鐢ㄧ洰鐨勩€佺粍缁囩储寮曘€?- 姣忔鏈夊繀濉牎楠岋紝婊¤冻鏉′欢鎵嶅厑璁镐笅涓€姝ャ€?- 瀹屾垚鏃惰皟鐢?`onComplete(config)`銆?- 瀹屾垚鍚庡睍绀洪厤缃憳瑕侊紝骞跺厑璁搁噸缃噸鏂板紑濮嬨€?
-Props锛?
+功能：
+
+- 冷启动配置向导。
+- 四步流程：时间范围、时间粒度、使用目的、组织索引。
+- 每步有必填校验，满足条件才允许下一步。
+- 完成时调用 `onComplete(config)`。
+- 完成后展示配置摘要，并允许重置重新开始。
+
+Props：
+
 ```ts
 interface ColdStartProps {
   onComplete?: (config: ColdStartConfig) => void;
 }
 ```
 
-娉ㄦ剰锛?
-- 璇ユ枃浠跺唴閮ㄥ畾涔夌殑 `ColdStartConfig` 浣跨敤 `day | week | month`锛屼笌 `types/global.ts` 涓殑 `daily | weekly | monthly | event` 涓嶅畬鍏ㄤ竴鑷淬€傚悗缁帴鍏ュ叏灞€ store 鏃跺缓璁粺涓€銆?
+注意：
+
+- 该文件内部定义的 `ColdStartConfig` 使用 `day | week | month`，与 `types/global.ts` 中的 `daily | weekly | monthly | event` 不完全一致。后续接入全局 store 时建议统一。
+
 ### FilterToolbar
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/FilterToolbar.tsx` |
-| 瀵煎嚭 | `FilterToolbar` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠涓诲叆鍙ｆ湭鐩存帴鎸傝浇 |
-| 涓昏渚濊禆 | `Select`, `RangeSlider` |
+| 文件 | `frontend/src/components/layout/FilterToolbar.tsx` |
+| 导出 | `FilterToolbar` |
+| 当前状态 | 可复用，当前主入口未直接挂载 |
+| 主要依赖 | `Select`, `RangeSlider` |
 
-鍔熻兘锛?
-- 缁勫悎寮忕瓫閫夊伐鍏锋爮銆?- 鏀寔 Primary Element銆丼econdary Element 涓嬫媺閫夋嫨銆?- 鏀寔鏃堕棿鑼冨洿婊戝潡锛屾牸寮忓寲涓虹被浼?`2.13` 鐨勬棩鏈熸爣绛俱€?- 璁剧疆寮瑰眰鍖呭惈鍒嗙被缁嗗害銆佸睍绀烘暟閲忋€佸叧閿瘝寮€鍏冲拰 Renew 鎿嶄綔銆?
-澶囨敞锛?
-- 褰撳墠鐘舵€佸潎涓虹粍浠舵湰鍦?state锛屽皻鏈帴鍏?`uiStore.panelFilter`銆?
+功能：
+
+- 组合式筛选工具栏。
+- 支持 Primary Element、Secondary Element 下拉选择。
+- 支持时间范围滑块，格式化为类似 `2.13` 的日期标签。
+- 设置弹层包含分类细度、展示数量、关键词开关和 Renew 操作。
+
+备注：
+
+- 当前状态均为组件本地 state，尚未接入 `uiStore.panelFilter`。
+
 ### ProjectHistoryCard
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/ProjectHistoryCard.tsx` |
-| 瀵煎嚭 | `ProjectHistoryCard`, `ProjectHistoryCardProps`, `CardTheme` |
-| 褰撳墠鐘舵€?| `ProjectHistoryList` 浣跨敤锛屽綋鍓嶄富鍏ュ彛鏈変竴濂楀唴鑱?History 鍗＄墖 |
-| 涓昏渚濊禆 | `cn`, `lucide-react` |
+| 文件 | `frontend/src/components/layout/ProjectHistoryCard.tsx` |
+| 导出 | `ProjectHistoryCard`, `ProjectHistoryCardProps`, `CardTheme` |
+| 当前状态 | `ProjectHistoryList` 使用，当前主入口有一套内联 History 卡片 |
+| 主要依赖 | `cn`, `lucide-react` |
 
-鍔熻兘锛?
-- MemoryLib/Project 鍘嗗彶鍗＄墖銆?- 鏀寔 blue銆亂ellow銆乬reen銆乸urple銆乺ed 浜旂涓婚銆?- 浣跨敤鏂滆 date ribbon銆佹爣绛捐兌鍥婂拰 hover 鎶崌鏁堟灉銆?- `isNew` 鏃跺睍绀烘柊寤洪伄缃╁拰鍔犲彿鎸夐挳銆?
-Props锛?
+功能：
+
+- MemoryLib/Project 历史卡片。
+- 支持 blue、yellow、green、purple、red 五种主题。
+- 使用斜角 date ribbon、标签胶囊和 hover 抬升效果。
+- `isNew` 时展示新建遮罩和加号按钮。
+
+Props：
+
 ```ts
 export interface ProjectHistoryCardProps {
   title: string;
@@ -413,63 +573,89 @@ export interface ProjectHistoryCardProps {
 
 ### ProjectHistoryList
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/ProjectHistoryList.tsx` |
-| 瀵煎嚭 | `ProjectHistoryList` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠涓诲叆鍙ｆ湭鐩存帴鎸傝浇 |
-| 涓昏渚濊禆 | `ProjectHistoryCard` |
+| 文件 | `frontend/src/components/layout/ProjectHistoryList.tsx` |
+| 导出 | `ProjectHistoryList` |
+| 当前状态 | 可复用，当前主入口未直接挂载 |
+| 主要依赖 | `ProjectHistoryCard` |
 
-鍔熻兘锛?
-- 浣跨敤 mock 鏁版嵁鎸夊勾浠藉垎缁勫睍绀哄巻鍙插崱鐗囥€?- 褰撳墠娌℃湁鎺ュ叆 API 鎴?store銆?- 鍙綔涓哄綋鍓?`App.tsx` 鍐呰仈 `MemoryLibHistory` 鐨勭粍浠跺寲鏇夸唬鍩虹銆?
+功能：
+
+- 使用 mock 数据按年份分组展示历史卡片。
+- 当前没有接入 API 或 store。
+- 可作为当前 `App.tsx` 内联 `MemoryLibHistory` 的组件化替代基础。
+
 ### TimelineCoordinateView
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/layout/TimelineCoordinateView.tsx` |
-| 瀵煎嚭 | `TimelineCoordinateView` |
-| 褰撳墠鐘舵€?| 鍘熷瀷/灞曠ず缁勪欢 |
-| 涓昏渚濊禆 | 鏃犲閮ㄤ笟鍔′緷璧?|
+| 文件 | `frontend/src/components/layout/TimelineCoordinateView.tsx` |
+| 导出 | `TimelineCoordinateView` |
+| 当前状态 | 原型/展示组件 |
+| 主要依赖 | 无外部业务依赖 |
 
-鍔熻兘锛?
-- 鏃堕棿鍧愭爣杞村睍绀哄師鍨嬨€?- 鍖呭惈 X/Y 杞淬€佹椂闂村埢搴︺€乄orking/Resting 鏍囩鍜岃嫢骞蹭簨浠跺潡鍗犱綅銆?- 褰撳墠绂佺敤浜や簰锛歚select-none pointer-events-none opacity-80`銆?
-## 椤圭洰绠＄悊缁勪欢
+功能：
+
+- 时间坐标轴展示原型。
+- 包含 X/Y 轴、时间刻度、Working/Resting 标签和若干事件块占位。
+- 当前禁用交互：`select-none pointer-events-none opacity-80`。
+
+## 项目管理组件
 
 ### ProjectManagement
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/projects/ProjectManagement.tsx` |
-| 瀵煎嚭 | `ProjectManagement` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠涓诲叆鍙ｆ湭鐩存帴鎸傝浇 |
-| 涓昏渚濊禆 | `projectStore`, `eventStore`, `framer-motion` |
+| 文件 | `frontend/src/components/projects/ProjectManagement.tsx` |
+| 导出 | `ProjectManagement` |
+| 当前状态 | 可复用，当前主入口未直接挂载 |
+| 主要依赖 | `projectStore`, `eventStore`, `framer-motion` |
 
-鍔熻兘锛?
-- 宸︿晶椤圭洰鍒楄〃锛屽彸渚ч」鐩鎯呫€?- 鏀寔鏂板缓銆佺紪杈戙€佸垹闄ら」鐩€?- 鏀寔椤圭洰鎼滅储鍜岀姸鎬佺瓫閫夛細all銆乤ctive銆乤rchived銆乧ompleted銆?- 灞曠ず椤圭洰鍒涘缓鏃堕棿銆佷簨浠舵暟閲忋€佹€绘椂闀裤€?- 鍙充晶璇︽儏灞曠ず椤圭洰鍏宠仈浜嬩欢鍒楄〃銆?- 浜嬩欢鍙粠椤圭洰涓Щ闄ゃ€?
-鍐呴儴缁勪欢锛?
-| 鍐呴儴缁勪欢 | 鍔熻兘 |
+功能：
+
+- 左侧项目列表，右侧项目详情。
+- 支持新建、编辑、删除项目。
+- 支持项目搜索和状态筛选：all、active、archived、completed。
+- 展示项目创建时间、事件数量、总时长。
+- 右侧详情展示项目关联事件列表。
+- 事件可从项目中移除。
+
+内部组件：
+
+| 内部组件 | 功能 |
 | --- | --- |
-| `StatusBadge` | 椤圭洰鐘舵€佸窘鏍?|
-| `ProjectDetail` | 椤圭洰璇︽儏鍜屽叧鑱斾簨浠跺垪琛?|
-| `ProjectForm` | 鍒涘缓/缂栬緫椤圭洰寮圭獥 |
+| `StatusBadge` | 项目状态徽标 |
+| `ProjectDetail` | 项目详情和关联事件列表 |
+| `ProjectForm` | 创建/编辑项目弹窗 |
 
-鍏抽敭鐗规€э細
+关键特性：
 
-- `projectStore` 浣跨敤鍘熺敓 IndexedDB `MemoryLibProjects`銆?- 椤圭洰涓庝簨浠堕€氳繃 `project.eventIds` 鍏宠仈銆?- 鍒犻櫎椤圭洰浼氫簩娆＄‘璁ゃ€?
-## 瀵艰埅缁勪欢
+- `projectStore` 使用原生 IndexedDB `MemoryLibProjects`。
+- 项目与事件通过 `project.eventIds` 关联。
+- 删除项目会二次确认。
+
+## 导航组件
 
 ### NavigationPanel
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/navigation/NavigationPanel.tsx` |
-| 瀵煎嚭 | `NavigationPanel`, `NavTriggerButton` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠涓诲叆鍙ｆ湭鐩存帴鎸傝浇 |
-| 涓昏渚濊禆 | `framer-motion`, `lucide-react` |
+| 文件 | `frontend/src/components/navigation/NavigationPanel.tsx` |
+| 导出 | `NavigationPanel`, `NavTriggerButton` |
+| 当前状态 | 可复用，当前主入口未直接挂载 |
+| 主要依赖 | `framer-motion`, `lucide-react` |
 
-鍔熻兘锛?
-- 蹇€熷鑸脊绐楋紝鍖呭惈椤甸潰鍜岀粍浠朵袱绫绘潯鐩€?- 鏀寔鎼滅储 label 鍜?description銆?- 鏀寔閿洏鎿嶄綔锛欰rrowUp銆丄rrowDown銆丒nter銆丒scape銆?- 褰撳墠椤甸潰楂樹寒銆?- 鐐瑰嚮鏉＄洰鍚庤皟鐢?`onNavigate(id)` 骞跺叧闂潰鏉裤€?
-Props锛?
+功能：
+
+- 快速导航弹窗，包含页面和组件两类条目。
+- 支持搜索 label 和 description。
+- 支持键盘操作：ArrowUp、ArrowDown、Enter、Escape。
+- 当前页面高亮。
+- 点击条目后调用 `onNavigate(id)` 并关闭面板。
+
+Props：
+
 ```ts
 interface NavigationPanelProps {
   isOpen: boolean;
@@ -479,7 +665,8 @@ interface NavigationPanelProps {
 }
 ```
 
-`NavTriggerButton`锛?
+`NavTriggerButton`：
+
 ```ts
 interface NavTriggerButtonProps {
   onClick: () => void;
@@ -487,69 +674,94 @@ interface NavTriggerButtonProps {
 }
 ```
 
-澶囨敞锛?
-- Footer 鏄剧ず蹇嵎閿负 `Ctrl+Shift+X`锛屾棫鏂囨。鏇炬彁鍒?Cmd/Ctrl+K锛屽綋鍓嶄唬鐮佷互缁勪欢鍐呮樉绀轰负鍑嗐€?- `NAV_ITEMS` 浠嶅搴旀棭鏈?App View銆丳rojects銆丆old Start銆丆anvas銆丆omponents 瑙嗗浘銆?
-## 鑱婂ぉ缁勪欢
+备注：
+
+- Footer 显示快捷键为 `Ctrl+Shift+X`，旧文档曾提到 Cmd/Ctrl+K，当前代码以组件内显示为准。
+- `NAV_ITEMS` 仍对应早期 App View、Projects、Cold Start、Canvas、Components 视图。
+
+## 聊天组件
 
 ### Chatbot
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/chatbot/Chatbot.tsx` |
-| 瀵煎嚭 | `Chatbot` |
-| 褰撳墠鐘舵€?| `MainLayout` 浣跨敤锛屽綋鍓嶄富鍏ュ彛浣跨敤鐨勬槸 `ChatbotPanel` |
-| 涓昏渚濊禆 | `chatStore`, `eventStore`, `framer-motion` |
+| 文件 | `frontend/src/components/chatbot/Chatbot.tsx` |
+| 导出 | `Chatbot` |
+| 当前状态 | `MainLayout` 使用，当前主入口使用的是 `ChatbotPanel` |
+| 主要依赖 | `chatStore`, `eventStore`, `framer-motion` |
 
-鍔熻兘锛?
-- 鍙充笅瑙掓诞鍔ㄨ亰澶╂寜閽拰鑱婂ぉ绐楀彛銆?- 鏀寔鏈€灏忓寲銆佹柊寤轰細璇濄€佸叧闂€?- 鏀寔灏嗕簨浠跺崱鐗囨嫋鍏ヨ亰澶╃獥鍙ｏ紝褰㈡垚 attached events銆?- 鍙戦€佹秷鎭椂璋冪敤 `chatStore.sendMessage(input, attachedEventIds, attachedEvents)`銆?- 娑堟伅鍐呭鏀寔杞婚噺 Markdown 娓叉煋锛?  - `##`
+功能：
+
+- 右下角浮动聊天按钮和聊天窗口。
+- 支持最小化、新建会话、关闭。
+- 支持将事件卡片拖入聊天窗口，形成 attached events。
+- 发送消息时调用 `chatStore.sendMessage(input, attachedEventIds, attachedEvents)`。
+- 消息内容支持轻量 Markdown 渲染：
+  - `##`
   - `###`
   - `**bold**`
   - `- list`
   - `1. numbered`
-- 鏄剧ず浜嬩欢 attachment 鏍囩鍜屾椂闂存埑銆?
-涓?`ChatbotPanel` 鐨勫尯鍒細
+- 显示事件 attachment 标签和时间戳。
 
-| 椤?| Chatbot | ChatbotPanel |
+与 `ChatbotPanel` 的区别：
+
+| 项 | Chatbot | ChatbotPanel |
 | --- | --- | --- |
-| 灞曠ず鏂瑰紡 | 鍙充笅瑙掓诞鍔ㄧ獥 | 鍙充晶婊戝叆鍏ㄩ珮闈㈡澘 |
-| 浜嬩欢渚濊禆 | 渚濊禆 `eventStore`锛屾敮鎸佹嫋鍏ヤ簨浠?| 涓嶄緷璧?`eventStore` |
-| 椤甸潰涓婁笅鏂?| 涓嶆惡甯?`pageContextStore` | 鍙戦€佹椂鎼哄甫褰撳墠椤甸潰涓婁笅鏂?|
-| 褰撳墠鍏ュ彛 | `MainLayout` | `App.tsx` |
+| 展示方式 | 右下角浮动窗 | 右侧滑入全高面板 |
+| 事件依赖 | 依赖 `eventStore`，支持拖入事件 | 不依赖 `eventStore` |
+| 页面上下文 | 不携带 `pageContextStore` | 发送时携带当前页面上下文 |
+| 当前入口 | `MainLayout` | `App.tsx` |
 
-## 璁よ瘉缁勪欢
+## 认证组件
 
 ### LoginPage
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/auth/LoginPage.tsx` |
-| 瀵煎嚭 | `LoginPage` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠 `App.tsx` 浣跨敤鍐呰仈 `AuthScreen` |
-| 涓昏渚濊禆 | `User`, `framer-motion`, `lucide-react` |
+| 文件 | `frontend/src/components/auth/LoginPage.tsx` |
+| 导出 | `LoginPage` |
+| 当前状态 | 可复用，当前 `App.tsx` 使用内联 `AuthScreen` |
+| 主要依赖 | `User`, `framer-motion`, `lucide-react` |
 
-鍔熻兘锛?
-- 閭瀵嗙爜鐧诲綍椤?UI銆?- 鏀寔瀵嗙爜鍙鎬у垏鎹€?- 鏀寔 Remember me 鏈湴鐘舵€併€?- 鏈夊姞杞界姸鎬佸拰閿欒鎻愮ず銆?- 绗笁鏂圭櫥褰曟寜閽负绂佺敤鍗犱綅銆?- 褰撳墠瀹炵幇浣跨敤妯℃嫙鐧诲綍锛岄偖绠卞寘鍚?`@` 涓斿瘑鐮侀暱搴﹁嚦灏?6 鍗抽€氳繃銆?- 鐧诲綍鎴愬姛鍚庢瀯閫?`User` 骞惰皟鐢?`onLogin(user)`銆?
-Props锛?
+功能：
+
+- 邮箱密码登录页 UI。
+- 支持密码可见性切换。
+- 支持 Remember me 本地状态。
+- 有加载状态和错误提示。
+- 第三方登录按钮为禁用占位。
+- 当前实现使用模拟登录，邮箱包含 `@` 且密码长度至少 6 即通过。
+- 登录成功后构造 `User` 并调用 `onLogin(user)`。
+
+Props：
+
 ```ts
 interface LoginPageProps {
   onLogin: (user: User) => void;
 }
 ```
 
-## UI 鍩虹缁勪欢
+## UI 基础组件
 
 ### Select
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/ui/select.tsx` |
-| 瀵煎嚭 | `Select`, `SelectProps`, `SelectOption` |
-| 褰撳墠鐘舵€?| `ColdStart`銆乣FilterToolbar` 浣跨敤 |
-| 涓昏渚濊禆 | `@radix-ui/react-dropdown-menu`, `lucide-react` |
+| 文件 | `frontend/src/components/ui/select.tsx` |
+| 导出 | `Select`, `SelectProps`, `SelectOption` |
+| 当前状态 | `ColdStart`、`FilterToolbar` 使用 |
+| 主要依赖 | `@radix-ui/react-dropdown-menu`, `lucide-react` |
 
-鍔熻兘锛?
-- 鍩轰簬 Radix Dropdown Menu 鐨勫崟閫変笅鎷夌粍浠躲€?- 灞曠ず褰撳墠閫夐」 label 鎴?placeholder銆?- 閫変腑椤规樉绀?Check 鍥炬爣銆?- 鏀寔 disabled銆乧lassName 瑕嗙洊銆?
-Props锛?
+功能：
+
+- 基于 Radix Dropdown Menu 的单选下拉组件。
+- 展示当前选项 label 或 placeholder。
+- 选中项显示 Check 图标。
+- 支持 disabled、className 覆盖。
+
+Props：
+
 ```ts
 export interface SelectProps {
   value?: string;
@@ -561,20 +773,28 @@ export interface SelectProps {
 }
 ```
 
-缁存姢鎻愮ず锛?
-- `frontend/package.json` 褰撳墠娌℃湁鍒楀嚭 `@radix-ui/react-dropdown-menu`锛岃嫢鏋勫缓鎶ョ己渚濊禆锛岄渶瑕佽ˉ渚濊禆鎴栨浛鎹㈠疄鐜般€?
+维护提示：
+
+- `frontend/package.json` 当前没有列出 `@radix-ui/react-dropdown-menu`，若构建报缺依赖，需要补依赖或替换实现。
+
 ### RangeSlider
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/ui/slider.tsx` |
-| 瀵煎嚭 | `RangeSlider`, `RangeSliderProps` |
-| 褰撳墠鐘舵€?| `FilterToolbar` 浣跨敤 |
-| 涓昏渚濊禆 | `cn` |
+| 文件 | `frontend/src/components/ui/slider.tsx` |
+| 导出 | `RangeSlider`, `RangeSliderProps` |
+| 当前状态 | `FilterToolbar` 使用 |
+| 主要依赖 | `cn` |
 
-鍔熻兘锛?
-- 鍙岀鑼冨洿婊戝潡銆?- 閫氳繃 pointer events 鎷栧姩 start/end thumb銆?- 鑷姩闄愬埗涓や釜 thumb 鑷冲皯淇濈暀 5% 闂磋窛銆?- 鏀寔 hover 鏃舵樉绀烘牸寮忓寲 label銆?
-Props锛?
+功能：
+
+- 双端范围滑块。
+- 通过 pointer events 拖动 start/end thumb。
+- 自动限制两个 thumb 至少保留 5% 间距。
+- 支持 hover 时显示格式化 label。
+
+Props：
+
 ```ts
 export interface RangeSliderProps {
   min: number;
@@ -586,57 +806,85 @@ export interface RangeSliderProps {
 }
 ```
 
-### ThemeProvider 鍜?useTheme
+### ThemeProvider 和 useTheme
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/ui/theme-provider.tsx` |
-| 瀵煎嚭 | `ThemeProvider`, `useTheme` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠 `main.tsx` 鏈寘瑁?|
-| 涓昏渚濊禆 | React context, localStorage |
+| 文件 | `frontend/src/components/ui/theme-provider.tsx` |
+| 导出 | `ThemeProvider`, `useTheme` |
+| 当前状态 | 可复用，当前 `main.tsx` 未包裹 |
+| 主要依赖 | React context, localStorage |
 
-鍔熻兘锛?
-- 缁存姢 `light`銆乣dark`銆乣system` 涓夌涓婚銆?- 灏嗕富棰樺啓鍏?`localStorage`銆?- 鏍规嵁涓婚鍦?`document.documentElement` 涓婂垏鎹?`light`/`dark` class銆?- `system` 妯″紡璇诲彇 `prefers-color-scheme`銆?
-缁存姢鎻愮ず锛?
-- `ModeToggle` 浣跨敤 `useTheme`锛屽洜姝ゆ寕杞?`ModeToggle` 鐨勬爲蹇呴』琚?`ThemeProvider` 鍖呰９銆傚綋鍓?`main.tsx` 娌℃湁鍖呰９锛岃嫢鐩存帴浣跨敤 `MainLayout` 闇€瑕佽ˉ涓娿€?
+功能：
+
+- 维护 `light`、`dark`、`system` 三种主题。
+- 将主题写入 `localStorage`。
+- 根据主题在 `document.documentElement` 上切换 `light`/`dark` class。
+- `system` 模式读取 `prefers-color-scheme`。
+
+维护提示：
+
+- `ModeToggle` 使用 `useTheme`，因此挂载 `ModeToggle` 的树必须被 `ThemeProvider` 包裹。当前 `main.tsx` 没有包裹，若直接使用 `MainLayout` 需要补上。
+
 ### ModeToggle
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/ui/mode-toggle.tsx` |
-| 瀵煎嚭 | `ModeToggle` |
-| 褰撳墠鐘舵€?| `MainLayout` 浣跨敤 |
-| 涓昏渚濊禆 | `useTheme`, `lucide-react` |
+| 文件 | `frontend/src/components/ui/mode-toggle.tsx` |
+| 导出 | `ModeToggle` |
+| 当前状态 | `MainLayout` 使用 |
+| 主要依赖 | `useTheme`, `lucide-react` |
 
-鍔熻兘锛?
-- 鏄庢殫涓婚鍒囨崲鎸夐挳銆?- light 鏃剁偣鍑诲垏鍒?dark锛屽叾浠栨儏鍐电偣鍑诲垏鍒?light銆?- 鐢?Sun/Moon 鍥炬爣閫氳繃 Tailwind dark class 鍋氳瑙夊垏鎹€?
+功能：
+
+- 明暗主题切换按钮。
+- light 时点击切到 dark，其他情况点击切到 light。
+- 用 Sun/Moon 图标通过 Tailwind dark class 做视觉切换。
+
 ### MemoryReflectionAction
 
-| 椤?| 鍐呭 |
+| 项 | 内容 |
 | --- | --- |
-| 鏂囦欢 | `frontend/src/components/ui/MemoryReflectionAction.tsx` |
-| 瀵煎嚭 | `MemoryReflectionAction` |
-| 褰撳墠鐘舵€?| 鍙鐢紝褰撳墠涓诲叆鍙ｆ湭鐩存帴鎸傝浇 |
-| 涓昏渚濊禆 | `framer-motion`, `lucide-react`, `cn` |
+| 文件 | `frontend/src/components/ui/MemoryReflectionAction.tsx` |
+| 导出 | `MemoryReflectionAction` |
+| 当前状态 | 可复用，当前主入口未直接挂载 |
+| 主要依赖 | `framer-motion`, `lucide-react`, `cn` |
 
-鍔熻兘锛?
-- 宸︿笅瑙掓诞鍔?Memory Reflection 鎿嶄綔鍏ュ彛銆?- 鐐瑰嚮灞曞紑浠诲姟鑿滃崟銆?- 鏀寔鐐瑰嚮澶栭儴鍏抽棴銆?- 鍐呯疆鍥涚浠诲姟锛?  - Color Diary
+功能：
+
+- 左下角浮动 Memory Reflection 操作入口。
+- 点击展开任务菜单。
+- 支持点击外部关闭。
+- 内置四种任务：
+  - Color Diary
   - Event Logic
   - Decision Making
   - Emotion Healing
 
-澶囨敞锛?
-- 褰撳墠浠诲姟鎸夐挳娌℃湁缁戝畾涓氬姟鍥炶皟锛屽睘浜?UI action launcher 鍘熷瀷銆?
-## Store 涓庢暟鎹緷璧?
+备注：
+
+- 当前任务按钮没有绑定业务回调，属于 UI action launcher 原型。
+
+## Store 与数据依赖
+
 ### eventStore
 
-| 鏂囦欢 | `frontend/src/stores/eventStore.ts` |
+| 文件 | `frontend/src/stores/eventStore.ts` |
 | --- | --- |
-| 涓昏鑱岃矗 | 绠＄悊浜嬩欢鍒楄〃銆侀€変腑浜嬩欢銆佸鍏ュ鍑恒€佸悓姝?Memory Core |
+| 主要职责 | 管理事件列表、选中事件、导入导出、同步 Memory Core |
 
-鏍稿績鑳藉姏锛?
-- `loadEvents()`锛氫粠 Dexie `db.events` 鍔犺浇浜嬩欢锛屽苟鎸?`startSec` 鎺掑簭銆?- `selectEvent(id)`锛氳缃€変腑浜嬩欢銆?- `updateEvent(id, changes)`锛氭洿鏂颁簨浠跺苟鍒锋柊鍒楄〃銆?- `importTimeline(timeline, filename)`锛氭竻绌烘棫浜嬩欢锛屽鍏?JSON timeline銆?- `importFromVideoAnalysis(events)`锛氬皢瑙嗛鍒嗘瀽缁撴灉杞崲涓?timeline銆?- `exportData()`锛氬鍑哄綋鍓?events 涓?`memorylib_export.json`銆?- `clearEvents()`锛氭竻绌?events 鍜?videos銆?- `syncToMemoryCore()`锛氱粡 `/api/memory-core/api/v1/timeline/import` 鍚屾鍒?memory-core銆?
-涓昏娑堣垂鑰咃細
+核心能力：
+
+- `loadEvents()`：从 Dexie `db.events` 加载事件，并按 `startSec` 排序。
+- `selectEvent(id)`：设置选中事件。
+- `updateEvent(id, changes)`：更新事件并刷新列表。
+- `importTimeline(timeline, filename)`：清空旧事件，导入 JSON timeline。
+- `importFromVideoAnalysis(events)`：将视频分析结果转换为 timeline。
+- `exportData()`：导出当前 events 为 `memorylib_export.json`。
+- `clearEvents()`：清空 events 和 videos。
+- `syncToMemoryCore()`：经 `/api/memory-core/api/v1/timeline/import` 同步到 memory-core。
+
+主要消费者：
 
 - `EventList`
 - `EventCard`
@@ -648,55 +896,64 @@ export interface RangeSliderProps {
 
 ### chatStore
 
-| 鏂囦欢 | `frontend/src/stores/chatStore.ts` |
+| 文件 | `frontend/src/stores/chatStore.ts` |
 | --- | --- |
-| 涓昏鑱岃矗 | 绠＄悊鑱婂ぉ浼氳瘽銆佹秷鎭€丄I 璇锋眰銆丮emory Core 娴佸紡瀵硅瘽 |
+| 主要职责 | 管理聊天会话、消息、AI 请求、Memory Core 流式对话 |
 
-鏍稿績鑳藉姏锛?
-- 鍘熺敓 IndexedDB `MemoryLibChat` 鎸佷箙鍖栦細璇濄€?- `createSession(projectId?)`
+核心能力：
+
+- 原生 IndexedDB `MemoryLibChat` 持久化会话。
+- `createSession(projectId?)`
 - `loadSessions()`
 - `sendMessage(content, attachedEventIds?, events?, context?)`
-- 榛樿璇锋眰 `/api/chat/completions`銆?- 寮€鍚?`localStorage.memoryCoreRag=1` 鏃讹紝璇锋眰 `/api/memory-core/api/v1/chat/stream`銆?- AI 杩斿洖 `appliedActions` 鏃惰皟鐢?`pageContextStore.triggerRefresh()`銆?- 鍐呯疆 120 绉掕姹傝秴鏃躲€?
-涓昏娑堣垂鑰咃細
+- 默认请求 `/api/chat/completions`。
+- 开启 `localStorage.memoryCoreRag=1` 时，请求 `/api/memory-core/api/v1/chat/stream`。
+- AI 返回 `appliedActions` 时调用 `pageContextStore.triggerRefresh()`。
+- 内置 120 秒请求超时。
+
+主要消费者：
 
 - `ChatbotPanel`
 - `Chatbot`
 
 ### pageContextStore
 
-| 鏂囦欢 | `frontend/src/stores/pageContextStore.ts` |
+| 文件 | `frontend/src/stores/pageContextStore.ts` |
 | --- | --- |
-| 涓昏鑱岃矗 | 鍚戣亰澶╁姪鎵嬫毚闇插綋鍓嶉〉闈笂涓嬫枃锛屽苟鎵挎帴 AI action 鍚庣殑鍒锋柊瑙﹀彂 |
+| 主要职责 | 向聊天助手暴露当前页面上下文，并承接 AI action 后的刷新触发 |
 
-涓婁笅鏂囩被鍨嬶細
+上下文类型：
 
 - `history`
 - `conceptGraph`
 
-涓昏娑堣垂鑰咃細
+主要消费者：
 
-- `App.tsx` 涓殑 `MemoryLibHistory`
+- `App.tsx` 中的 `MemoryLibHistory`
 - `ConceptGraphView`
 - `ChatbotPanel`
 - `chatStore`
 
 ### canvasStore
 
-| 鏂囦欢 | `frontend/src/stores/canvasStore.ts` |
+| 文件 | `frontend/src/stores/canvasStore.ts` |
 | --- | --- |
-| 涓昏鑱岃矗 | 绠＄悊鏃ヨ鐢诲竷 entry銆佸厓绱犮€侀€変腑鐘舵€併€佺缉鏀惧拰灞傜骇 |
+| 主要职责 | 管理日记画布 entry、元素、选中状态、缩放和层级 |
 
-鏍稿績鑳藉姏锛?
+核心能力：
+
 - `createNewEntry(title, canvasSize?)`
 - `addElement(element)`
 - `updateElement(id, changes)`
 - `removeElement(id)`
 - `selectElement(id)`
-- `setZoom(zoom)`锛岃寖鍥撮檺鍒朵负 0.1 鍒?3銆?- `bringToFront(id)`
+- `setZoom(zoom)`，范围限制为 0.1 到 3。
+- `bringToFront(id)`
 - `sendToBack(id)`
 - `duplicateElement(id)`
-- `exportAsImage()` 褰撳墠杩斿洖 `null`锛屽皻鏈疄鐜般€?
-涓昏娑堣垂鑰咃細
+- `exportAsImage()` 当前返回 `null`，尚未实现。
+
+主要消费者：
 
 - `DiaryCanvas`
 - `CanvasToolbar`
@@ -704,12 +961,14 @@ export interface RangeSliderProps {
 
 ### projectStore
 
-| 鏂囦欢 | `frontend/src/stores/projectStore.ts` |
+| 文件 | `frontend/src/stores/projectStore.ts` |
 | --- | --- |
-| 涓昏鑱岃矗 | 绠＄悊椤圭洰鍒楄〃鍜岄」鐩簨浠跺叧绯?|
+| 主要职责 | 管理项目列表和项目事件关系 |
 
-鏍稿績鑳藉姏锛?
-- 浣跨敤鍘熺敓 IndexedDB `MemoryLibProjects`銆?- `loadProjects()`
+核心能力：
+
+- 使用原生 IndexedDB `MemoryLibProjects`。
+- `loadProjects()`
 - `createProject(name, description?)`
 - `updateProject(id, changes)`
 - `deleteProject(id)`
@@ -717,44 +976,53 @@ export interface RangeSliderProps {
 - `removeEventFromProject(projectId, eventId)`
 - `getProjectEvents(projectId)`
 
-涓昏娑堣垂鑰咃細
+主要消费者：
 
 - `ProjectManagement`
 
 ### uiStore
 
-| 鏂囦欢 | `frontend/src/stores/uiStore.ts` |
+| 文件 | `frontend/src/stores/uiStore.ts` |
 | --- | --- |
-| 涓昏鑱岃矗 | 绠＄悊鏃у伐浣滃彴鐨勭敤鎴枫€佸喎鍚姩銆侀潰鏉垮拰閫氱煡鐘舵€?|
+| 主要职责 | 管理旧工作台的用户、冷启动、面板和通知状态 |
 
-鏍稿績鑳藉姏锛?
-- 鐧诲綍/閫€鍑虹殑 UI state銆?- 鍐峰惎鍔ㄥ畬鎴愮姸鎬併€?- 宸﹀彸闈㈡澘瀹藉害銆?- `panelZoomLevel`銆乣panelLayout`銆乣panelFilter`銆?- 閫氱煡娣诲姞銆佹爣璁板凡璇汇€佹竻绌恒€?- 閫氳繃 Zustand persist 淇濆瓨閮ㄥ垎瀛楁鍒?`memorylib-ui-storage`銆?
-涓昏娑堣垂鑰咃細
+核心能力：
+
+- 登录/退出的 UI state。
+- 冷启动完成状态。
+- 左右面板宽度。
+- `panelZoomLevel`、`panelLayout`、`panelFilter`。
+- 通知添加、标记已读、清空。
+- 通过 Zustand persist 保存部分字段到 `memorylib-ui-storage`。
+
+主要消费者：
 
 - `MainLayout`
 - `DataPanel`
 
-### Dexie 鏁版嵁搴?
-| 鏂囦欢 | `frontend/src/db/index.ts` |
+### Dexie 数据库
+
+| 文件 | `frontend/src/db/index.ts` |
 | --- | --- |
-| 鏁版嵁搴撳悕 | `MemoryLibDB` |
+| 数据库名 | `MemoryLibDB` |
 
-琛ㄧ粨鏋勶細
+表结构：
 
-| 琛?| 绱㈠紩 | 鍐呭 |
+| 表 | 索引 | 内容 |
 | --- | --- | --- |
-| `events` | `id, videoId, eventIndex, *tags` | 瀵煎叆鍚庣殑鎵╁睍浜嬩欢 |
-| `videos` | `id, filename, importedAt` | 瑙嗛鍏冩暟鎹?|
-| `tags` | `id, name` | 鏍囩 |
+| `events` | `id, videoId, eventIndex, *tags` | 导入后的扩展事件 |
+| `videos` | `id, filename, importedAt` | 视频元数据 |
+| `tags` | `id, name` | 标签 |
 
-## 绫诲瀷妯″瀷
+## 类型模型
 
-### 浜嬩欢绫诲瀷
+### 事件类型
 
-| 鏂囦欢 | `frontend/src/types/event.ts` |
+| 文件 | `frontend/src/types/event.ts` |
 | --- | --- |
 
-涓昏绫诲瀷锛?
+主要类型：
+
 - `MediaItem`
 - `Event`
 - `Timeline`
@@ -764,26 +1032,32 @@ export interface RangeSliderProps {
 - `ChatMessage`
 - `ChatSession`
 
-娉ㄦ剰锛?
-- 鍘熷瀵煎叆浜嬩欢浣跨敤 snake_case 瀛楁锛屼緥濡?`start_sec`銆乣start_hms`銆?- 鍓嶇 store 杞崲鍚庝娇鐢?camelCase 瀛楁锛屼緥濡?`startSec`銆乣startHms`銆?- `EventNodeCard` 鐨?`MemoryLibEvent` 鐙珛瀹氫箟锛屼粛淇濈暀 snake_case 椋庢牸锛岀敤浜?`/api/memorylibs/:id` 杩斿洖鏁版嵁銆?
-### 鐢诲竷绫诲瀷
+注意：
 
-| 鏂囦欢 | `frontend/src/types/canvas.ts` |
+- 原始导入事件使用 snake_case 字段，例如 `start_sec`、`start_hms`。
+- 前端 store 转换后使用 camelCase 字段，例如 `startSec`、`startHms`。
+- `EventNodeCard` 的 `MemoryLibEvent` 独立定义，仍保留 snake_case 风格，用于 `/api/memorylibs/:id` 返回数据。
+
+### 画布类型
+
+| 文件 | `frontend/src/types/canvas.ts` |
 | --- | --- |
 
-涓昏绫诲瀷锛?
+主要类型：
+
 - `CanvasElementType`
 - `Position`
 - `CanvasElement`
 - `ElementStyle`
 - `DiaryEntry`
 
-### 鍏ㄥ眬 UI 绫诲瀷
+### 全局 UI 类型
 
-| 鏂囦欢 | `frontend/src/types/global.ts` |
+| 文件 | `frontend/src/types/global.ts` |
 | --- | --- |
 
-涓昏绫诲瀷锛?
+主要类型：
+
 - `ColdStartConfig`
 - `IndexType`
 - `User`
@@ -797,10 +1071,11 @@ export interface RangeSliderProps {
 - `DragItem`
 - `DropZone`
 
-## 瀵煎嚭鍏ュ彛
+## 导出入口
 
-褰撳墠瀛樺湪鐨?barrel 鏂囦欢锛?
-| 鏂囦欢 | 瀵煎嚭鍐呭 |
+当前存在的 barrel 文件：
+
+| 文件 | 导出内容 |
 | --- | --- |
 | `components/auth/index.ts` | `LoginPage` |
 | `components/canvas/index.ts` | `DiaryCanvas`, `CanvasToolbar`, `ElementSidebar` |
@@ -809,31 +1084,34 @@ export interface RangeSliderProps {
 | `components/navigation/index.ts` | `NavigationPanel`, `NavTriggerButton` |
 | `components/projects/index.ts` | `ProjectManagement` |
 
-鏈€氳繃 barrel 鏂囦欢缁熶竴瀵煎嚭鐨勫綋鍓嶄富娴佺▼缁勪欢锛?
+未通过 barrel 文件统一导出的当前主流程组件：
+
 - `ConceptGraphView`
 - `EventNodeCard`
 - `EventEditorPopup`
 - `ChatbotPanel`
 
-濡傛灉鍚庣画瑕佸舰鎴愮湡姝ｇ殑缁勪欢搴擄紝鍙互鑰冭檻琛ヤ竴涓?`components/index.ts` 缁熶竴瀵煎嚭銆?
-## 褰撳墠鍏ュ彛涓庡巻鍙茬粍浠跺叧绯?
-| 缁勪欢/娴佺▼ | 褰撳墠 `App.tsx` 鏄惁浣跨敤 | 璇存槑 |
+如果后续要形成真正的组件库，可以考虑补一个 `components/index.ts` 统一导出。
+
+## 当前入口与历史组件关系
+
+| 组件/流程 | 当前 `App.tsx` 是否使用 | 说明 |
 | --- | --- | --- |
-| 鍐呰仈 `AuthScreen` | 鏄?| 褰撳墠瀹為檯鐧诲綍/娉ㄥ唽 UI |
-| 鍐呰仈 `MemoryLibHistory` | 鏄?| 褰撳墠瀹為檯 History 椤?|
-| `ConceptGraphView` | 鏄?| 褰撳墠 MemoryLib 璇︽儏椤?|
-| `ChatbotPanel` | 鏄?| 褰撳墠鍙充晶鑱婂ぉ闈㈡澘 |
-| `LoginPage` | 鍚?| 鍙鐢ㄨ璇侀〉锛屾ā鎷熺櫥褰?|
-| `MainLayout` | 鍚?| 鏃у伐浣滃彴涓诲竷灞€ |
-| `DataPanel` | 闂存帴鍚?| 鐢?`MainLayout` 浣跨敤 |
-| `TaskCanvas` | 闂存帴鍚?| 鐢?`MainLayout` 浣跨敤 |
-| `DiaryCanvas` | 闂存帴鍚?| 鐢?`TaskCanvas` 浣跨敤 |
-| `Chatbot` | 闂存帴鍚?| 鐢?`MainLayout` 浣跨敤 |
-| `ProjectManagement` | 鍚?| 鐙珛椤圭洰绠＄悊鐣岄潰 |
-| `NavigationPanel` | 鍚?| 鏃у瑙嗗浘蹇€熷鑸?|
+| 内联 `AuthScreen` | 是 | 当前实际登录/注册 UI |
+| 内联 `MemoryLibHistory` | 是 | 当前实际 History 页 |
+| `ConceptGraphView` | 是 | 当前 MemoryLib 详情页 |
+| `ChatbotPanel` | 是 | 当前右侧聊天面板 |
+| `LoginPage` | 否 | 可复用认证页，模拟登录 |
+| `MainLayout` | 否 | 旧工作台主布局 |
+| `DataPanel` | 间接否 | 由 `MainLayout` 使用 |
+| `TaskCanvas` | 间接否 | 由 `MainLayout` 使用 |
+| `DiaryCanvas` | 间接否 | 由 `TaskCanvas` 使用 |
+| `Chatbot` | 间接否 | 由 `MainLayout` 使用 |
+| `ProjectManagement` | 否 | 独立项目管理界面 |
+| `NavigationPanel` | 否 | 旧多视图快速导航 |
 
 
 
-## 闈?Web 鐩綍璇存槑
+## 非 Web 目录说明
 
-浠撳簱涓殑 `Mobile/` 鍜?`Glass/` 鏄?Android/Kotlin 绀轰緥宸ョ▼锛屽寘鍚?Activities銆乂iewModel銆丏ataBeans 绛夛紝涓嶅睘浜庢湰 React 鍓嶇缁勪欢搴撱€傛棫 `doc/DEVELOPMENT.md` 涓湁绉诲姩绔拰鐪奸暅绔鏄庯紝鍙綔涓哄绔枃妗ｅ弬鑰冿紝浣嗘湰鏂囨。鍙暣鐞?Web 鍓嶇缁勪欢銆?
+仓库中的 `Mobile/` 和 `Glass/` 是 Android/Kotlin 示例工程，包含 Activities、ViewModel、DataBeans 等，不属于本 React 前端组件库。旧 `doc/DEVELOPMENT.md` 中有移动端和眼镜端说明，可作为多端文档参考，但本文档只整理 Web 前端组件。
