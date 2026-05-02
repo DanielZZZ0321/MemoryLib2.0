@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { CalendarDays, FolderOpen, Plus, Search, Settings } from "lucide-react";
+import { BookOpen, CalendarDays, FolderOpen, Plus, Search, Settings } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -157,6 +157,13 @@ export default function MemoryLibHistoryPage() {
             >
               <FolderOpen className="size-4" />
               Review
+            </Link>
+            <Link
+              to="/diary-templates"
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+            >
+              <BookOpen className="size-4" />
+              多模态日记预览
             </Link>
             <Link
               to="/admin"
